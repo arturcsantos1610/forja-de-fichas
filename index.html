@@ -444,7 +444,7 @@ select,input[type=text],textarea{background:linear-gradient(180deg,#09090b,#0d0d
 .rlog li.crit{border-color:var(--red-hot);box-shadow:inset 0 0 0 1px rgba(229,56,59,.4)}
 .rlog li.crit b{color:var(--red-hot)}
 .rlog li.fumble b{color:var(--silver-dim);text-decoration:line-through}
-.toast{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:20;min-width:200px;max-width:min(340px,calc(100vw - 32px));padding:14px 18px;
+.toast{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:40;min-width:200px;max-width:min(340px,calc(100vw - 32px));padding:14px 18px;
   background:var(--frame-silver),linear-gradient(180deg,#18181d,#0c0c0e);border:1px solid var(--silver-dim);box-shadow:0 20px 50px -10px rgba(0,0,0,.9)}
 .toast.crit{background:var(--frame-red),linear-gradient(180deg,#2a0c10,#0f0608);border-color:var(--red-hot);box-shadow:0 0 40px -6px rgba(229,56,59,.8)}
 .toast .t-l{font:500 11.5px var(--head);letter-spacing:.1em;text-transform:uppercase;color:var(--silver-dim)}
@@ -572,6 +572,161 @@ details.sug[open] summary::before{content:"− ";}
 .mo-f{display:flex;flex-direction:column;gap:3px;font:500 10.5px var(--head);letter-spacing:.06em;text-transform:uppercase;color:var(--silver-dim);min-width:0}
 .mo-f input{width:100%}
 @media(max-width:700px){.mo-add{grid-template-columns:1fr 1fr}.mo-add .mo-name{grid-column:1/-1}.mo-add button{grid-column:1/-1}}
+
+/* inventário */
+.loadbar{height:6px;background:#1a1a1e;border:1px solid var(--line);margin:0 0 10px}
+.loadbar i{display:block;height:100%;background:linear-gradient(90deg,#55585f,var(--silver))}
+.loadbar.enc i,.loadbar.heavy i{background:linear-gradient(90deg,#7a4b0b,#e0a03b)}
+.loadbar.over i{background:linear-gradient(90deg,#7c0b14,#e5383b);box-shadow:0 0 10px rgba(229,56,59,.5)}
+.small.warn{color:#e0a03b;margin:0 0 8px}
+.coins{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;margin-bottom:10px}
+.coin{display:flex;flex-direction:column;align-items:center;gap:3px;font:700 10.5px var(--head);letter-spacing:.08em;color:var(--silver-dim);min-width:0}
+.coin input{width:100%;min-width:0;text-align:center;background:var(--well);color:var(--ink);border:1px solid var(--line);padding:5px 2px;font:600 15px var(--body);-moz-appearance:textfield}
+.coin input::-webkit-inner-spin-button{display:none}
+.coin b{font:700 16px var(--head);color:var(--ink)}
+.c-pc span{color:#c4825a}.c-pp span{color:#b9bec7}.c-pe span{color:#cfc79a}.c-po span{color:#d9b45a}.c-pl span{color:#e8ebf0}
+.inv-g{font:700 10.5px var(--head);letter-spacing:.08em;text-transform:uppercase;color:var(--silver-dim);margin:12px 0 2px}
+.inv-l{list-style:none;margin:0;padding:0}
+.inv-l li{border-bottom:1px solid var(--line);padding:6px 0}
+.inv-l li:last-child{border-bottom:0}
+.it-row{display:flex;align-items:center;gap:8px}
+.it-n{flex:1;min-width:0;font-size:15px;color:var(--ink);overflow-wrap:anywhere}
+.it-n small{display:block;font-size:12px;color:var(--silver-dim)}
+.qty{display:flex;align-items:center;gap:4px;flex:none}
+.qty b{min-width:24px;text-align:center;font:700 14px var(--head);color:var(--ink)}
+.eqb{flex:none;font:700 9.5px var(--head);letter-spacing:.06em;text-transform:uppercase;padding:4px 7px;border:1px solid var(--line);background:var(--well);color:var(--silver-dim)}
+.eqb[aria-pressed=true],.eqb.on{border-color:var(--red-hot);color:var(--ink);background:var(--red-deep)}
+.it-more{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:8px 0 2px}
+.it-more input{flex:1 1 160px;width:auto}
+.inv-btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chk{display:flex;gap:8px;align-items:flex-start;font-size:13.5px;color:var(--silver-dim);margin-top:10px}
+.chk input{accent-color:var(--red);margin-top:3px}
+.goldrow{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.goldv b{font:700 18px var(--head);color:#d9b45a}
+.goldv small{color:var(--silver-dim);font-size:13px}
+.traded .list{opacity:.45;text-decoration:line-through}
+.dlg-back{position:fixed;inset:0;z-index:30;background:rgba(0,0,0,.74);display:flex;align-items:flex-start;justify-content:center;padding:max(16px,5vh) 16px;overflow-y:auto}
+.dlg-back[hidden]{display:none}
+.dlg{width:min(760px,100%);background:var(--panel);border:1px solid var(--line);box-shadow:0 24px 70px rgba(0,0,0,.7),0 0 0 1px rgba(229,56,59,.18);padding:18px 18px 12px}
+.dlg-head{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.dlg-head h3{margin:0;flex:1}
+.purse{font:700 13px var(--head);color:#d9b45a;letter-spacing:.04em}
+.shop-tabs{display:flex;flex-wrap:wrap;margin-bottom:10px}
+.shop-l{list-style:none;margin:8px 0 0;padding:0;max-height:min(58vh,520px);overflow-y:auto;border-top:1px solid var(--line)}
+.shop-l li{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:10px;align-items:center;padding:8px 4px;border-bottom:1px solid var(--line)}
+.shop-l li.empty{display:block;color:var(--silver-dim)}
+.shop-l .sn{color:var(--ink);font-size:15px;min-width:0}
+.shop-l .sn small{display:block;color:var(--silver-dim);font-size:12.5px}
+.shop-l .sp{font:700 13px var(--head);color:#d9b45a;text-align:right;white-space:nowrap}
+.shop-l .sp small{display:block;font:500 11.5px var(--body);color:var(--silver-dim)}
+.shop-l .sb{display:flex;gap:6px}
+.own{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.own .w2{grid-column:span 2}
+.own input,.own select{margin:0;width:100%}
+.own input[type=number]{background:var(--well);color:var(--ink);border:1px solid var(--line);padding:6px 8px;font:15px var(--body)}
+@media(max-width:560px){.shop-l li{grid-template-columns:minmax(0,1fr) auto}.shop-l .sb{grid-column:1/-1}.own{grid-template-columns:1fr 1fr}}
+
+/* campanhas */
+.mesa-tabs{margin-bottom:4px}
+.quick-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;margin:4px 0 8px}
+.camp-home{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start;margin-top:12px}
+@media(max-width:820px){.camp-home{grid-template-columns:1fr}}
+.clist{list-style:none;margin:0 0 14px;padding:0}
+.clist li{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:9px 0;border-bottom:1px solid var(--line)}
+.clist li:last-child{border-bottom:0}
+.cl-n{flex:1 1 180px;min-width:0}
+.cl-n b{display:block;font:700 15px var(--head);color:var(--ink);letter-spacing:.02em}
+.cl-n small{display:block;font-size:13px;color:var(--silver-dim);overflow-wrap:anywhere}
+.clist select{width:auto;flex:1 1 170px;max-width:260px;margin:0}
+.cform{display:flex;flex-direction:column;gap:10px;border-top:1px solid var(--line);padding-top:14px}
+.cform input,.cform select,.cform textarea{margin:0}
+.cform .btn{align-self:flex-start}
+#cjCode{font:700 16px var(--head);letter-spacing:.14em;text-transform:uppercase}
+.gifts{border:1px solid #6b5520;background:linear-gradient(90deg,rgba(217,180,90,.1),transparent);padding:10px 12px;margin-bottom:12px}
+.gifts>b{font:700 11px var(--head);letter-spacing:.1em;text-transform:uppercase;color:#d9b45a}
+.gifts ul{list-style:none;margin:6px 0 0;padding:0}
+.gifts li{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:5px 0}
+.gifts li span{color:var(--ink);font-size:14.5px}
+.gifts li small{display:block;color:var(--silver-dim);font-size:12px}
+.camp-top{display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px;margin:12px 0 8px}
+.camp-t{flex:1 1 220px;min-width:0}
+.camp-t h3{margin:0;font-size:22px}
+.invite{display:flex;flex-wrap:wrap;align-items:center;gap:8px;border:1px solid var(--line);background:var(--panel);padding:8px 10px}
+.invite .k{font:700 10.5px var(--head);letter-spacing:.1em;text-transform:uppercase;color:var(--silver-dim)}
+.invite .code{font:700 17px var(--head);letter-spacing:.12em;color:var(--red-hot)}
+.invite-l{max-width:520px;margin:0 0 10px;font-size:13px!important;color:var(--silver-dim)!important}
+.camp-tabs{display:flex;flex-wrap:wrap;margin:6px 0 14px}
+.camp-tabs small{color:#d9b45a}
+.camp-danger{margin-top:26px;padding-top:12px;border-top:1px dashed var(--line)}
+.pc-btns{display:flex;gap:6px;flex-wrap:wrap}
+.pc-foot{flex-wrap:wrap;gap:8px}
+.pl-nick{color:var(--silver-dim);font-size:12px}
+.enc{margin-bottom:12px}
+.enc-row{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}
+.enc-v{display:flex;flex-direction:column;border-left:3px solid var(--line);padding-left:10px}
+.enc-v b{font:700 20px var(--head);color:var(--ink)}
+.enc-v span{font-size:13px;color:var(--silver-dim)}
+.enc-v.lo{border-color:#5f8f6a}.enc-v.mid{border-color:#d9b45a}.enc-v.hi{border-color:#e0703b}.enc-v.over{border-color:var(--red-hot)}
+.enc-v.over b{color:var(--red-hot)}
+.enc-b{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13.5px;color:var(--silver-dim)}
+.enc-b b{color:var(--ink);font-family:var(--head)}
+.mon-l{background:none;border:0;padding:0;color:var(--ink);font:inherit;text-align:left;text-decoration:underline;text-decoration-color:var(--red);text-underline-offset:3px;cursor:pointer}
+.mon-l:hover{color:var(--red-hot)}
+.ent-l{list-style:none;margin:0;padding:0}
+.ent-l li{display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--line)}
+.en-i{flex:1 1 220px;color:var(--ink);font-size:15px;min-width:0;overflow-wrap:anywhere}
+.en-i small{display:block;color:var(--silver-dim);font-size:12.5px}
+.en-s{font:700 10.5px var(--head);letter-spacing:.08em;text-transform:uppercase;color:var(--silver-dim)}
+.st-pendente .en-s{color:#d9b45a}.st-aceito .en-s{color:#7fbf8a}.st-recusado .en-s{color:var(--red-hot)}
+.best-f{display:flex;flex-wrap:wrap;gap:8px}
+.best-f input{flex:2 1 220px;width:auto;margin:0}
+.best-f select{flex:1 1 150px;width:auto;margin:0}
+.best-o{display:flex;flex-wrap:wrap;align-items:flex-end;gap:14px;margin:10px 0 4px}
+.best-o .mo-f input{width:80px;background:var(--well);color:var(--ink);border:1px solid var(--line);padding:6px 8px;font:15px var(--body)}
+.best-l{list-style:none;margin:8px 0 16px;padding:0;border-top:1px solid var(--line)}
+.best-l li{display:grid;grid-template-columns:minmax(0,1fr) 78px 70px auto;gap:10px;align-items:center;padding:7px 4px;border-bottom:1px solid var(--line)}
+.best-l li.empty,.best-l li.more{display:block;color:var(--silver-dim)}
+.bn{background:none;border:0;padding:0;text-align:left;color:var(--ink);font:inherit;cursor:pointer;min-width:0}
+.bn b{font:600 15.5px var(--body)}
+.bn small{color:var(--silver-dim);font-size:12.5px}
+.bn span{display:block;color:var(--silver-dim);font-size:12.5px}
+.bn:hover b{color:var(--red-hot)}
+.own-t{color:#d9b45a!important;font:700 10px var(--head)!important;letter-spacing:.08em;text-transform:uppercase}
+.bnd,.bst{font-size:13px;color:var(--silver-dim);line-height:1.25}
+.bnd b{font:700 15px var(--head);color:var(--ink)}
+.bnd small,.bst small{display:block;font-size:12px}
+@media(max-width:560px){.best-l li{grid-template-columns:minmax(0,1fr) auto}.bnd,.bst{display:none}}
+.own-mon summary{cursor:pointer;font:700 12px var(--head);letter-spacing:.1em;text-transform:uppercase;color:var(--silver)}
+.own-mon[open] summary{margin-bottom:12px}
+.own .w4{grid-column:1/-1}
+.own textarea{margin:0;width:100%}
+.small.srd-note{font-size:12px;margin-top:10px}
+.sb-sub{margin:-6px 0 10px;color:var(--silver-dim);font-style:italic;font-size:14.5px}
+.sb-top{display:flex;flex-wrap:wrap;gap:6px 18px;padding:8px 0;border-top:2px solid var(--red);border-bottom:1px solid var(--line);font-size:15px;color:var(--text)}
+.sb-top b,.sb-l b{color:var(--red-hot);font-weight:700}
+.sb-top small{color:var(--silver-dim)}
+.sb-at{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px;padding:10px 0;border-bottom:1px solid var(--line);margin-bottom:8px}
+.sb-ab{display:flex;flex-direction:column;align-items:center;gap:1px;background:var(--well);border:1px solid var(--line);padding:5px 2px;color:var(--ink);cursor:pointer}
+.sb-ab span{font:700 10px var(--head);letter-spacing:.08em;color:var(--silver-dim)}
+.sb-ab b{font:700 16px var(--head)}
+.sb-ab small{font-size:12px;color:var(--silver)}
+.sb-ab:hover{border-color:var(--red-hot)}
+.sb-l{margin:3px 0;font-size:14.5px;color:var(--text)}
+.sb-tr{border-top:1px solid var(--line);margin-top:8px;padding-top:6px}
+.sb-tr p,.sb-a p{margin:6px 0;font-size:14.5px;line-height:1.5;color:var(--text)}
+.sb-tr b,.sb-a b{color:var(--ink);font-style:italic}
+.sb-h{font:700 13px var(--head);letter-spacing:.1em;text-transform:uppercase;color:var(--red-hot);border-bottom:1px solid var(--red);padding-bottom:4px;margin:16px 0 4px}
+.sb-a{padding:2px 0 6px}
+.sb-btn{display:flex;gap:6px;flex-wrap:wrap;margin:-2px 0 4px}
+.sb-add{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;padding-top:12px;border-top:1px solid var(--line)}
+@media(max-width:480px){.sb-at{grid-template-columns:repeat(3,1fr)}}
+.gift-back{z-index:35;align-items:center}
+.gift{max-width:440px;text-align:center;border-color:#6b5520;box-shadow:0 24px 70px rgba(0,0,0,.7),0 0 40px -10px rgba(217,180,90,.45)}
+.gift-ic{font-size:30px;color:#d9b45a;line-height:1}
+.gift h3{margin:6px 0 8px}
+.gift-t{font-size:17px;color:var(--ink);margin:0 0 8px;line-height:1.45}
+.gift-b{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:14px}
+.give-c{max-width:420px}
 
 /* ficha final */
 .pending{border:1px dashed var(--red);background:var(--red-deep);padding:16px 18px;margin-bottom:20px}
@@ -816,9 +971,12 @@ table.atk td:first-child{color:var(--ink)}
 
   <section id="mesa" hidden>
     <div class="fx-head">
-      <div><h2>Mesa do mestre</h2><p class="small" style="margin:0">Junte as fichas do grupo pelos links de compartilhamento e controle a iniciativa do combate.</p></div>
-      <div class="fx-actions"><button class="btn ghost" id="mesaRefresh">Atualizar fichas</button></div>
+      <div><h2>Mesa</h2><p class="small" style="margin:0">Campanhas com convite, bestiário e entrega de itens, ou uma mesa rápida com links de fichas.</p></div>
+      <div class="seg mesa-tabs" role="group" aria-label="Tipo de mesa"><button data-mt="camp" aria-pressed="true">Campanhas</button><button data-mt="rapida" aria-pressed="false">Mesa rápida</button></div>
     </div>
+    <div id="campBox"></div>
+    <div id="quickBox" hidden>
+    <div class="quick-head"><p class="small" style="margin:0">Junte as fichas do grupo pelos links de compartilhamento e controle a iniciativa. Fica salva só neste navegador.</p><button class="btn ghost sm" id="mesaRefresh">Atualizar fichas</button></div>
     <form class="mesa-add" id="mesaAdd">
       <input type="text" id="mesaLink" placeholder="Cole aqui o link da ficha de um jogador" aria-label="Link da ficha">
       <button class="btn" type="submit">Adicionar à mesa</button>
@@ -826,6 +984,7 @@ table.atk td:first-child{color:var(--ink)}
     <p class="msg" id="mesaMsg"></p>
     <div id="mesaGrid"></div>
     <div id="initBox"></div>
+    </div>
   </section>
 
   <section id="conta" hidden>
@@ -845,6 +1004,8 @@ table.atk td:first-child{color:var(--ink)}
     </div>
   </section>
   <div class="toast" id="rollToast" hidden role="status" aria-live="polite"></div>
+  <div class="dlg-back gift-back" id="gift" hidden><div class="dlg gift" role="alertdialog" aria-modal="true" aria-labelledby="giftT" id="giftBox"></div></div>
+  <div class="dlg-back" id="dlg" hidden><div class="dlg" role="dialog" aria-modal="true" aria-labelledby="dlgT" id="dlgBox"></div></div>
 
   <section id="livro" hidden>
     <div class="book">
@@ -1686,7 +1847,7 @@ table.atk td:first-child{color:var(--ink)}
       // progressão
       level:1,hpGains:[],asi:{},style:'',expertise:[],lore:[],picks:{},
       portrait:'',portraitY:30,
-      play:null,
+      play:null,inv:freshInv(),
       info:{nome:'',jogador:'',alinhamento:'',idade:'',altura:'',peso:'',olhos:'',pele:'',cabelo:'',tracos:'',ideais:'',vinculos:'',defeitos:'',historia:''},
       sheetId:null
     };
@@ -1703,6 +1864,7 @@ table.atk td:first-child{color:var(--ink)}
     if(typeof S.info!=='object'||!S.info)S.info=freshState().info;
     Object.keys(S.info).forEach(function(k){S.info[k]=String(S.info[k]==null?'':S.info[k]).slice(0,5000)});
     S.level=Math.max(1,Math.min(MAX_LEVEL,parseInt(S.level,10)||1));
+    S.inv=cleanInv(S.inv);INV_OPEN=null;
   }
 
   // =====================================================================
@@ -1860,7 +2022,7 @@ table.atk td:first-child{color:var(--ink)}
       var b=document.createElement('button');b.className='method';b.setAttribute('aria-pressed',i===S.cls);
       b.innerHTML=icon(c[0])+'<div><strong>'+c[0]+'</strong><span>'+CLASS_BLURB[c[0]]+'</span><span>Dado de vida d'+c[1]+'</span></div>';
       b.onclick=function(){
-        if(S.cls!==i){S.cls=i;S.pick.cSkills=[];S.pick.equip={};S.pick.wsel={};S.flex=[];S.spells={c:[],l1:[]}}
+        if(S.cls!==i){S.cls=i;S.pick.cSkills=[];S.pick.equip={};S.pick.wsel={};S.flex=[];S.spells={c:[],l1:[]};S.inv=freshInv()}
         renderClasses();suggest();
       };
       box.appendChild(b);
@@ -2013,7 +2175,7 @@ table.atk td:first-child{color:var(--ink)}
         (extra.length?'<span><em>Ganha:</em> '+extra.join(' · ')+'</span>':'')+
         '<span><em>Característica:</em> '+b.feat[0]+'</span></div>';
       el.onclick=function(){
-        if(S.bg!==i){S.bg=i;S.pick.tools={};S.pick.langs=[];S.fin.skills=[];
+        if(S.bg!==i){S.bg=i;S.pick.tools={};S.pick.langs=[];S.fin.skills=[];invState().items=null;S.inv.coins=null;
           S.pick.cSkills=S.pick.cSkills.filter(function(s){return BGS[i].sk.indexOf(s)<0});}
         renderBgs();
       };
@@ -2078,7 +2240,19 @@ table.atk td:first-child{color:var(--ink)}
       var st=b.sk.indexOf(s)>-1?'fixed':(S.pick.cSkills.indexOf(s)>-1?'on':(S.pick.cSkills.length>=c.n?'locked':'off'));
       h+=chip(s,st);
     });
-    h+='</div></div><div class="blk"><h4>Equipamento</h4>';
+    var inv=invState(),sg=startGold(cn);
+    h+='</div></div><div class="blk"><h4>Equipamento</h4>'+
+      '<div class="seg eqmode" role="group" aria-label="Como receber o equipamento">'+
+      '<button data-eqm="kit" aria-pressed="'+(inv.mode!=='gold')+'">Equipamento inicial</button>'+
+      '<button data-eqm="gold" aria-pressed="'+(inv.mode==='gold')+'">Comprar com ouro</button></div>';
+    if(inv.mode==='gold'){
+      h+='<p class="small" style="margin:10px 0">No lugar do equipamento da classe e do antecedente, você começa com <b>'+goldText(sg)+' po</b> e compra o que quiser na ficha final, pela loja do inventário.</p>'+
+        '<div class="goldrow"><button class="btn sm" id="goldRoll">Rolar '+goldText(sg)+'</button><button class="btn ghost sm" id="goldAvg">Usar a média ('+goldAvg(sg)+' po)</button>'+
+        (inv.gold?'<span class="goldv"><b>'+inv.gold+' po</b>'+(GOLD_ROLL?' <small>'+GOLD_ROLL+'</small>':'')+'</span>':'')+'</div>';
+      h+='</div>';
+    }else{
+    if(inv.items)h+='<div class="note" style="margin:10px 0"><span>Você já mexeu no inventário desta ficha, então mudar o equipamento aqui não altera os itens. </span><button class="btn ghost sm" id="invRedo">Refazer inventário com estas escolhas</button></div>';
+    h+='<div style="height:10px"></div>';
     c.eq.forEach(function(opts,gi){
       if(S.pick.equip[gi]===undefined)S.pick.equip[gi]=0;
       h+='<div class="opt">'+opts.map(function(o,oi){
@@ -2089,6 +2263,7 @@ table.atk td:first-child{color:var(--ink)}
     });
     if(c.fixed.length)h+='<ul class="list">'+c.fixed.map(function(f,fi){return '<li>'+f+slotSelects(f,'f'+fi)+'</li>'}).join('')+'</ul>';
     h+='</div>';
+    }
     $('pClass').innerHTML=h;
 
     var g='<div class="panel-head">'+icon(b.n)+'<div><h3>'+b.n+'</h3><p class="sub">'+b.d+'</p></div></div>';
@@ -2110,13 +2285,27 @@ table.atk td:first-child{color:var(--ink)}
       });
       g+='</div></div>';
     }
-    g+='<div class="blk"><h4>Equipamento</h4><ul class="list">'+b.eq.concat([b.po+' po']).map(function(e){return '<li>'+e+'</li>'}).join('')+'</ul></div>';
+    g+='<div class="blk'+(inv.mode==='gold'?' traded':'')+'"><h4>Equipamento'+(inv.mode==='gold'?' <small class="need">trocado pelo ouro</small>':'')+'</h4><ul class="list">'+b.eq.concat([b.po+' po']).map(function(e){return '<li>'+e+'</li>'}).join('')+'</ul></div>';
     g+='<div class="feat"><b>'+b.feat[0]+'.</b> '+b.feat[1]+'</div>';
     $('pBg').innerHTML=g;
 
     $('cSk').querySelectorAll('.chip:not([disabled])').forEach(function(el){
       el.onclick=function(){toggleArr(S.pick.cSkills,el.dataset.v,c.n);S.fin.skills=[];renderChoices()};
     });
+    $('pClass').querySelectorAll('[data-eqm]').forEach(function(bt){
+      bt.onclick=function(){
+        var md=bt.dataset.eqm;if(invState().mode===md)return;
+        S.inv=freshInv();S.inv.mode=md;GOLD_ROLL='';renderChoices();
+      };
+    });
+    var gr=$('goldRoll');if(gr)gr.onclick=function(){
+      var d=[],tot=0;for(var j=0;j<sg[0];j++){var x=1+Math.floor(Math.random()*4);d.push(x);tot+=x}
+      S.inv.gold=tot*sg[1];S.inv.items=null;S.inv.coins=null;
+      GOLD_ROLL='('+d.join(' + ')+(sg[1]>1?') × '+sg[1]:')');
+      renderChoices();
+    };
+    var ga=$('goldAvg');if(ga)ga.onclick=function(){S.inv.gold=goldAvg(sg);S.inv.items=null;S.inv.coins=null;GOLD_ROLL='(média)';renderChoices()};
+    var ir=$('invRedo');if(ir)ir.onclick=function(){S.inv.items=null;S.inv.coins=null;INV_OPEN=null;renderChoices()};
     $('pClass').querySelectorAll('input[type=radio]').forEach(function(rd){
       rd.onchange=function(){
         var gi=+rd.name.slice(2);S.pick.equip[gi]=+rd.value;
@@ -2138,8 +2327,8 @@ table.atk td:first-child{color:var(--ink)}
   function check5(){
     var c=copt(),b=BGS[S.bg],miss=[];
     if(S.pick.cSkills.length<c.n)miss.push((c.n-S.pick.cSkills.length)+' perícia(s) da classe');
-    var ws=missingSlots();
-    if(ws)miss.push(ws+' item(ns) do equipamento');
+    if(invState().mode==='gold'){if(!S.inv.gold)miss.push('o ouro inicial (role ou use a média)')}
+    else{var ws=missingSlots();if(ws)miss.push(ws+' item(ns) do equipamento')}
     var tl=b.tc.filter(function(t,ti){return !S.pick.tools[ti]}).length;
     if(tl)miss.push(tl+' ferramenta(s)');
     if(S.pick.langs.length<b.lang)miss.push((b.lang-S.pick.langs.length)+' idioma(s)');
@@ -2286,32 +2475,28 @@ table.atk td:first-child{color:var(--ink)}
     });
     var saves=ATTRS.map(function(_,i){var p=c.saves.indexOf(i)>-1;return {p:p,v:m[i]+(p?prof:0)}});
 
-    // equipamento escolhido
-    var items=classItems();
-    var bgItems=b.eq.map(function(e){
-      if(e==='Ferramentas de artesão'||e==='Instrumento musical')return S.pick.tools[0]||e;
-      return e;
-    });
-
-    // CA
+    // inventário: o que está em uso define CA e ataques
+    var invL=invItems(),coins=invCoins();
     var armor=null,shield=false;
-    items.forEach(function(it){
-      Object.keys(ARMOR).forEach(function(k){if(it.indexOf(k)===0)armor=k});
-      if(/escudo/i.test(it))shield=true;
+    invL.forEach(function(it){
+      if(!it.eq)return;
+      if(it.t==='armadura'&&!armor)armor=armorOfItem(it);
+      if(it.t==='escudo')shield=true;
     });
     var ac,acNote;
     if(armor){var a=ARMOR[armor];ac=a[0]+Math.min(m[1],a[1]);acNote=armor;if(S.style==='defesa'){ac+=1;acNote+=' + estilo Defesa'}}
     else if(cn==='Bárbaro'){ac=10+m[1]+m[2];acNote='Defesa sem Armadura (DES + CON)'}
-    else if(cn==='Monge'){ac=10+m[1]+m[4];acNote='Defesa sem Armadura (DES + SAB)'}
+    else if(cn==='Monge'&&!shield){ac=10+m[1]+m[4];acNote='Defesa sem Armadura (DES + SAB)'}
     else if(cn==='Feiticeiro'){ac=13+m[1];acNote='Resiliência Dracônica (13 + DES)'}
     else {ac=10+m[1];acNote='Sem armadura'}
-    if(shield&&cn!=='Monge'){ac+=2;acNote+=' + escudo'}
+    if(shield){ac+=2;acNote+=' + escudo'}
 
     // ataques
     var attacks=[],seen={};
     var extraAtk=L>=5&&['Bárbaro','Guerreiro','Guardião','Monge','Paladino'].indexOf(cn)>-1;
-    items.concat(bgItems).forEach(function(it){
-      var w=findWeapon(it);
+    invL.forEach(function(it){
+      if(it.t!=='arma'||!it.eq)return;
+      var w=wpn(it.b)||wpn(it.n)||findWeapon(it.n);
       if(!w||seen[w[2]]||w[4]==='—')return;
       seen[w[2]]=1;
       var fin=/Acuidade/.test(w[7]),ranged=w[1]==='d'&&!/Arremesso/.test(w[7])||/Munição/.test(w[7]);
@@ -2322,7 +2507,7 @@ table.atk td:first-child{color:var(--ink)}
       if(S.style==='arquearia'&&ranged)hit+=2;
       if(S.style==='duelismo'&&!ranged&&!/Duas mãos/.test(w[7]))dmgB+=2;
       if(monkW&&L>=5&&die==='1d4')die='1d6';
-      var name=WEAPON_ALIAS[it.split(' ')[0]]?it.split(' (')[0]:w[2];
+      var name=it.b&&it.n!==w[2]?it.n.split(' (')[0]:w[2];
       attacks.push({n:name,bonus:sgnRaw(hit),dmg:die+(dmgB?(dmgB>0?'+':'−')+Math.abs(dmgB):''),type:w[5]});
     });
     if(cn==='Monge'){
@@ -2354,6 +2539,16 @@ table.atk td:first-child{color:var(--ink)}
     var speed=r.speed,speedNote='';
     if(cn==='Bárbaro'&&L>=5&&!(armor&&ARMORS.some(function(x){return x[1]===armor&&x[0]==='pesada'}))){speed+=3;speedNote='Movimento Rápido'}
     if(cn==='Monge'&&L>=2&&!armor&&!shield){speed+=3;speedNote='Movimento sem Armadura'}
+    var speedWarn=[];
+    if(armor){
+      var AR=ARMORS.filter(function(x){return x[1]===armor})[0];
+      if(AR[5]&&sc[0]<AR[5]&&r.n.indexOf('Anão')<0){speed=Math.max(0,speed-3);speedWarn.push('−3 m: '+armor+' pede FOR '+AR[5]+'.')}
+    }
+    // carga: capacidade é FOR × 7,5 kg
+    var load=invWeight(invL,coins),cap=sc[0]*7.5,loadSt='';
+    if(load>cap){speed=Math.min(speed,1.5);loadSt='over';speedWarn.push('Acima da capacidade de carga.')}
+    else if(invState().variant&&load>sc[0]*5){speed=Math.max(0,speed-6);loadSt='heavy';speedWarn.push('−6 m: carga muito pesada.')}
+    else if(invState().variant&&load>sc[0]*2.5){speed=Math.max(0,speed-3);loadSt='enc';speedWarn.push('−3 m: carga pesada.')}
 
     var cast=null;
     if(caster){
@@ -2387,7 +2582,7 @@ table.atk td:first-child{color:var(--ink)}
     otherProf.push('Idiomas: '+langs.join(', '));
 
     return {cn:cn,c:c,b:b,r:r,L:L,sub:sub,sc:sc,m:m,prof:prof,skills:skills,saves:saves,remaining:remaining,dup:dup,
-      items:items,bgItems:bgItems,ac:ac,acNote:acNote,attacks:attacks.slice(0,3),allAttacks:attacks,hd:hd,hp:hp,
+      inv:{items:invL,coins:coins,load:load,cap:cap,st:loadSt},speedWarn:speedWarn,ac:ac,acNote:acNote,attacks:attacks.slice(0,3),allAttacks:attacks,hd:hd,hp:hp,
       init:m[1]+jack,speed:speed,speedNote:speedNote,passive:10+percep.v,cast:cast,tools:tools,langs:langs,
       feats:feats,classFeats:classFeats,otherFeats:otherFeats,resources:resources,features:cf,extraAtk:extraAtk,
       otherProf:otherProf,crit:(cn==='Guerreiro'&&L>=3)};
@@ -2530,7 +2725,7 @@ table.atk td:first-child{color:var(--ink)}
       '<div class="stat"><div class="v">'+k.L+'d'+k.hd+'</div><div class="k">Dados de vida</div></div>'+
       '<div class="stat"><div class="v">'+k.passive+'</div><div class="k">Percepção passiva</div></div>'+
       '</div><p class="small">CA: '+k.acNote+'. PV: d'+k.hd+' máximo no 1º nível'+(k.L>1?' + ganhos por nível':'')+', + CON'+(r.hp?' + Robustez Anã':'')+(k.cn==='Feiticeiro'?' + Resiliência Dracônica':'')+' por nível.'+
-      (k.speedNote?' Deslocamento: +3 m de '+k.speedNote+'.':'')+(k.extraAtk?' Ataque Extra: 2 ataques por ação.':'')+(k.crit?' Crítico com 19 ou 20.':'')+'</p></div>';
+      (k.speedNote?' Deslocamento: +3 m de '+k.speedNote+'.':'')+(k.speedWarn.length?' Deslocamento: '+k.speedWarn.join(' '):'')+(k.extraAtk?' Ataque Extra: 2 ataques por ação.':'')+(k.crit?' Crítico com 19 ou 20.':'')+'</p></div>';
     var subTxt=k.sub&&k.L>=k.sub.lvl?' · '+k.sub.n:'';
     var h='<div class="lvlbar"><span class="lvl">Nível <b>'+k.L+'</b></span>'+
       (k.L<MAX_LEVEL?'<button class="btn sm" id="lvlUp">Subir para o nível '+(k.L+1)+'</button>':'<span class="small" style="margin:0">Nível máximo desta versão</span>')+
@@ -2565,7 +2760,7 @@ table.atk td:first-child{color:var(--ink)}
         '<p class="small">'+slotText(k.cast)+'</p>'+
         spellList('Truques',k.cast.cantrips)+spellList(k.cast.label,k.cast.l1)+spellList('Sempre preparadas',k.cast.always)+'</div>';
     }
-    h+='<div class="box"><h4>Equipamento</h4><ul class="list">'+k.items.concat(k.bgItems).map(function(e){return '<li>'+esc(e)+'</li>'}).join('')+'</ul><p class="small">'+k.b.po+' peças de ouro</p></div>';
+    h+=invBox(k,false);
     h+='<div class="box"><h4>Outras proficiências e idiomas</h4><ul class="list">'+k.otherProf.map(function(e){return '<li>'+esc(e)+'</li>'}).join('')+'</ul></div></div>';
 
     // coluna 3: personalização
@@ -2625,6 +2820,7 @@ table.atk td:first-child{color:var(--ink)}
     if(fex)fex.querySelectorAll('.chip:not([disabled])').forEach(function(el){el.onclick=function(){toggleArr(S.expertise,el.dataset.v,nd.exp);renderFinal()}});
     var gs=$('goSpells');if(gs)gs.onclick=function(){goStep(6)};
     wirePortrait();
+    wireInv($('sheet'));
     document.querySelectorAll('#pending .copts').forEach(function(box){
       var key=box.dataset.key,n=+box.dataset.n;
       box.querySelectorAll('.copt:not([disabled])').forEach(function(el){
@@ -2803,6 +2999,421 @@ table.atk td:first-child{color:var(--ink)}
   }
 
   // =====================================================================
+  // INVENTÁRIO: itens, moedas, carga e loja
+  // =====================================================================
+  // moedas: chave, sigla, nome, valor em peças de cobre
+  var COINS=[['pc','PC','cobre',1],['pp','PP','prata',10],['pe','PE','electro',50],['po','PO','ouro',100],['pl','PL','platina',1000]];
+  // ouro inicial por classe (Livro do Jogador): número de d4 e multiplicador
+  var START_GOLD={'Bárbaro':[2,10],'Bardo':[5,10],'Bruxo':[4,10],'Clérigo':[5,10],'Druida':[2,10],'Feiticeiro':[3,10],
+    'Guerreiro':[5,10],'Guardião':[5,10],'Ladino':[4,10],'Mago':[4,10],'Monge':[5,1],'Paladino':[5,10]};
+  var INV_TYPES=['arma','armadura','escudo','item','tesouro','magico'];
+  var TYPE_LABEL={arma:'Arma',armadura:'Armadura',escudo:'Escudo',item:'Equipamento',tesouro:'Tesouro',magico:'Item mágico'};
+  // peso em kg do que está na tabela de equipamento (1 libra = 0,5 kg, como na edição em português)
+  var GEAR_KG={'Ácido (frasco)':.5,'Água benta (frasco)':.5,'Algemas':3,'Aljava':.5,'Balas de funda (20)':.75,'Bolsa de componentes':1,
+    'Caixa de fogo':.5,'Cantil':2.5,'Cobertor':1.5,'Corda de cânhamo (15 m)':5,'Corda de seda (15 m)':2.5,'Corrente (3 m)':5,
+    'Espelho de aço':.25,'Flechas (20)':.5,'Fogo de alquimista (frasco)':.5,'Foco arcano (cristal, orbe, cajado...)':1,
+    'Grimório':1.5,'Kit de curandeiro':1.5,'Kit de escalada':6,'Lamparina':.5,'Lanterna coberta':1,'Livro':2.5,'Luneta':.5,
+    'Martelo':1.5,'Mochila':2.5,'Óleo (frasco)':.5,'Pé de cabra':2.5,'Pítons (cada)':.125,'Poção de cura':.25,'Rações (1 dia)':1,
+    'Roupas comuns':1.5,'Roupas de viajante':2,'Roupas finas':3,'Saco de dormir':3.5,'Símbolo sagrado':.5,'Tenda para duas pessoas':10,
+    'Tocha':.5,'Virotes (20)':.75};
+  var TOOL_KG={'Ferramentas de ladrão':.5,'Kit de disfarce':1.5,'Kit de falsificação':2.5,'Kit de herbalismo':1.5,'Kit de venenos':1,
+    'Ferramentas de navegador':1,'Ferramentas de alquimista':4,'Suprimentos de cervejeiro':4.5,'Ferramentas de carpinteiro':3,
+    'Utensílios de cozinheiro':4,'Ferramentas de ferreiro':4,'Ferramentas de joalheiro':1,'Ferramentas de pedreiro':4,
+    'Ferramentas de sapateiro':2.5,'Ferramentas de tecelão':2.5,'Suprimentos de pintor':2.5,'Alaúde':1,'Flauta':.5,'Flauta de pã':1,
+    'Gaita de foles':3,'Lira':1,'Tambor':1.5,'Trompa':1,'Viola':.5,'Xilofone':5,'Xadrez de dragão':.25};
+  // itens de pacotes e antecedentes que não estão na tabela: nome, peso (kg), custo (vazio = não vende na loja), tipo, descrição
+  var MORE_ITEMS=[
+    ['Escudo',3,'10 po','escudo','+2 na CA'],['Escudo de madeira',3,'10 po','escudo','+2 na CA, sem metal'],
+    ['Baú',12.5,'5 po'],['Esferas de metal (1.000)',1,'1 po'],['Estrepes (saco com 20)',1,'1 po'],['Gancho de escalada',2,'2 po'],
+    ['Linha (3 m)',0,'1 po'],['Sino',0,'1 po'],['Kit de refeição',.5,'2 pp'],['Estojo para mapas e pergaminhos',.5,'1 po'],
+    ['Vidro de perfume',0,'5 po'],['Cera de lacre',0,'5 pp'],['Sabão',0,'2 pc'],['Fantasia',2,'5 po'],['Vestimentas',2,'1 po'],
+    ['Pá',2.5,'2 po'],['Pote de ferro',5,'2 po'],['Armadilha de caça',12.5,'5 po'],['Saco',.25,'1 pc'],['Anel de sinete',0,'5 po'],
+    ['Caixa de esmolas',0,''],['Bloco de incenso',0,''],['Incensário',0,''],['Livro de estudo',2.5,''],['Saquinho de areia',0,''],
+    ['Faca pequena',0,''],['Foco druídico',0,'1 po'],['Livro de orações',2.5,''],['Vestimentas sacerdotais',2,''],['Cobertor de inverno',1.5,''],
+    ['Roupas escuras com capuz',2,''],['Estojo de pergaminhos com anotações',.5,''],['Ferramentas para o golpe',.5,'']
+  ];
+  var PACK_ITEMS={
+    'Pacote de assaltante':[['Mochila'],['Esferas de metal (1.000)'],['Linha (3 m)'],['Sino'],['Vela',5],['Pé de cabra'],['Martelo'],['Pítons',10],['Lanterna coberta'],['Óleo (frasco)',2],['Rações (1 dia)',5],['Caixa de fogo'],['Cantil'],['Corda de cânhamo (15 m)']],
+    'Pacote de diplomata':[['Baú'],['Estojo para mapas e pergaminhos',2],['Roupas finas'],['Tinta (30 ml)'],['Pena'],['Lamparina'],['Óleo (frasco)',2],['Papel (folha)',5],['Vidro de perfume'],['Cera de lacre'],['Sabão']],
+    'Pacote de explorador de masmorras':[['Mochila'],['Pé de cabra'],['Martelo'],['Pítons',10],['Tocha',10],['Caixa de fogo'],['Rações (1 dia)',10],['Cantil'],['Corda de cânhamo (15 m)']],
+    'Pacote de artista':[['Mochila'],['Saco de dormir'],['Fantasia',2],['Vela',5],['Rações (1 dia)',5],['Cantil'],['Kit de disfarce']],
+    'Pacote de aventureiro':[['Mochila'],['Saco de dormir'],['Kit de refeição'],['Caixa de fogo'],['Tocha',10],['Rações (1 dia)',10],['Cantil'],['Corda de cânhamo (15 m)']],
+    'Pacote de sacerdote':[['Mochila'],['Cobertor'],['Vela',10],['Caixa de fogo'],['Caixa de esmolas'],['Bloco de incenso',2],['Incensário'],['Vestimentas'],['Rações (1 dia)',2],['Cantil']],
+    'Pacote de estudioso':[['Mochila'],['Livro de estudo'],['Tinta (30 ml)'],['Pena'],['Pergaminho (folha)',10],['Saquinho de areia'],['Faca pequena']]
+  };
+  var START_ALIAS={'15 m de corda de seda':'Corda de seda (15 m)'};
+  var NUMW={um:1,uma:1,dois:2,duas:2,'três':3,quatro:4,cinco:5,dez:10};
+
+  function kgOf(s){var m=String(s).match(/\d+(?:[.,]\d+)?/);return m?parseFloat(m[0].replace(',','.')):0}
+  function priceCp(s){
+    var m=String(s||'').replace(/(\d)\.(\d{3})/g,'$1$2').match(/(\d+)(?:\s*a\s*\d+)?\s*(pc|pp|pe|po|pl)\b/);
+    if(!m)return 0;
+    return +m[1]*COINS.filter(function(x){return x[0]===m[2]})[0][3];
+  }
+  function fmtKg(n){return (Math.round(n*100)/100).toLocaleString('pt-BR')+' kg'}
+  function fmtCp(cp){
+    cp=Math.floor(cp);if(!cp)return '0 po';
+    var po=Math.floor(cp/100),pp=Math.floor(cp%100/10),pc=cp%10,out=[];
+    if(po)out.push(po.toLocaleString('pt-BR')+' po');if(pp)out.push(pp+' pp');if(pc)out.push(pc+' pc');
+    return out.join(' ');
+  }
+  function wpn(n){return typeof n==='string'&&Object.prototype.hasOwnProperty.call(WEAPON,n)?WEAPON[n]:null}
+  function rid(){return Math.random().toString(36).slice(2,10)}
+  function cap1(s){return s.charAt(0).toUpperCase()+s.slice(1)}
+  function sing(s){return s.split(' ').map(function(w){return w.length>3&&/s$/.test(w)?w.slice(0,-1):w}).join(' ')}
+  function norm(s){return String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'')}
+
+  // catálogo único da loja e do peso dos itens
+  var CAT=null,CAT_LC=null;
+  function catalog(){
+    if(CAT)return CAT;
+    CAT=[];CAT_LC={};
+    function add(o){var key=o.n.toLowerCase();if(CAT_LC[key])return;CAT.push(o);CAT_LC[key]=o}
+    WEAPON_LIST.forEach(function(w){
+      add({n:w[2],t:'arma',g:'Armas',w:kgOf(w[6]),v:priceCp(w[3]),cost:priceCp(w[3]),p:w[3],q:1,
+        d:(w[0]==='s'?'Simples':'Marcial')+(w[4]!=='—'?' · '+w[4]+' '+w[5]:'')+(w[7]!=='—'?' · '+w[7]:'')});
+    });
+    ARMORS.forEach(function(a){
+      add({n:a[1],t:'armadura',g:'Armaduras',w:kgOf(a[7]),v:priceCp(a[2]),cost:priceCp(a[2]),p:a[2],q:1,
+        d:cap1(a[0])+' · CA '+a[3]+(a[4]===99?' + DES':a[4]?' + DES (máx. '+a[4]+')':'')+(a[5]?' · FOR '+a[5]:'')+(a[6]?' · desvantagem em Furtividade':'')});
+    });
+    MORE_ITEMS.forEach(function(x){if(x[3]==='escudo')add({n:x[0],t:'escudo',g:x[0]==='Escudo'?'Armaduras':null,w:x[1],v:priceCp(x[2]),cost:priceCp(x[2]),p:x[2],q:1,d:x[4]||''})});
+    GEAR.forEach(function(x){
+      var n=x[0],q=1,m=n.match(/^(.*) \((\d+)\)$/);
+      if(m){n=m[1];q=+m[2]}
+      else if(/ \(cada\)$/.test(n))n=n.replace(/ \(cada\)$/,'');
+      else if(/\.\.\.\)$/.test(n))n=n.replace(/ \(.*\)$/,'');
+      var cost=priceCp(x[1]);
+      add({n:n,t:'item',g:'Equipamento',w:(GEAR_KG[x[0]]||0)/q,v:cost/q,cost:cost,p:x[1]+(q>1?' por '+q:''),q:q,d:x[2]});
+    });
+    TOOL_COST.forEach(function(x){add({n:x[0],t:'item',g:'Ferramentas',w:TOOL_KG[x[0]]||0,v:priceCp(x[1]),cost:priceCp(x[1]),p:x[1],q:1,d:x[2]})});
+    PACKS.forEach(function(x){add({n:x[0],t:'pacote',g:'Pacotes',w:0,v:priceCp(x[1]),cost:priceCp(x[1]),p:x[1],q:1,d:x[2]})});
+    MORE_ITEMS.forEach(function(x){if(x[3]!=='escudo')add({n:x[0],t:'item',g:x[2]?'Equipamento':null,w:x[1],v:priceCp(x[2]),cost:priceCp(x[2]),p:x[2],q:1,d:''})});
+    return CAT;
+  }
+  function catFind(n){catalog();var k=String(n).toLowerCase();return Object.prototype.hasOwnProperty.call(CAT_LC,k)?CAT_LC[k]:null}
+
+  // transforma o texto do equipamento inicial em itens com quantidade
+  function startOne(p){
+    p=p.trim();if(!p)return null;
+    if(START_ALIAS[p])return [{n:START_ALIAS[p],q:1}];
+    var al=p.match(/^aljava com (\d+) flechas$/i);
+    if(al)return [{n:'Aljava',q:1},{n:'Flechas',q:+al[1]}];
+    var q=1,rest=p,m=p.match(/^(\d+|um|uma|dois|duas|três|quatro|cinco|dez)\s+(.+)$/i);
+    if(m&&!/^m\s/.test(m[2])){q=/^\d+$/.test(m[1])?+m[1]:NUMW[m[1].toLowerCase()];rest=m[2]}
+    var c=catFind(rest)||(q>1?catFind(sing(rest)):null);
+    if(c)return [{n:c.n,q:q}];
+    var look=q>1?sing(rest):rest,w=findWeapon(look),lw=look.toLowerCase();
+    if(w&&(q>1||lw.indexOf(w[2].toLowerCase())===0||Object.keys(WEAPON_ALIAS).some(function(a){return lw.indexOf(a.toLowerCase())===0})))
+      return [{n:q>1||lw===w[2].toLowerCase()?w[2]:cap1(rest),q:q,b:w[2]}];
+    return m&&q>1?[{n:cap1(rest),q:q}]:null;
+  }
+  function parseStart(s){
+    s=String(s).replace(/\s*\(se tiver proficiência\)/,'').trim();
+    var pk=PACK_ITEMS[s];
+    if(pk)return pk.map(function(x){return {n:x[0],q:x[1]||1}});
+    var parts=s.split(/, | e /);
+    if(parts.length>1){
+      var out=[],ok=parts.every(function(p){var r=startOne(p);if(r)out=out.concat(r);return !!r});
+      if(ok)return out;
+    }
+    return startOne(s)||[{n:s,q:1}];
+  }
+  function bgStartItems(){
+    var b=BGS[S.bg];if(!b)return [];
+    return b.eq.map(function(e){return e==='Ferramentas de artesão'||e==='Instrumento musical'?(S.pick.tools[0]||e):e});
+  }
+  function mkItem(n,q,base){
+    var c=catFind(n),w=wpn(base),t=c?c.t:(w?'arma':'item');
+    var it={id:rid(),n:c?c.n:n,q:q,w:c?c.w:(w?kgOf(w[6]):0),v:c?c.v:(w?priceCp(w[3]):0),t:t,eq:t==='arma'||t==='armadura'||t==='escudo',d:''};
+    if(w&&!c)it.b=base;
+    return it;
+  }
+  function addTo(list,it){
+    var same=list.filter(function(x){return x.n===it.n&&x.t===it.t&&!x.d&&!it.d})[0];
+    if(same){same.q+=it.q;return same}
+    list.push(it);return it;
+  }
+  // só uma armadura vestida e um escudo empunhado por vez
+  function fixEquip(list,keep){
+    ['armadura','escudo'].forEach(function(t){
+      var on=list.filter(function(x){return x.t===t&&x.eq});
+      var k=keep&&keep.t===t&&keep.eq?keep:on[0];
+      on.forEach(function(x){if(x!==k)x.eq=false});
+    });
+  }
+  function freshInv(){return {mode:'kit',gold:0,items:null,coins:null,variant:false}}
+  function invState(){if(!S.inv||typeof S.inv!=='object')S.inv=freshInv();return S.inv}
+  function deriveItems(){
+    var inv=invState(),out=[];
+    if(inv.mode==='gold'||S.cls===null||S.bg===null)return out;
+    classItems().concat(bgStartItems()).forEach(function(s){parseStart(s).forEach(function(x){addTo(out,mkItem(x.n,x.q,x.b))})});
+    fixEquip(out);
+    return out;
+  }
+  function deriveCoins(){
+    var inv=invState(),c={pc:0,pp:0,pe:0,po:0,pl:0};
+    c.po=inv.mode==='gold'?(inv.gold||0):(BGS[S.bg]?BGS[S.bg].po:0);
+    return c;
+  }
+  // enquanto ninguém mexe, o inventário segue o equipamento inicial; na primeira mudança ele vira uma lista própria
+  function invItems(){var inv=invState();return inv.items||deriveItems()}
+  function invCoins(){var inv=invState();return inv.coins||deriveCoins()}
+  function materialize(){var inv=invState();if(!inv.items)inv.items=deriveItems();if(!inv.coins)inv.coins=deriveCoins()}
+  function coinCount(c){return COINS.reduce(function(t,x){return t+(c[x[0]]||0)},0)}
+  function coinTotal(c){return COINS.reduce(function(t,x){return t+(c[x[0]]||0)*x[3]},0)}
+  function invWeight(items,coins){return items.reduce(function(t,x){return t+x.w*x.q},0)+coinCount(coins)/100}
+  // paga começando pelas moedas menores e devolve o troco
+  function payCoins(c,cp){
+    if(cp<=0)return true;
+    if(coinTotal(c)<cp)return false;
+    var rem=cp;
+    COINS.forEach(function(x){var take=Math.min(c[x[0]]||0,Math.floor(rem/x[3]));c[x[0]]=(c[x[0]]||0)-take;rem-=take*x[3]});
+    if(rem>0){
+      var d=COINS.filter(function(x){return (c[x[0]]||0)>0&&x[3]>rem})[0];
+      c[d[0]]--;giveCoins(c,d[3]-rem);
+    }
+    return true;
+  }
+  function giveCoins(c,cp){
+    cp=Math.floor(cp);
+    [['po',100],['pp',10],['pc',1]].forEach(function(x){var n=Math.floor(cp/x[1]);c[x[0]]=(c[x[0]]||0)+n;cp-=n*x[1]});
+  }
+  function cleanInv(v){
+    var f=freshInv();
+    if(!v||typeof v!=='object')return f;
+    function num(x,max){x=+x;return isFinite(x)?Math.max(0,Math.min(max,x)):0}
+    f.mode=v.mode==='gold'?'gold':'kit';
+    f.gold=Math.floor(num(v.gold,1e6));
+    f.variant=!!v.variant;
+    if(Array.isArray(v.items)){
+      f.items=v.items.slice(0,500).filter(function(o){return o&&typeof o==='object'}).map(function(o){
+        var it={id:String(o.id||rid()).slice(0,24),n:String(o.n||'Item').slice(0,80),q:Math.floor(num(o.q,99999)),w:num(o.w,10000),
+          v:num(o.v,1e9),t:INV_TYPES.indexOf(o.t)>-1?o.t:'item',eq:!!o.eq,d:String(o.d||'').slice(0,300)};
+        if(typeof o.b==='string'&&wpn(o.b))it.b=o.b;
+        return it;
+      }).filter(function(o){return o.q>0});
+    }
+    if(v.coins&&typeof v.coins==='object'){
+      f.coins={};COINS.forEach(function(x){f.coins[x[0]]=Math.floor(num(v.coins[x[0]],1e9))});
+    }
+    return f;
+  }
+  function armorOfItem(it){
+    var name=it.b||it.n,hit=null;
+    Object.keys(ARMOR).forEach(function(k){if(name.indexOf(k)===0)hit=k});
+    return hit;
+  }
+
+  var LOAD_MSG={
+    enc:'Carga pesada (regra opcional): −3 m de deslocamento.',
+    heavy:'Carga muito pesada (regra opcional): −6 m de deslocamento e desvantagem em testes, ataques e salvaguardas de FOR, DES e CON.',
+    over:'Acima da capacidade: você só consegue empurrar ou arrastar, a 1,5 m por turno.'
+  };
+  var INV_OPEN=null;
+  function invBox(k,ro){
+    var I=k.inv,inv=invState(),pct=I.cap?Math.min(100,Math.round(I.load/I.cap*100)):0;
+    var h='<div class="box inv"><h4>Inventário <small>'+fmtKg(I.load)+' de '+fmtKg(I.cap)+'</small></h4>'+
+      '<div class="loadbar'+(I.st?' '+I.st:'')+'" title="Capacidade de carga: FOR × 7,5 kg"><i style="width:'+pct+'%"></i></div>';
+    if(I.st)h+='<p class="small warn">'+LOAD_MSG[I.st]+'</p>';
+    h+='<div class="coins">'+COINS.map(function(x){
+      var v=I.coins[x[0]]||0;
+      return '<label class="coin c-'+x[0]+'"><span>'+x[1]+'</span>'+(ro?'<b>'+v+'</b>':'<input type="number" min="0" inputmode="numeric" data-coin="'+x[0]+'" value="'+v+'" aria-label="Peças de '+x[2]+'">')+'</label>';
+    }).join('')+'</div>';
+    if(inv.mode==='gold'&&!I.items.length&&!ro)h+='<p class="small" style="margin:0 0 8px">Você começou só com ouro. Abra a loja para comprar o equipamento.</p>';
+    var groups=[['Armas e proteção',['arma','armadura','escudo']],['Equipamento',['item']],['Tesouros e itens mágicos',['tesouro','magico']]];
+    groups.forEach(function(g){
+      var rows=[];
+      I.items.forEach(function(it,i){
+        if(g[1].indexOf(it.t)<0)return;
+        var gear=it.t==='arma'||it.t==='armadura'||it.t==='escudo';
+        var info=[it.t!=='item'?TYPE_LABEL[it.t]:''];
+        if(it.w)info.push(fmtKg(it.w*it.q));
+        if(it.d)info.push(esc(it.d));
+        var r='<li><div class="it-row"><span class="it-n">'+esc(it.n)+(info.filter(Boolean).length?'<small>'+info.filter(Boolean).join(' · ')+'</small>':'')+'</span>';
+        if(gear)r+=ro?(it.eq?'<span class="eqb on">'+(it.t==='armadura'?'Vestindo':'Em uso')+'</span>':''):
+          '<button class="eqb" data-inv="eq" data-i="'+i+'" aria-pressed="'+!!it.eq+'">'+(it.eq?(it.t==='armadura'?'Vestindo':'Em uso'):'Guardado')+'</button>';
+        r+=ro?'<span class="qty"><b>'+it.q+'</b></span>':
+          '<span class="qty"><button class="mini-b" data-inv="dec" data-i="'+i+'" aria-label="Menos '+esc(it.n)+'">−</button><b>'+it.q+'</b><button class="mini-b" data-inv="inc" data-i="'+i+'" aria-label="Mais '+esc(it.n)+'">+</button>'+
+          '<button class="mini-b" data-inv="open" data-i="'+i+'" aria-expanded="'+(INV_OPEN===i)+'" aria-label="Opções de '+esc(it.n)+'">⋯</button></span>';
+        r+='</div>';
+        if(!ro&&INV_OPEN===i){
+          var sell=it.t==='tesouro'?it.v:Math.floor(it.v/2);
+          r+='<div class="it-more"><input type="text" data-note="'+i+'" value="'+esc(it.d)+'" placeholder="Anotação (ex.: carga, de quem é)" aria-label="Anotação">'+
+            (sell?'<button class="btn ghost sm" data-inv="sell" data-i="'+i+'">Vender 1 por '+fmtCp(sell)+'</button>':'')+
+            '<button class="btn ghost sm" data-inv="del" data-i="'+i+'">Remover</button></div>';
+        }
+        rows.push(r+'</li>');
+      });
+      if(rows.length)h+='<div class="inv-g">'+g[0]+'</div><ul class="inv-l">'+rows.join('')+'</ul>';
+    });
+    if(!I.items.length&&!(inv.mode==='gold'&&!ro))h+='<p class="small" style="margin:0">Nenhum item.</p>';
+    if(!ro){
+      h+='<div class="inv-btns"><button class="btn sm" data-inv="shop">Loja</button><button class="btn ghost sm" data-inv="add">Item próprio</button>'+
+        (inv.items&&!$('ficha').hidden?'<button class="btn ghost sm" data-inv="reset">Refazer do equipamento inicial</button>':'')+'</div>'+
+        '<label class="chk"><input type="checkbox" data-inv="variant"'+(inv.variant?' checked':'')+'> Regra opcional de carga: mais lento acima de FOR × 2,5 kg</label>';
+    }
+    return h+'</div>';
+  }
+  function invDone(){
+    if(!$('jogo').hidden)touch();
+    else if(!$('ficha').hidden)renderFinal();
+    if(SHOP.open)renderShop();
+  }
+  function wireInv(root){
+    if(!root||VIEW)return;
+    root.querySelectorAll('[data-coin]').forEach(function(el){
+      el.onchange=function(){materialize();S.inv.coins[el.dataset.coin]=Math.max(0,Math.min(1e9,parseInt(el.value,10)||0));invDone()};
+    });
+    root.querySelectorAll('[data-note]').forEach(function(el){
+      el.onchange=function(){materialize();var it=S.inv.items[+el.dataset.note];if(it){it.d=el.value.slice(0,300);invDone()}};
+    });
+    root.querySelectorAll('[data-inv]').forEach(function(b){
+      var ev=b.type==='checkbox'?'onchange':'onclick';
+      b[ev]=function(){invAct(b.dataset.inv,+b.dataset.i,b)};
+    });
+  }
+  function invAct(a,i,b){
+    var inv=invState();
+    if(a==='shop'){SHOP.give=null;openShop(SHOP.g==='Item próprio'||SHOP.g==='Moedas'?'Armas':null);return}
+    if(a==='add'){SHOP.give=null;openShop('Item próprio');return}
+    if(a==='open'){INV_OPEN=INV_OPEN===i?null:i;invDone();return}
+    if(a==='variant'){inv.variant=b.checked;invDone();return}
+    if(a==='reset'){
+      if(!b.dataset.armed){b.dataset.armed='1';b.textContent='Confirmar: apagar compras e mudanças';setTimeout(function(){if(b.isConnected){delete b.dataset.armed;b.textContent='Refazer do equipamento inicial'}},4000);return}
+      inv.items=null;inv.coins=null;INV_OPEN=null;invDone();return;
+    }
+    materialize();
+    var L=inv.items,it=L[i];if(!it)return;
+    if(a==='inc')it.q=Math.min(99999,it.q+1);
+    else if(a==='dec')it.q--;
+    else if(a==='eq'){it.eq=!it.eq;fixEquip(L,it)}
+    else if(a==='sell'){giveCoins(inv.coins,it.t==='tesouro'?it.v:Math.floor(it.v/2));it.q--}
+    else if(a==='del')it.q=0;
+    if(it.q<=0){L.splice(i,1);INV_OPEN=null}
+    invDone();
+  }
+
+  // ---------- loja ----------
+  var SHOP={open:false,g:'Armas',q:'',msg:'',give:null};
+  var SHOP_GROUPS=['Armas','Armaduras','Equipamento','Ferramentas','Pacotes','Item próprio'];
+  function openShop(g){
+    if(typeof DLG_MON!=='undefined')DLG_MON=null;
+    if($('dlg').hidden)SHOP.ret=document.activeElement;
+    SHOP.open=true;SHOP.msg='';if(g)SHOP.g=g;
+    renderShop();$('dlg').hidden=false;
+    var f=$('shopQ')||$('own_n');if(f)f.focus();
+  }
+  function closeShop(){
+    SHOP.open=false;SHOP.give=null;$('dlg').hidden=true;
+    if(SHOP.ret&&SHOP.ret.isConnected)SHOP.ret.focus();
+  }
+  function shopRows(){
+    var tot=coinTotal(invCoins()),q=norm(SHOP.q.trim());
+    var list=catalog().filter(function(c){return c.g===SHOP.g&&(!q||norm(c.n).indexOf(q)>-1||norm(c.d).indexOf(q)>-1)});
+    // quem tem a busca no nome aparece antes de quem só tem na descrição
+    function rank(c){return q&&norm(c.n).indexOf(q)<0?1:0}
+    list.sort(function(a,b){return rank(a)-rank(b)||a.n.localeCompare(b.n,'pt')});
+    if(!list.length)return '<li class="empty">Nada encontrado.</li>';
+    return list.map(function(c){
+      var ci=CAT.indexOf(c);
+      var btns=SHOP.give?'<button class="btn sm" data-gift="'+ci+'">Dar</button>':
+        '<button class="btn sm" data-buy="'+ci+'"'+(!c.cost||c.cost>tot?' disabled':'')+'>Comprar</button>'+
+        '<button class="btn ghost sm" data-take="'+ci+'" title="Adicionar sem pagar (presente, saque, tesouro)">Pegar</button>';
+      return '<li><span class="sn">'+esc(c.n)+(c.q>1?' ('+c.q+')':'')+(c.d?'<small>'+esc(c.d)+'</small>':'')+'</span>'+
+        '<span class="sp">'+(c.p?esc(c.p.split(' por ')[0]):'—')+'<small>'+(c.t==='pacote'?'vários itens':c.w?fmtKg(c.w*c.q):'—')+'</small></span>'+
+        '<span class="sb">'+btns+'</span></li>';
+    }).join('');
+  }
+  function renderShop(){
+    var box=$('dlgBox'),G=SHOP.give,tot=G?0:coinTotal(invCoins());
+    var groups=G?SHOP_GROUPS.concat(['Moedas']):SHOP_GROUPS;
+    if(!G&&SHOP.g==='Moedas')SHOP.g='Armas';
+    var h='<div class="dlg-head"><h3 id="dlgT">'+(G?'Dar para '+esc(G.nome):'Loja')+'</h3>'+(G?'':'<span class="purse">Bolsa: '+fmtCp(tot)+'</span>')+'<button class="mini-b" id="dlgX" aria-label="Fechar">×</button></div>'+
+      '<div class="seg shop-tabs" role="group" aria-label="Seção da loja">'+groups.map(function(g){return '<button data-g="'+g+'" aria-pressed="'+(SHOP.g===g)+'">'+g+'</button>'}).join('')+'</div>';
+    if(SHOP.g==='Moedas'){
+      h+='<p class="small" style="margin:0 0 10px">O jogador recebe um aviso e as moedas entram na bolsa da ficha dele quando aceitar.</p>'+
+        '<div class="coins give-c">'+COINS.map(function(x){return '<label class="coin c-'+x[0]+'"><span>'+x[1]+'</span><input type="number" min="0" inputmode="numeric" data-gc="'+x[0]+'" value="0" aria-label="Peças de '+x[2]+'"></label>'}).join('')+'</div>'+
+        '<div class="inv-btns"><button class="btn sm" id="giveCoins">Dar moedas</button></div>';
+    }else if(SHOP.g==='Item próprio'){
+      h+='<p class="small" style="margin:0 0 10px">Para tesouros, itens mágicos e qualquer coisa que não esteja na loja.</p>'+
+        '<div class="own">'+
+        '<label class="mo-f w2">Nome<input type="text" id="own_n" maxlength="80" placeholder="Ex.: Gema de ônix"></label>'+
+        '<label class="mo-f">Tipo<select id="own_t"><option value="tesouro">Tesouro</option><option value="magico">Item mágico</option><option value="item">Equipamento</option></select></label>'+
+        '<label class="mo-f">Quantidade<input type="number" id="own_q" min="1" value="1" inputmode="numeric"></label>'+
+        '<label class="mo-f">Peso (kg, cada)<input type="number" id="own_w" min="0" step="0.05" value="0" inputmode="decimal"></label>'+
+        '<label class="mo-f">Valor (po, cada)<input type="number" id="own_v" min="0" step="0.01" value="0" inputmode="decimal"></label>'+
+        '<label class="mo-f w2">Anotação<input type="text" id="own_d" maxlength="300" placeholder="Ex.: +1 no ataque, achado na cripta"></label>'+
+        '</div><div class="inv-btns"><button class="btn sm" id="ownAdd">'+(G?'Dar item':'Adicionar ao inventário')+'</button></div>';
+    }else{
+      h+='<input type="text" id="shopQ" placeholder="Buscar nesta seção…" aria-label="Buscar" value="'+esc(SHOP.q)+'">'+
+        '<p class="small" style="margin:6px 0 0">'+(G?'Dar envia um aviso ao jogador: “O mestre está te dando…”. O item entra na ficha quando ele aceitar.':'Comprar desconta da bolsa. Pegar adiciona de graça, para presentes e saques. Vender, no inventário, devolve metade do preço.')+'</p>'+
+        '<ul class="shop-l" id="shopList">'+shopRows()+'</ul>';
+    }
+    h+='<p class="msg" id="shopMsg" role="status">'+esc(SHOP.msg)+'</p>';
+    box.innerHTML=h;
+    $('dlgX').onclick=closeShop;
+    box.querySelectorAll('[data-g]').forEach(function(b){b.onclick=function(){SHOP.g=b.dataset.g;SHOP.q='';SHOP.msg='';renderShop();var f=$('shopQ')||$('own_n');if(f)f.focus()}});
+    var sq=$('shopQ');
+    if(sq)sq.oninput=function(){SHOP.q=sq.value;$('shopList').innerHTML=shopRows();wireShopList()};
+    wireShopList();
+    var oa=$('ownAdd');
+    if(oa)oa.onclick=function(){
+      var n=$('own_n').value.trim().slice(0,80);
+      if(!n){SHOP.msg='Dê um nome ao item.';$('shopMsg').textContent=SHOP.msg;$('own_n').focus();return}
+      function num(id,max){var v=parseFloat($(id).value);return isFinite(v)?Math.max(0,Math.min(max,v)):0}
+      var t=$('own_t').value;if(INV_TYPES.indexOf(t)<0)t='item';
+      var it={id:rid(),n:n,q:Math.max(1,Math.floor(num('own_q',99999))),w:num('own_w',10000),v:Math.round(num('own_v',1e7)*100),t:t,eq:false,d:$('own_d').value.trim().slice(0,300)};
+      if(G){sendGift({rotulo:n+(it.q>1?' ×'+it.q:''),itens:[it],moedas:{}});return}
+      materialize();
+      addTo(S.inv.items,it);
+      SHOP.msg=n+' entrou no inventário.';
+      invDone();
+    };
+    var gc=$('giveCoins');
+    if(gc)gc.onclick=function(){
+      var m={},parts=[];
+      box.querySelectorAll('[data-gc]').forEach(function(el){var v=Math.max(0,Math.min(1e7,parseInt(el.value,10)||0));if(v){m[el.dataset.gc]=v;parts.push(v+' '+el.dataset.gc)}});
+      if(!parts.length){SHOP.msg='Coloque quantas moedas quer dar.';$('shopMsg').textContent=SHOP.msg;return}
+      sendGift({rotulo:parts.join(', '),itens:[],moedas:m});
+    };
+  }
+  function wireShopList(){
+    var box=$('dlgBox');
+    box.querySelectorAll('[data-gift]').forEach(function(b){
+      b.onclick=function(){
+        var c=CAT[+b.dataset.gift];if(!c)return;
+        var its=c.t==='pacote'?PACK_ITEMS[c.n].map(function(x){return mkItem(x[0],x[1]||1)}):[mkItem(c.n,c.q)];
+        sendGift({rotulo:c.n+(c.q>1?' ('+c.q+')':''),itens:its,moedas:{}});
+      };
+    });
+    box.querySelectorAll('[data-buy],[data-take]').forEach(function(b){
+      b.onclick=function(){
+        var buy=b.hasAttribute('data-buy'),c=CAT[+(buy?b.dataset.buy:b.dataset.take)];if(!c)return;
+        materialize();
+        if(buy&&!payCoins(S.inv.coins,c.cost)){SHOP.msg='Ouro insuficiente para '+c.n+'.';$('shopMsg').textContent=SHOP.msg;return}
+        if(c.t==='pacote')PACK_ITEMS[c.n].forEach(function(x){addTo(S.inv.items,mkItem(x[0],x[1]||1))});
+        else addTo(S.inv.items,mkItem(c.n,c.q));
+        fixEquip(S.inv.items);
+        SHOP.msg=(buy?'Comprou ':'Pegou ')+c.n+(c.q>1?' ('+c.q+')':'')+'.';
+        invDone();
+      };
+    });
+  }
+  document.addEventListener('keydown',function(e){
+    if(e.key!=='Escape')return;
+    if(!$('gift').hidden){closeGift();return}
+    if(!$('dlg').hidden)closeDlg();
+  });
+  $('dlg').addEventListener('click',function(e){if(e.target===$('dlg'))closeDlg()});
+
+  // ouro inicial no passo de escolhas
+  var GOLD_ROLL='';
+  function startGold(cn){return START_GOLD[cn]||[4,10]}
+  function goldText(g){return g[0]+'d4'+(g[1]>1?' × '+g[1]:'')}
+  function goldAvg(g){return Math.floor(g[0]*2.5*g[1])}
+
+  // =====================================================================
   // EXPORTAÇÃO PARA O PDF
   // =====================================================================
   var SKILL_ORDER=ALL_SKILLS; // mesma ordem da ficha: caixas 6..23, campos 66..83
@@ -2823,8 +3434,10 @@ table.atk td:first-child{color:var(--ink)}
     k.attacks.forEach(function(a,j){t(an[j],a.n);t(ab[j],a.bonus.replace('−','-').replace('Automático','Auto').replace(/^CD (\d+) \w+$/,'CD $1'));t(ad[j],a.dmg.replace('−','-')+' '+(ABBR[a.type]||a.type))});
     if(k.allAttacks.length>3)t(5,k.allAttacks.slice(3).map(function(a){return a.n+': '+a.bonus.replace('−','-')+', '+a.dmg.replace('−','-')+' '+a.type}).join('\n'));
     t(7,k.otherProf.join('\n'));
-    t(6,k.items.concat(k.bgItems).join('\n'));
-    t(59,k.b.po);
+    var IV=k.inv,loot=function(x){return x.t==='tesouro'||x.t==='magico'};
+    t(6,IV.items.filter(function(x){return !loot(x)}).map(function(x){return x.n+(x.q>1?' x'+x.q:'')}).join(', '));
+    [['pc',55],['pp',57],['pe',58],['po',59],['pl',56]].forEach(function(c){if(IV.coins[c[0]])t(c[1],IV.coins[c[0]])});
+    t(16,IV.items.filter(loot).map(function(x){return x.n+(x.q>1?' x'+x.q:'')+(x.d?': '+x.d:'')}).join('\n'));
     t(14,k.resources.concat(k.classFeats).join('\n'));
     t(15,k.otherFeats.join('\n'));
     t(1,I.tracos);t(2,I.ideais);t(3,I.vinculos);t(4,I.defeitos);
@@ -3275,7 +3888,7 @@ table.atk td:first-child{color:var(--ink)}
       '</div></div>';
     $('jogo').classList.toggle('viewonly',!!VIEW);
     if(VIEW){
-      $('playBanner').innerHTML='<div class="note viewnote" style="margin:0 0 16px"><b>Ficha compartilhada, só leitura.</b> Salva pelo dono em '+fmtDate(VIEW.savedAt)+'. As rolagens funcionam, mas nada é alterado. '+
+      $('playBanner').innerHTML='<div class="note viewnote" style="margin:0 0 16px"><b>'+esc(VIEW.label||'Ficha compartilhada')+', só leitura.</b> Salva pelo dono em '+fmtDate(VIEW.savedAt)+'. As rolagens funcionam, mas nada é alterado. '+
         '<button class="btn ghost sm" id="viewRefresh">Atualizar</button></div>';
     }else $('playBanner').innerHTML=S.sheetId?'':'<div class="note" style="margin:0 0 16px">Esta ficha ainda não está salva, então o progresso da sessão se perde ao fechar a página. <button class="btn sm" id="playSave" style="margin-left:8px">Salvar ficha</button></div>';
 
@@ -3349,12 +3962,14 @@ table.atk td:first-child{color:var(--ink)}
         return '<div class="resrow"><span>'+x.n+'<small>descanso '+x.reset+'</small></span>'+pips(x.max,used,'data-res="'+x.id+'"')+'</div>';
       }).join('')+'</div>';
     }
+    c3+=invBox(k,!!VIEW);
     c3+='<div class="box dicebox"><h4>Dados</h4><div class="tray">'+[4,6,8,10,12,20,100].map(function(n){return '<button class="dbtn" data-die="'+n+'">d'+n+'</button>'}).join('')+'</div>'+
       '<div class="expr"><input type="text" id="exprIn" placeholder="Ex.: 2d6+3" aria-label="Expressão de dados"><button class="btn sm" id="exprGo">Rolar</button></div>'+
       '<h4 style="margin-top:14px">Histórico</h4><ul class="rlog" id="rollLog">'+logHtml()+'</ul></div>';
     $('pc3').innerHTML=c3;
 
     wirePlay(k);
+    wireInv($('pc3'));
   }
   function wirePlay(k){
     var P=S.play,jack=k.init-k.m[1];
@@ -3438,7 +4053,7 @@ table.atk td:first-child{color:var(--ink)}
     $('exprGo').onclick=goExpr;
     $('exprIn').onkeydown=function(e){if(e.key==='Enter')goExpr()};
     $('toSheet').onclick=function(){show('ficha');goStep(7)};
-    var vr=$('viewRefresh');if(vr)vr.onclick=function(){openShared(VIEW.sid)};
+    var vr=$('viewRefresh');if(vr)vr.onclick=function(){if(VIEW.reload)VIEW.reload();else openShared(VIEW.sid)};
     var ps=$('playSave');if(ps)ps.onclick=async function(){try{await saveCurrent();renderPlay()}catch(e){}};
     var rs=$('restShort');rs.onclick=function(){
       if(!rs.dataset.armed){rs.dataset.armed='1';rs.textContent='Confirmar descanso curto';setTimeout(function(){if(rs.isConnected){delete rs.dataset.armed;rs.textContent='Descanso curto'}},4000);return}
@@ -3465,11 +4080,11 @@ table.atk td:first-child{color:var(--ink)}
     kind:'cloud',
     persistent:function(){return true},
     list:async function(){
-      var r=await Auth.client.from('fichas').select('id,data,saved_at,share_id').order('saved_at',{ascending:false});
+      var r=await Auth.client.from('fichas').select('id,data,saved_at,share_id').eq('user_id',Auth.user.id).order('saved_at',{ascending:false});
       if(r.error){
         // banco sem a coluna de compartilhamento (script novo ainda não rodado)
         Auth.noShare=true;
-        r=await Auth.client.from('fichas').select('id,data,saved_at').order('saved_at',{ascending:false});
+        r=await Auth.client.from('fichas').select('id,data,saved_at').eq('user_id',Auth.user.id).order('saved_at',{ascending:false});
         if(r.error)throw r.error;
       }else Auth.noShare=false;
       return (r.data||[]).map(function(x){return {id:x.id,v:1,savedAt:Date.parse(x.saved_at),state:x.data,shareId:x.share_id||null}});
@@ -3508,6 +4123,8 @@ table.atk td:first-child{color:var(--ink)}
     Auth.user=u||null;
     Store=Auth.user?CloudStore:LocalStore;
     drawAcctBtn();
+    var nid=Auth.user?Auth.user.id:null;
+    if(nid!==CAMP.uid){CAMP.uid=nid;campReset();startGiftPoll();if(!$('mesa').hidden)renderMesa()}
     if(!$('fichas').hidden)renderSheets();
     if(!$('conta').hidden)renderAccount();
   }
@@ -3526,6 +4143,12 @@ table.atk td:first-child{color:var(--ink)}
         if(!$('mesa').hidden)renderMesa();
         var vq=new URLSearchParams(location.search).get('ver');
         if(vq&&UUID_RE.test(vq))openShared(vq.match(UUID_RE)[0]);
+        var eq=new URLSearchParams(location.search).get('entrar');
+        if(eq&&cleanCode(eq).length>=10){
+          CAMP.joinCode=cleanCode(eq);MESA_TAB='camp';
+          try{history.replaceState(null,'',location.pathname)}catch(e){}
+          show('mesa');
+        }
       }catch(e){Auth.failed=true;setUser(null)}
     };
     sc.onerror=function(){Auth.failed=true;$('acctBtn').hidden=false};
@@ -3657,13 +4280,13 @@ table.atk td:first-child{color:var(--ink)}
       catch(e){MESA_DATA[p.sid]={err:e&&e.message==='not found'?'O jogador parou de compartilhar esta ficha.':'Não consegui carregar esta ficha.'}}
     }));
     MESA_LAST=Date.now();
-    if(!$('mesa').hidden)renderMesa(true);
+    if(!$('mesa').hidden&&MESA_TAB==='rapida')renderQuick(true);
   }
-  function renderMesa(fromLoad){
+  function renderQuick(fromLoad){
     var missing=MESA.players.some(function(p){return !MESA_DATA[p.sid]});
     if(!fromLoad&&Auth.client&&MESA.players.length&&(missing||Date.now()-MESA_LAST>15000))loadMesa();
     clearInterval(MESA_TIMER);
-    MESA_TIMER=setInterval(function(){if($('mesa').hidden){clearInterval(MESA_TIMER);return}loadMesa()},30000);
+    MESA_TIMER=setInterval(function(){if($('mesa').hidden||MESA_TAB!=='rapida'){clearInterval(MESA_TIMER);return}loadMesa()},30000);
     var g=$('mesaGrid');
     if(!MESA.players.length){
       g.innerHTML='<div class="empty"><h3>Nenhum jogador na mesa</h3><p>Peça para cada jogador abrir Minhas fichas, clicar em <b>Compartilhar</b> na ficha e te mandar o link. Cole os links acima.</p></div>';
@@ -3691,10 +4314,10 @@ table.atk td:first-child{color:var(--ink)}
     }
     g.querySelectorAll('[data-rm]').forEach(function(b){b.onclick=function(){
       var sid=b.dataset.rm;MESA.players=MESA.players.filter(function(p){return p.sid!==sid});
-      MESA.combat.list=MESA.combat.list.filter(function(c){return c.sid!==sid});delete MESA_DATA[sid];saveMesa();renderMesa(true);
+      MESA.combat.list=MESA.combat.list.filter(function(c){return c.sid!==sid});delete MESA_DATA[sid];saveMesa();renderQuick(true);
     }});
     g.querySelectorAll('[data-see]').forEach(function(b){b.onclick=function(){openShared(b.dataset.see)}});
-    renderInit();
+    renderInit(QUICK_CTX);
   }
   $('mesaAdd').onsubmit=function(e){
     e.preventDefault();
@@ -3704,89 +4327,723 @@ table.atk td:first-child{color:var(--ink)}
     var sid=m[0].toLowerCase();
     if(MESA.players.some(function(p){return p.sid===sid})){msg.textContent='Essa ficha já está na mesa.';return}
     MESA.players.push({sid:sid});saveMesa();$('mesaLink').value='';msg.textContent='Ficha adicionada.';
-    renderMesa(true);loadMesa();
+    renderQuick(true);loadMesa();
   };
   $('mesaRefresh').onclick=function(){loadMesa()};
 
-  // ----- iniciativa -----
+  // ----- iniciativa (a mesma para a mesa rápida e para as campanhas) -----
   function cId(){return 'c'+Date.now().toString(36)+Math.random().toString(36).slice(2,5)}
-  function combatant(c){
+  var QUICK_CTX={
+    box:function(){return $('initBox')},
+    combat:function(){return MESA.combat},
+    reset:function(){MESA.combat={list:[],turn:0,round:1,active:false}},
+    players:function(){return MESA.players.map(function(p){return p.sid})},
+    pdata:function(key){var d=MESA_DATA[key];return d&&d.sum},
+    save:function(){saveMesa()}
+  };
+  function combatant(ctx,c){
     if(c.type==='p'){
-      var d=MESA_DATA[c.sid],m=d&&d.sum;
+      var m=ctx.pdata(c.sid);
       return {name:m?m.nome:'Jogador',ac:m?m.ac:'?',hp:m?m.hp:'?',max:m?m.hpMax:'?',bonus:m?m.init:0,player:true,cond:m?m.cond:[]};
     }
     return {name:c.name,ac:c.ac,hp:c.hp,max:c.max,bonus:c.bonus,player:false,cond:[]};
   }
-  function sortCombat(){
-    MESA.combat.list.sort(function(a,b){
+  function sortCombat(ctx){
+    ctx.combat().list.sort(function(a,b){
       var ia=a.init==null?-99:a.init,ib=b.init==null?-99:b.init;
-      return ib-ia||combatant(b).bonus-combatant(a).bonus;
+      return ib-ia||combatant(ctx,b).bonus-combatant(ctx,a).bonus;
     });
   }
-  function renderInit(){
-    var C=MESA.combat,box=$('initBox');
+  function renderInit(ctx){
+    var C=ctx.combat(),box=ctx.box();if(!box)return;
+    function redo(){ctx.save();renderInit(ctx)}
     var h='<div class="box init"><h4>Iniciativa'+(C.active?' <small>rodada '+C.round+'</small>':'')+'</h4>';
     h+='<div class="init-act">'+
-      '<button class="btn ghost sm" id="inAddP">Adicionar jogadores da mesa</button>'+
-      '<button class="btn sm" id="inRoll">Rolar iniciativa</button>'+
-      (C.list.length?'<button class="btn sm" id="inNext"'+(C.active?'':' disabled')+'>Próximo turno</button><button class="btn ghost sm" id="inEnd">Encerrar combate</button>':'')+
+      '<button class="btn ghost sm" data-in="addp">Adicionar jogadores</button>'+
+      '<button class="btn sm" data-in="roll">Rolar iniciativa</button>'+
+      (C.list.length?'<button class="btn sm" data-in="next"'+(C.active?'':' disabled')+'>Próximo turno</button><button class="btn ghost sm" data-in="end">Encerrar combate</button>':'')+
     '</div>';
     if(C.list.length){
       h+='<ol class="init-list">'+C.list.map(function(c,i){
-        var v=combatant(c),cur=C.active&&i===C.turn;
+        var v=combatant(ctx,c),cur=C.active&&i===C.turn;
         var hp=v.player?'<span class="ih">'+v.hp+'/'+v.max+'</span>':
-          '<span class="ih"><input type="number" class="in-amt" data-i="'+i+'" placeholder="±" aria-label="Valor de dano ou cura"><button class="mini-b" data-dmg="'+i+'" title="Dano">−</button><button class="mini-b" data-heal="'+i+'" title="Cura">+</button><b'+(c.hp<=0?' class="dead"':'')+'>'+c.hp+'</b>/'+c.max+'</span>';
+          '<span class="ih"><input type="number" class="in-amt" data-i="'+i+'" placeholder="±" aria-label="Valor de dano ou cura de '+esc(v.name)+'"><button class="mini-b" data-dmg="'+i+'" title="Dano">−</button><button class="mini-b" data-heal="'+i+'" title="Cura">+</button><b'+(c.hp<=0?' class="dead"':'')+'>'+c.hp+'</b>/'+c.max+'</span>';
+        var nm=c.mid&&ctx.openMon?'<button class="mon-l" data-mon="'+i+'">'+esc(v.name)+'</button>':esc(v.name);
         return '<li class="'+(cur?'cur ':'')+(v.player?'pl':'mo')+'">'+
           '<input type="number" class="in-v" data-iv="'+i+'" value="'+(c.init==null?'':c.init)+'" aria-label="Iniciativa de '+esc(v.name)+'">'+
-          '<span class="in-n">'+esc(v.name)+'<small>'+(v.player?'jogador':'criatura')+' · bônus '+sgn(v.bonus)+(v.cond.length?' · '+esc(v.cond.join(', ')):'')+'</small></span>'+
+          '<span class="in-n">'+nm+'<small>'+(v.player?'jogador':'criatura')+' · bônus '+sgn(v.bonus)+(v.cond.length?' · '+esc(v.cond.join(', ')):'')+'</small></span>'+
           '<span class="ia">CA '+v.ac+'</span>'+hp+
           '<button class="pc-x" data-cx="'+i+'" aria-label="Remover '+esc(v.name)+'">×</button></li>';
       }).join('')+'</ol>';
     }else h+='<p class="small">Adicione os jogadores e as criaturas do encontro, depois role a iniciativa.</p>';
-    h+='<form class="mo-add" id="moAdd">'+
-      '<label class="mo-f mo-name">Criatura<input type="text" id="moName" placeholder="Ex.: Goblin" required maxlength="40"></label>'+
-      '<label class="mo-f">Bônus inic.<input type="number" id="moInit" value="0"></label>'+
-      '<label class="mo-f">CA<input type="number" id="moAc" placeholder="10" min="0"></label>'+
-      '<label class="mo-f">PV<input type="number" id="moHp" placeholder="7" min="1"></label>'+
-      '<label class="mo-f">Quantidade<input type="number" id="moQty" value="1" min="1" max="12"></label>'+
+    h+='<form class="mo-add" data-in="form">'+
+      '<label class="mo-f mo-name">Criatura<input type="text" name="nm" placeholder="Ex.: Goblin" required maxlength="40"></label>'+
+      '<label class="mo-f">Bônus inic.<input type="number" name="ini" value="0"></label>'+
+      '<label class="mo-f">CA<input type="number" name="ac" placeholder="10" min="0"></label>'+
+      '<label class="mo-f">PV<input type="number" name="hp" placeholder="7" min="1"></label>'+
+      '<label class="mo-f">Quantidade<input type="number" name="qty" value="1" min="1" max="12"></label>'+
       '<button class="btn ghost sm" type="submit">Adicionar criatura</button></form>';
     h+='</div>';
     box.innerHTML=h;
-
-    $('inAddP').onclick=function(){
-      MESA.players.forEach(function(p){if(!C.list.some(function(c){return c.sid===p.sid}))C.list.push({id:cId(),type:'p',sid:p.sid,init:null})});
-      saveMesa();renderInit();
+    function on(k){return box.querySelector('[data-in="'+k+'"]')}
+    on('addp').onclick=function(){
+      ctx.players().forEach(function(k){if(!C.list.some(function(c){return c.sid===k}))C.list.push({id:cId(),type:'p',sid:k,init:null})});
+      redo();
     };
-    $('inRoll').onclick=function(){
-      C.list.forEach(function(c){var v=combatant(c);c.init=die(20)+(+v.bonus||0)});
-      sortCombat();C.turn=0;C.round=1;C.active=true;saveMesa();renderInit();
-      pushRoll({label:'Iniciativa rolada',total:C.list.length,kind:'info',detail:C.list.map(function(c){return combatant(c).name+' '+c.init}).join(' · ')});
+    on('roll').onclick=function(){
+      C.list.forEach(function(c){var v=combatant(ctx,c);c.init=die(20)+(+v.bonus||0)});
+      sortCombat(ctx);C.turn=0;C.round=1;C.active=true;redo();
+      pushRoll({label:'Iniciativa rolada',total:C.list.length,kind:'info',detail:C.list.map(function(c){return combatant(ctx,c).name+' '+c.init}).join(' · ')});
     };
-    var nx=$('inNext');if(nx)nx.onclick=function(){C.turn++;if(C.turn>=C.list.length){C.turn=0;C.round++}saveMesa();renderInit()};
-    var en=$('inEnd');if(en)en.onclick=function(){
+    var nx=on('next');if(nx)nx.onclick=function(){C.turn++;if(C.turn>=C.list.length){C.turn=0;C.round++}redo()};
+    var en=on('end');if(en)en.onclick=function(){
       if(!en.dataset.armed){en.dataset.armed='1';en.textContent='Confirmar';setTimeout(function(){if(en.isConnected){delete en.dataset.armed;en.textContent='Encerrar combate'}},4000);return}
-      MESA.combat={list:[],turn:0,round:1,active:false};saveMesa();renderInit();
+      ctx.reset();C=ctx.combat();redo();
     };
     box.querySelectorAll('[data-iv]').forEach(function(inp){inp.onchange=function(){
       var c=C.list[+inp.dataset.iv],cur=C.active?C.list[C.turn]:null;
-      c.init=inp.value===''?null:+inp.value;sortCombat();if(cur)C.turn=Math.max(0,C.list.indexOf(cur));saveMesa();renderInit();
+      c.init=inp.value===''?null:+inp.value;sortCombat(ctx);if(cur)C.turn=Math.max(0,C.list.indexOf(cur));redo();
     }});
     function amt(i){var el=box.querySelector('.in-amt[data-i="'+i+'"]');var v=parseInt(el&&el.value,10);return isNaN(v)?0:Math.abs(v)}
-    box.querySelectorAll('[data-dmg]').forEach(function(b){b.onclick=function(){var i=+b.dataset.dmg,c=C.list[i];c.hp=Math.max(0,c.hp-amt(i));saveMesa();renderInit()}});
-    box.querySelectorAll('[data-heal]').forEach(function(b){b.onclick=function(){var i=+b.dataset.heal,c=C.list[i];c.hp=Math.min(c.max,c.hp+amt(i));saveMesa();renderInit()}});
+    box.querySelectorAll('[data-dmg]').forEach(function(b){b.onclick=function(){var i=+b.dataset.dmg,c=C.list[i];c.hp=Math.max(0,c.hp-amt(i));redo()}});
+    box.querySelectorAll('[data-heal]').forEach(function(b){b.onclick=function(){var i=+b.dataset.heal,c=C.list[i];c.hp=Math.min(c.max,c.hp+amt(i));redo()}});
+    box.querySelectorAll('[data-mon]').forEach(function(b){b.onclick=function(){ctx.openMon(C.list[+b.dataset.mon])}});
     box.querySelectorAll('[data-cx]').forEach(function(b){b.onclick=function(){
       var i=+b.dataset.cx,cur=C.active?C.list[C.turn]:null;C.list.splice(i,1);
       if(cur&&C.list.indexOf(cur)>-1)C.turn=C.list.indexOf(cur);else C.turn=Math.min(C.turn,Math.max(0,C.list.length-1));
-      if(!C.list.length)C.active=false;saveMesa();renderInit();
+      if(!C.list.length)C.active=false;redo();
     }});
-    $('moAdd').onsubmit=function(e){
+    var f=on('form');
+    f.onsubmit=function(e){
       e.preventDefault();
-      var name=$('moName').value.trim().slice(0,40),qty=Math.max(1,Math.min(12,parseInt($('moQty').value,10)||1));
-      var hp=Math.max(1,parseInt($('moHp').value,10)||1),ac=Math.max(0,parseInt($('moAc').value,10)||10),b=parseInt($('moInit').value,10)||0;
+      var name=f.nm.value.trim().slice(0,40),qty=Math.max(1,Math.min(12,parseInt(f.qty.value,10)||1));
+      var hp=Math.max(1,parseInt(f.hp.value,10)||1),ac=Math.max(0,parseInt(f.ac.value,10)||10),b=parseInt(f.ini.value,10)||0;
+      if(!name)return;
       for(var q=1;q<=qty;q++)C.list.push({id:cId(),type:'m',name:qty>1?name+' '+q:name,ac:ac,hp:hp,max:hp,bonus:b,init:null});
-      saveMesa();renderInit();$('moName').focus();
+      redo();ctx.box().querySelector('[name=nm]').focus();
     };
   }
+  // adiciona criaturas do bestiário ao combate de um contexto
+  function addMonsters(ctx,mon,qty,rollHp){
+    var C=ctx.combat(),base=mon.n,same=C.list.filter(function(c){return c.mid===mon.i}).length;
+    for(var q=1;q<=qty;q++){
+      var hp=mon.pv;
+      if(rollHp&&mon.dv){var r=rollQuiet(mon.dv);if(r)hp=Math.max(1,r)}
+      C.list.push({id:cId(),type:'m',mid:mon.i,xp:mon.xp||0,name:(qty>1||same?base+' '+(same+q):base).slice(0,40),ac:mon.ca,hp:hp,max:hp,bonus:modOf(mon.at[1]),init:null});
+    }
+    ctx.save();
+  }
+  // rola uma expressão como 2d6+3 sem mostrar nada
+  function rollQuiet(expr){
+    var m=String(expr).replace(/\s/g,'').match(/^(\d+)d(\d+)([+-]\d+)?$/);if(!m)return 0;
+    var t=+(m[3]||0);for(var i=0;i<+m[1];i++)t+=die(+m[2]);return t;
+  }
+
+  // =====================================================================
+  // CAMPANHAS (precisa de login): convite por código, grupo, combate,
+  // bestiário e entrega de itens. Tabelas em supabase-campanhas.sql.
+  // =====================================================================
+  var MESA_TAB=(function(){try{return localStorage.getItem('forja-de-fichas:mesaTab')==='rapida'?'rapida':'camp'}catch(e){return 'camp'}})();
+  var CAMP={uid:null,mine:null,joined:null,myFichas:null,pend:[],cur:null,members:[],sheets:{},dm:null,ent:[],tab:'grupo',
+    msg:'',err:'',loading:false,joinCode:'',timer:null,last:0,qty:1,rollHp:false};
+  var CODE_ABC='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  // XP por personagem para cada dificuldade (Regras Básicas / SRD 5.2): nível → [baixa, moderada, alta]
+  var XP_BUDGET=[null,[50,75,100],[100,150,200],[150,225,400],[250,375,500],[500,750,1100],[600,1000,1400],[750,1300,1700],[1000,1700,2100],[1300,2000,2600],[1600,2300,3100],
+    [1900,2900,4100],[2200,3700,4700],[2600,4200,5400],[2900,4900,6200],[3300,5400,7800],[3800,6100,9800],[4500,7200,11700],[5000,8700,14200],[5500,10700,17200],[6400,13200,22000]];
+  var XP_BY_ND={0:10,0.125:25,0.25:50,0.5:100,1:200,2:450,3:700,4:1100,5:1800,6:2300,7:2900,8:3900,9:5000,10:5900,11:7200,12:8400,13:10000,14:11500,15:13000,16:15000,
+    17:18000,18:20000,19:22000,20:25000,21:33000,22:41000,23:50000,24:62000,25:75000,26:90000,27:105000,28:120000,29:135000,30:155000};
+  function newCode(){var a=new Uint32Array(12),s='';crypto.getRandomValues(a);for(var i=0;i<12;i++)s+=CODE_ABC[a[i]%32];return s}
+  function fmtCode(c){return String(c||'').replace(/(.{4})(?=.)/g,'$1-')}
+  function cleanCode(c){return String(c||'').toUpperCase().replace(/[^A-Z0-9]/g,'').slice(0,16)}
+  function fmtNd(n){return n===0.125?'1/8':n===0.25?'1/4':n===0.5?'1/2':String(n)}
+  function fmtInt(n){return (+n||0).toLocaleString('pt-BR')}
+  function db(t){return Auth.client.from(t)}
+  async function dbq(p){var r=await p;if(r.error)throw r.error;return r.data||[]}
+  function campErr(e){
+    var m=(e&&e.message)||String(e||'');
+    if(/does not exist|schema cache|Could not find the table|relation/i.test(m))return 'As tabelas de campanha ainda não existem no Supabase. Rode o arquivo supabase-campanhas.sql no SQL Editor (passo a passo no README).';
+    if(/codigo invalido/i.test(m))return 'Código não encontrado. Confira com o mestre.';
+    if(/ficha invalida/i.test(m))return 'Essa ficha não é sua ou não está salva na conta.';
+    if(/fetch|network|Failed/i.test(m))return 'Não consegui falar com o servidor. Verifique a internet.';
+    return 'Não deu certo: '+m;
+  }
+  function campVisible(){return !$('mesa').hidden&&MESA_TAB==='camp'}
+  function typing(){var a=document.activeElement;return a&&$('campBox').contains(a)&&/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)}
+
+  // ---------- aba Mesa ----------
+  function renderMesa(){
+    document.querySelectorAll('[data-mt]').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.mt===MESA_TAB)});
+    $('campBox').hidden=MESA_TAB!=='camp';$('quickBox').hidden=MESA_TAB!=='rapida';
+    if(MESA_TAB==='rapida')renderQuick();else renderCamp();
+  }
+  document.querySelectorAll('[data-mt]').forEach(function(b){b.onclick=function(){MESA_TAB=b.dataset.mt;try{localStorage.setItem('forja-de-fichas:mesaTab',MESA_TAB)}catch(e){}renderMesa()}});
+  function campReset(){
+    clearInterval(CAMP.timer);
+    CAMP.mine=null;CAMP.joined=null;CAMP.myFichas=null;CAMP.pend=[];CAMP.cur=null;CAMP.members=[];CAMP.sheets={};CAMP.dm=null;CAMP.ent=[];CAMP.err='';CAMP.msg='';
+  }
+  function renderCamp(){
+    var box=$('campBox');
+    if(!Auth.client){
+      box.innerHTML='<div class="empty"><h3>Campanhas precisam do login</h3><p>'+(Auth.failed?'Não consegui carregar o sistema de contas. Verifique a internet.':'O login não está configurado neste site.')+' Enquanto isso, use a Mesa rápida.</p></div>';return;
+    }
+    if(!Auth.user){
+      box.innerHTML='<div class="empty"><h3>Entre para usar campanhas</h3><p>Com uma conta, o mestre cria a campanha e passa um código. Cada jogador entra com o código e escolhe a ficha, e o mestre acompanha o grupo, monta combates com o bestiário e entrega itens.</p>'+
+        (CAMP.joinCode?'<p>Você abriu um convite. Depois de entrar na conta, volte aqui para usar o código <b>'+fmtCode(CAMP.joinCode)+'</b>.</p>':'')+
+        '<button class="btn" id="campLogin">Entrar ou criar conta</button></div>';
+      $('campLogin').onclick=function(){show('conta')};return;
+    }
+    if(CAMP.cur){renderCampView(box);return}
+    renderCampHome(box);
+  }
+  async function campLoadHome(){
+    var uid=Auth.user.id;
+    var mine=await dbq(db('campanhas').select('id,nome,descricao,codigo,mestre,criada_em').eq('dono',uid).order('criada_em',{ascending:false}));
+    var mem=await dbq(db('campanha_membros').select('campanha_id,ficha_id,apelido').eq('user_id',uid));
+    var ids=mem.map(function(m){return m.campanha_id});
+    var cs=ids.length?await dbq(db('campanhas').select('id,nome,descricao,mestre').in('id',ids)):[];
+    var recs=await Store.list();
+    CAMP.mine=mine;
+    CAMP.joined=mem.map(function(m){
+      var c=cs.filter(function(x){return x.id===m.campanha_id})[0];
+      return c?{id:c.id,nome:c.nome,descricao:c.descricao,mestre:c.mestre,ficha:m.ficha_id}:null;
+    }).filter(Boolean);
+    CAMP.myFichas=recs.map(function(r){var s=summary(r.state);return {id:r.id,label:s.nome+' · '+s.cls+' '+s.level}});
+  }
+  async function campRefreshHome(){
+    if(CAMP.loading)return;CAMP.loading=true;
+    try{await campLoadHome();await checkGifts(true);CAMP.err=''}
+    catch(e){CAMP.err=campErr(e);if(CAMP.mine===null)CAMP.mine=[];if(CAMP.joined===null)CAMP.joined=[];if(CAMP.myFichas===null)CAMP.myFichas=[]}
+    CAMP.loading=false;
+    if(campVisible()&&!CAMP.cur)renderCamp();
+  }
+  function fichaOpts(sel){
+    return '<option value="">Sem ficha por enquanto</option>'+(CAMP.myFichas||[]).map(function(f){return '<option value="'+esc(f.id)+'"'+(f.id===sel?' selected':'')+'>'+esc(f.label)+'</option>'}).join('');
+  }
+  function giftLabel(item){
+    var g=cleanGift(item),parts=g.itens.map(function(x){return '“'+x.n+'”'+(x.q>1?' ×'+x.q:'')});
+    var cn=COINS.filter(function(c){return g.moedas[c[0]]}).map(function(c){return g.moedas[c[0]]+' '+c[0]});
+    return {g:g,items:parts,coins:cn};
+  }
+  function renderCampHome(box){
+    if(CAMP.mine===null){box.innerHTML='<p class="small">Carregando campanhas…</p>';campRefreshHome();return}
+    var h=CAMP.err?'<p class="msg err">'+esc(CAMP.err)+'</p>':'';
+    h+='<div class="camp-home">';
+    // mestre
+    h+='<div class="box"><h4>Sou mestre</h4>';
+    h+=CAMP.mine.length?'<ul class="clist">'+CAMP.mine.map(function(c){
+      return '<li><div class="cl-n"><b>'+esc(c.nome)+'</b><small>'+(c.descricao?esc(c.descricao.slice(0,120)):'Código '+fmtCode(c.codigo))+'</small></div><button class="btn sm" data-copen="'+esc(c.id)+'">Abrir</button></li>';
+    }).join('')+'</ul>':'<p class="small" style="margin:0 0 12px">Você ainda não criou nenhuma campanha.</p>';
+    h+='<form class="cform" id="campNew"><label class="mo-f">Nome da campanha<input type="text" id="cnNome" maxlength="80" required placeholder="Ex.: A Mina Perdida"></label>'+
+      '<label class="mo-f">Descrição (opcional)<textarea id="cnDesc" rows="2" maxlength="2000" placeholder="Uma linha sobre a aventura"></textarea></label>'+
+      '<button class="btn sm" type="submit">Criar campanha</button></form></div>';
+    // jogador
+    h+='<div class="box"><h4>Sou jogador</h4>';
+    if(CAMP.pend.length){
+      h+='<div class="gifts"><b>Esperando você</b><ul>'+CAMP.pend.map(function(r){
+        var L=giftLabel(r.item),c=campName(r.campanha_id);
+        return '<li><span>'+esc(L.items.concat(L.coins).join(', '))+'<small>de '+esc(c)+'</small></span><button class="btn sm" data-gopen="'+esc(r.id)+'">Ver</button></li>';
+      }).join('')+'</ul></div>';
+    }
+    h+=CAMP.joined.length?'<ul class="clist">'+CAMP.joined.map(function(c){
+      return '<li><div class="cl-n"><b>'+esc(c.nome)+'</b><small>'+(c.mestre?'Mestre: '+esc(c.mestre):'')+'</small></div>'+
+        '<select data-cfic="'+esc(c.id)+'" aria-label="Ficha usada em '+esc(c.nome)+'">'+fichaOpts(c.ficha)+'</select>'+
+        '<button class="btn ghost sm" data-cleave="'+esc(c.id)+'">Sair</button></li>';
+    }).join('')+'</ul>':'<p class="small" style="margin:0 0 12px">Você ainda não está em nenhuma campanha.</p>';
+    h+='<form class="cform" id="campJoin"><label class="mo-f">Código do mestre<input type="text" id="cjCode" maxlength="20" required placeholder="XXXX-XXXX-XXXX" value="'+esc(fmtCode(CAMP.joinCode))+'" autocomplete="off" spellcheck="false"></label>'+
+      '<label class="mo-f">Ficha que vai jogar<select id="cjFicha">'+fichaOpts((CAMP.myFichas[0]||{}).id)+'</select></label>'+
+      '<button class="btn sm" type="submit">Entrar na campanha</button></form>'+
+      (!CAMP.myFichas.length?'<p class="small">Você não tem fichas salvas na conta. Crie e salve uma ficha para levar à campanha.</p>':'')+
+      '</div></div><p class="msg" id="campMsg">'+esc(CAMP.msg)+'</p>';
+    box.innerHTML=h;
+    box.querySelectorAll('[data-copen]').forEach(function(b){b.onclick=function(){campOpen(b.dataset.copen)}});
+    box.querySelectorAll('[data-gopen]').forEach(function(b){b.onclick=function(){var r=CAMP.pend.filter(function(x){return x.id===b.dataset.gopen})[0];if(r)showGift(r)}});
+    $('campNew').onsubmit=async function(e){
+      e.preventDefault();
+      var nome=$('cnNome').value.trim().slice(0,80),desc=$('cnDesc').value.trim().slice(0,2000);if(!nome)return;
+      var bt=e.target.querySelector('button');bt.disabled=true;
+      try{
+        var id=uuid();
+        await dbq(db('campanhas').insert({id:id,nome:nome,descricao:desc,mestre:profile().nick.slice(0,40),codigo:newCode()}));
+        await campLoadHome();campOpen(id);
+      }catch(err){CAMP.msg='';CAMP.err=campErr(err);bt.disabled=false;renderCamp()}
+    };
+    $('campJoin').onsubmit=async function(e){
+      e.preventDefault();
+      var code=cleanCode($('cjCode').value),fid=$('cjFicha').value||null,bt=e.target.querySelector('button');
+      if(code.length<10){CAMP.msg='O código tem 12 letras e números.';renderCamp();return}
+      bt.disabled=true;
+      try{
+        await dbq(Auth.client.rpc('entrar_campanha',{p_codigo:code,p_ficha:fid,p_apelido:profile().nick.slice(0,40)}));
+        CAMP.joinCode='';CAMP.err='';CAMP.msg='Você entrou na campanha.';await campLoadHome();
+      }catch(err){CAMP.err=campErr(err);CAMP.msg=''}
+      renderCamp();
+    };
+    box.querySelectorAll('[data-cfic]').forEach(function(sel){sel.onchange=async function(){
+      try{await dbq(db('campanha_membros').update({ficha_id:sel.value||null}).eq('campanha_id',sel.dataset.cfic).eq('user_id',Auth.user.id));
+        var c=CAMP.joined.filter(function(x){return x.id===sel.dataset.cfic})[0];if(c)c.ficha=sel.value||null;CAMP.msg='Ficha trocada.';CAMP.err=''}
+      catch(err){CAMP.err=campErr(err)}
+      renderCamp();
+    }});
+    box.querySelectorAll('[data-cleave]').forEach(function(b){b.onclick=async function(){
+      if(!b.dataset.armed){b.dataset.armed='1';b.textContent='Confirmar saída';setTimeout(function(){if(b.isConnected){delete b.dataset.armed;b.textContent='Sair'}},4000);return}
+      try{await dbq(db('campanha_membros').delete().eq('campanha_id',b.dataset.cleave).eq('user_id',Auth.user.id));CAMP.msg='Você saiu da campanha.';await campLoadHome()}
+      catch(err){CAMP.err=campErr(err)}
+      renderCamp();
+    }});
+  }
+  function campName(id){
+    var c=(CAMP.joined||[]).concat(CAMP.mine||[]).filter(function(x){return x.id===id})[0];
+    return c?c.nome:'uma campanha';
+  }
+
+  // ---------- campanha aberta (visão do mestre) ----------
+  function cleanDm(d){
+    var f={combat:{list:[],turn:0,round:1,active:false},custom:[]};
+    if(!d||typeof d!=='object')return f;
+    function n(x,a,b,def){x=+x;return isFinite(x)?Math.max(a,Math.min(b,Math.round(x))):def}
+    var C=d.combat;
+    if(C&&Array.isArray(C.list)){
+      f.combat.list=C.list.slice(0,60).filter(function(c){return c&&typeof c==='object'}).map(function(c){
+        if(c.type==='p')return {id:String(c.id||cId()).slice(0,24),type:'p',sid:String(c.sid||'').slice(0,60),init:c.init==null?null:n(c.init,-20,60,0)};
+        return {id:String(c.id||cId()).slice(0,24),type:'m',mid:typeof c.mid==='string'?c.mid.slice(0,60):undefined,xp:n(c.xp,0,200000,0),name:String(c.name||'Criatura').slice(0,40),
+          ac:n(c.ac,0,40,10),hp:n(c.hp,0,9999,1),max:n(c.max,1,9999,1),bonus:n(c.bonus,-10,20,0),init:c.init==null?null:n(c.init,-20,60,0)};
+      });
+      f.combat.turn=n(C.turn,0,59,0);f.combat.round=n(C.round,1,9999,1);f.combat.active=!!C.active&&f.combat.list.length>0;
+    }
+    if(Array.isArray(d.custom))f.custom=d.custom.slice(0,200).map(cleanCustom).filter(Boolean);
+    return f;
+  }
+  function cleanCustom(o){
+    if(!o||typeof o!=='object')return null;
+    function n(x,a,b,def){x=+x;return isFinite(x)?Math.max(a,Math.min(b,x)):def}
+    function t(x,l){return String(x==null?'':x).slice(0,l)}
+    var nd=n(o.nd,0,30,0);
+    var m={i:'x-'+t(o.i,40).replace(/^x-/,''),n:t(o.n,40)||'Criatura',en:'',sz:'',tp:t(o.tp,60)||'criatura própria',al:'',ca:Math.round(n(o.ca,0,40,10)),can:'',
+      pv:Math.round(n(o.pv,1,9999,1)),dv:/^\d+d\d+([+-]\d+)?$/.test(String(o.dv||''))?String(o.dv):'',mv:t(o.mv,40),at:[10,10,10,10,10,10],sen:'',lang:'',nd:nd,xp:XP_BY_ND[nd]||0,pb:0,own:true};
+    if(Array.isArray(o.at))m.at=o.at.slice(0,6).map(function(x){return Math.round(n(x,1,30,10))});
+    while(m.at.length<6)m.at.push(10);
+    if(Array.isArray(o.a))m.a=o.a.slice(0,6).map(function(a){
+      if(!Array.isArray(a))return null;
+      var ex=a[2]&&typeof a[2]==='object'?a[2]:{},row=[t(a[0],40)||'Ataque',t(a[1],400)];
+      var e2={};if(isFinite(+ex.atk))e2.atk=Math.round(n(ex.atk,-5,30,0));
+      if(Array.isArray(ex.dmg))e2.dmg=ex.dmg.slice(0,3).map(function(x){return t(x,40)}).filter(function(x){return /^\d+d\d+([+-]\d+)?( \S.*)?$/.test(x)});
+      if(e2.atk!=null||(e2.dmg&&e2.dmg.length))row.push(e2);
+      return row;
+    }).filter(Boolean);
+    if(o.s&&Array.isArray(o.s))m.s=o.s.slice(0,4).filter(Array.isArray).map(function(a){return [t(a[0],40),t(a[1],1000)]});
+    return m;
+  }
+  var DM_TIMER=null;
+  function saveDm(){
+    clearTimeout(DM_TIMER);var c=CAMP.cur,data=CAMP.dm;if(!c||!data)return;
+    DM_TIMER=setTimeout(function(){
+      db('campanha_mestre').upsert({campanha_id:c.id,dados:data,atualizado_em:new Date().toISOString()}).then(function(r){
+        if(r.error){CAMP.err=campErr(r.error);if(CAMP.cur===c)renderCamp()}
+      });
+    },500);
+  }
+  var CAMP_CTX={
+    box:function(){return $('campInit')},
+    combat:function(){return CAMP.dm.combat},
+    reset:function(){CAMP.dm.combat={list:[],turn:0,round:1,active:false}},
+    players:function(){return CAMP.members.map(function(m){return m.ficha_id}).filter(function(f){return f&&CAMP.sheets[f]&&CAMP.sheets[f].sum})},
+    pdata:function(k){var d=CAMP.sheets[k];return d&&d.sum},
+    save:function(){saveDm();var e=$('campEnc');if(e)e.innerHTML=encHtml()},
+    openMon:function(c){loadBest(function(){var m=monById(c.mid);if(m)openMonDlg(m)})}
+  };
+  async function campOpen(id){
+    var c=(CAMP.mine||[]).filter(function(x){return x.id===id})[0];if(!c)return;
+    CAMP.cur=c;CAMP.members=[];CAMP.sheets={};CAMP.dm=null;CAMP.ent=[];CAMP.tab='grupo';CAMP.err='';CAMP.msg='';CAMP.last=0;
+    renderCamp();
+    await campLoadCur();
+  }
+  async function campLoadCur(){
+    var c=CAMP.cur;if(!c||CAMP.loading)return;CAMP.loading=true;
+    try{
+      var mem=await dbq(db('campanha_membros').select('user_id,ficha_id,apelido,entrou_em').eq('campanha_id',c.id).order('entrou_em',{ascending:true}));
+      var fids=mem.map(function(m){return m.ficha_id}).filter(Boolean);
+      var rows=fids.length?await dbq(db('fichas').select('id,data,saved_at').in('id',fids)):[];
+      var sheets={};rows.forEach(function(r){sheets[r.id]={sum:sheetSummary(r.data),savedAt:Date.parse(r.saved_at),state:r.data}});
+      if(!CAMP.dm){var dm=await dbq(db('campanha_mestre').select('dados').eq('campanha_id',c.id));CAMP.dm=cleanDm(dm[0]&&dm[0].dados)}
+      var ent=await dbq(db('campanha_entregas').select('id,para_user,item,status,criada_em,respondida_em').eq('campanha_id',c.id).order('criada_em',{ascending:false}));
+      if(CAMP.cur!==c){CAMP.loading=false;return}
+      CAMP.members=mem;CAMP.sheets=sheets;CAMP.ent=ent;CAMP.last=Date.now();CAMP.err='';
+    }catch(e){CAMP.err=campErr(e);if(!CAMP.dm)CAMP.dm=cleanDm(null)}
+    CAMP.loading=false;
+    if(campVisible()&&CAMP.cur===c&&!typing())renderCamp();
+  }
+  function memberName(uid){
+    var m=CAMP.members.filter(function(x){return x.user_id===uid})[0];if(!m)return 'ex-jogador';
+    var s=m.ficha_id&&CAMP.sheets[m.ficha_id]&&CAMP.sheets[m.ficha_id].sum;
+    return s?s.nome+(m.apelido?' ('+m.apelido+')':''):(m.apelido||'Jogador');
+  }
+  function pcCard(m,savedAt,keyAttr,extra){
+    var img=safeImg(m.portrait),pct=Math.max(0,Math.min(100,Math.round(m.hp/m.hpMax*100))),down=m.hp===0;
+    return '<article class="pc'+(down?' down':'')+'">'+
+      '<div class="pc-top"><div class="pc-pic">'+(img?'<img src="'+img+'" alt="" style="object-position:50% '+safeY(m.portraitY)+'%">':icon(m.cls))+'</div>'+
+      '<div class="pc-id"><h3>'+esc(m.nome)+'</h3><p>'+esc(m.cls)+' '+m.L+' · '+esc(m.race)+(m.jogador?'<br><small>'+esc(m.jogador)+'</small>':'')+'</p></div>'+
+      '<button class="pc-x" '+keyAttr+' aria-label="Tirar '+esc(m.nome)+'">×</button></div>'+
+      '<div class="pc-hp"><b>'+m.hp+'</b><span>/ '+m.hpMax+' PV</span>'+(m.temp?'<em>+'+m.temp+'</em>':'')+'</div>'+
+      '<div class="hpbar"><i style="width:'+pct+'%"></i></div>'+
+      '<div class="pc-stats"><span><b>'+m.ac+'</b>CA</span><span><b>'+m.passive+'</b>Perc.</span><span><b>'+sgn(m.init)+'</b>Inic.</span>'+(m.dc?'<span><b>'+m.dc+'</b>CD</span>':'')+'</div>'+
+      (down?'<p class="pc-ds">Caído · sucessos '+m.ds.s+'/3 · falhas '+m.ds.f+'/3</p>':'')+
+      (m.conc?'<p class="pc-tag">Concentração: '+esc(m.conc)+'</p>':'')+
+      (m.cond.length?'<div class="pc-cond">'+m.cond.map(function(c){return '<span>'+esc(c)+'</span>'}).join('')+'</div>':'')+
+      (m.insp?'<p class="pc-tag">Inspirado</p>':'')+
+      '<div class="pc-foot"><span class="small">Atualizada '+fmtDate(savedAt)+'</span>'+extra+'</div>'+
+    '</article>';
+  }
+  function renderCampView(box){
+    var c=CAMP.cur,link=location.origin+location.pathname+'?entrar='+c.codigo;
+    var h='<div class="camp-top"><button class="btn ghost sm" id="campBack">← Campanhas</button>'+
+      '<div class="camp-t"><h3>'+esc(c.nome)+'</h3>'+(c.descricao?'<p class="small" style="margin:2px 0 0">'+esc(c.descricao)+'</p>':'')+'</div>'+
+      '<div class="invite"><span class="k">Convite</span><b class="code">'+fmtCode(c.codigo)+'</b>'+
+      '<button class="btn sm" id="campCopy">Copiar link</button><button class="btn ghost sm" id="campCode">Novo código</button></div></div>'+
+      '<input type="text" class="invite-l" id="campLink" readonly value="'+esc(link)+'" aria-label="Link de convite">';
+    h+=CAMP.err?'<p class="msg err">'+esc(CAMP.err)+'</p>':'';
+    h+='<div class="seg camp-tabs" role="group" aria-label="Seções da campanha">'+[['grupo','Grupo'],['combate','Combate'],['bestiario','Bestiário'],['entregas','Entregas']].map(function(t){
+      var n=t[0]==='entregas'?CAMP.ent.filter(function(e){return e.status==='pendente'}).length:0;
+      return '<button data-ct="'+t[0]+'" aria-pressed="'+(CAMP.tab===t[0])+'">'+t[1]+(n?' <small>('+n+')</small>':'')+'</button>';
+    }).join('')+'</div>';
+    h+='<div id="campPane"></div><p class="msg" id="campMsg">'+esc(CAMP.msg)+'</p>'+
+      '<div class="camp-danger"><button class="btn ghost sm" id="campDel">Apagar campanha</button></div>';
+    box.innerHTML=h;
+    $('campBack').onclick=function(){CAMP.cur=null;CAMP.msg='';CAMP.err='';clearInterval(CAMP.timer);renderCamp();campRefreshHome()};
+    $('campCopy').onclick=function(){
+      var t='Entre na minha campanha "'+c.nome+'" na Forja de Fichas: '+link+' (código '+fmtCode(c.codigo)+')';
+      function ok(){CAMP.msg='Convite copiado. Mande para o grupo.';$('campMsg').textContent=CAMP.msg}
+      if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(ok,function(){$('campLink').select();CAMP.msg='Copie o link selecionado.';$('campMsg').textContent=CAMP.msg});
+      else{$('campLink').select();CAMP.msg='Copie o link selecionado.';$('campMsg').textContent=CAMP.msg}
+    };
+    var cc=$('campCode');cc.onclick=async function(){
+      if(!cc.dataset.armed){cc.dataset.armed='1';cc.textContent='Confirmar: o código antigo para de valer';setTimeout(function(){if(cc.isConnected){delete cc.dataset.armed;cc.textContent='Novo código'}},4000);return}
+      var code=newCode();
+      try{await dbq(db('campanhas').update({codigo:code}).eq('id',c.id));c.codigo=code;CAMP.msg='Código trocado. Quem já entrou continua na campanha.'}catch(e){CAMP.err=campErr(e)}
+      renderCamp();
+    };
+    var cd=$('campDel');cd.onclick=async function(){
+      if(!cd.dataset.armed){cd.dataset.armed='1';cd.textContent='Confirmar: apagar para todos';setTimeout(function(){if(cd.isConnected){delete cd.dataset.armed;cd.textContent='Apagar campanha'}},4000);return}
+      try{await dbq(db('campanhas').delete().eq('id',c.id));CAMP.cur=null;CAMP.msg='Campanha apagada.';CAMP.mine=null;clearInterval(CAMP.timer)}catch(e){CAMP.err=campErr(e)}
+      renderCamp();
+    };
+    box.querySelectorAll('[data-ct]').forEach(function(b){b.onclick=function(){CAMP.tab=b.dataset.ct;CAMP.msg='';renderCamp()}});
+    var pane=$('campPane');
+    if(!CAMP.dm){pane.innerHTML='<p class="small">Carregando…</p>';}
+    else if(CAMP.tab==='grupo')renderCampGroup(pane);
+    else if(CAMP.tab==='combate')renderCampCombat(pane);
+    else if(CAMP.tab==='bestiario')renderBestiary(pane);
+    else renderCampEnt(pane);
+    clearInterval(CAMP.timer);
+    CAMP.timer=setInterval(function(){if(!campVisible()||!CAMP.cur){clearInterval(CAMP.timer);return}if(!document.hidden)campLoadCur()},20000);
+  }
+  function renderCampGroup(pane){
+    var h='';
+    if(!CAMP.members.length){
+      h='<div class="empty"><h3>Ninguém entrou ainda</h3><p>Mande o link de convite (ou o código) para os jogadores. Cada um entra pela aba Mesa, com a conta, e escolhe a ficha que vai usar.</p></div>';
+    }else{
+      h='<div class="mesa-grid">'+CAMP.members.map(function(m){
+        var key='data-kick="'+esc(m.user_id)+'"',d=m.ficha_id&&CAMP.sheets[m.ficha_id];
+        var give='<button class="btn sm" data-give="'+esc(m.user_id)+'">Dar item</button>';
+        if(!d||!d.sum)return '<article class="pc"><div class="pc-top"><div class="pc-id"><h3>'+esc(m.apelido||'Jogador')+'</h3><p>'+(m.ficha_id?'Ficha indisponível (apagada ou fora da conta).':'Entrou sem escolher ficha.')+'</p></div><button class="pc-x" '+key+' aria-label="Tirar da campanha">×</button></div><div class="pc-foot">'+give+'</div></article>';
+        return pcCard(d.sum,d.savedAt,key,'<span class="pc-btns">'+give+'<button class="btn ghost sm" data-see="'+esc(m.ficha_id)+'">Ver ficha</button></span>').replace('<p>'+esc(d.sum.cls),(m.apelido?'<p><small class="pl-nick">'+esc(m.apelido)+'</small><br>':'<p>')+esc(d.sum.cls));
+      }).join('')+'</div>';
+    }
+    h+='<div class="quick-head"><span class="small">'+(CAMP.last?'Atualizado às '+new Date(CAMP.last).toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})+'. Atualiza sozinho a cada 20 segundos.':'')+'</span><button class="btn ghost sm" id="campRef">Atualizar agora</button></div>';
+    pane.innerHTML=h;
+    $('campRef').onclick=function(){campLoadCur()};
+    pane.querySelectorAll('[data-see]').forEach(function(b){b.onclick=function(){
+      var fid=b.dataset.see,d=CAMP.sheets[fid];if(!d)return;
+      openStateView(d.state,d.savedAt,async function(){await campLoadCur();var n=CAMP.sheets[fid];if(n)openStateView(n.state,n.savedAt,VIEW.reload)},'Ficha de jogador da campanha');
+    }});
+    pane.querySelectorAll('[data-give]').forEach(function(b){b.onclick=function(){openGive(b.dataset.give)}});
+    pane.querySelectorAll('[data-kick]').forEach(function(b){b.onclick=async function(){
+      if(!b.dataset.armed){b.dataset.armed='1';b.textContent='?';b.title='Clique de novo para tirar da campanha';setTimeout(function(){if(b.isConnected){delete b.dataset.armed;b.textContent='×'}},4000);return}
+      try{await dbq(db('campanha_membros').delete().eq('campanha_id',CAMP.cur.id).eq('user_id',b.dataset.kick));CAMP.msg='Jogador removido da campanha.'}catch(e){CAMP.err=campErr(e)}
+      await campLoadCur();renderCamp();
+    }});
+  }
+  function partyInfo(){
+    return CAMP_CTX.players().map(function(f){return CAMP.sheets[f].sum});
+  }
+  function encHtml(){
+    var party=partyInfo(),C=CAMP.dm.combat;
+    var xp=C.list.reduce(function(t,c){return t+(c.type==='m'?(+c.xp||0):0)},0);
+    var mons=C.list.filter(function(c){return c.type==='m'}).length;
+    if(!party.length)return '<h4>Dificuldade do encontro</h4><p class="small" style="margin:0">Quando os jogadores entrarem com fichas, aqui aparece o orçamento de XP do grupo.</p>';
+    var bud=[0,0,0];party.forEach(function(p){var b=XP_BUDGET[Math.max(1,Math.min(20,p.L))];bud[0]+=b[0];bud[1]+=b[1];bud[2]+=b[2]});
+    var lab=!xp?'—':xp<=bud[0]?'Baixa':xp<=bud[1]?'Moderada':xp<=bud[2]?'Alta':'Acima de Alta';
+    var cls=!xp?'':xp<=bud[0]?'lo':xp<=bud[1]?'mid':xp<=bud[2]?'hi':'over';
+    return '<h4>Dificuldade do encontro</h4>'+
+      '<div class="enc-row"><div class="enc-v '+cls+'"><b>'+lab+'</b><span>'+fmtInt(xp)+' XP em '+mons+' criatura'+(mons===1?'':'s')+'</span></div>'+
+      '<div class="enc-b"><span>Baixa <b>'+fmtInt(bud[0])+'</b></span><span>Moderada <b>'+fmtInt(bud[1])+'</b></span><span>Alta <b>'+fmtInt(bud[2])+'</b></span></div></div>'+
+      '<p class="small" style="margin:8px 0 0">Grupo: '+party.length+' personage'+(party.length===1?'m':'ns')+' (níveis '+party.map(function(p){return p.L}).join(', ')+'). '+
+      (xp?'Cada um ganha '+fmtInt(Math.floor(xp/party.length))+' XP se o grupo vencer. ':'')+'Orçamento das Regras Básicas: some o XP das criaturas sem passar do valor da dificuldade.</p>';
+  }
+  function renderCampCombat(pane){
+    pane.innerHTML='<div class="box enc" id="campEnc">'+encHtml()+'</div>'+
+      '<p class="small" style="margin:0 0 10px">Para pôr monstros prontos no combate, use a aba Bestiário. Clique no nome de uma criatura da lista para ver a ficha dela e rolar os ataques.</p>'+
+      '<div id="campInit"></div>';
+    renderInit(CAMP_CTX);
+  }
+  function renderCampEnt(pane){
+    if(!CAMP.ent.length){pane.innerHTML='<div class="empty"><h3>Nenhuma entrega ainda</h3><p>Na aba Grupo, use <b>Dar item</b> no cartão de um jogador. Ele recebe um aviso “O mestre está te dando…” e aceita ou recusa.</p></div>';return}
+    var ST={pendente:'Esperando o jogador',aceito:'Aceito',recusado:'Recusado'};
+    pane.innerHTML='<ul class="ent-l">'+CAMP.ent.map(function(e){
+      var L=giftLabel(e.item);
+      return '<li class="st-'+e.status+'"><span class="en-i">'+esc(L.items.concat(L.coins).join(', '))+'<small>para '+esc(memberName(e.para_user))+' · '+fmtDate(Date.parse(e.criada_em))+'</small></span>'+
+        '<span class="en-s">'+ST[e.status]+'</span>'+(e.status==='pendente'?'<button class="btn ghost sm" data-ecan="'+esc(e.id)+'">Cancelar</button>':'')+'</li>';
+    }).join('')+'</ul>';
+    pane.querySelectorAll('[data-ecan]').forEach(function(b){b.onclick=async function(){
+      try{await dbq(db('campanha_entregas').delete().eq('id',b.dataset.ecan).eq('status','pendente'))}catch(e){CAMP.err=campErr(e)}
+      await campLoadCur();renderCamp();
+    }});
+  }
+
+  // ---------- ver a ficha de um jogador (só leitura) ----------
+  function openStateView(st,savedAt,reload,label){
+    loadState(st);S.sheetId=null;VIEW={sid:null,savedAt:savedAt,at:Date.now(),reload:reload,label:label};
+    show('jogo');
+  }
+
+  // ---------- bestiário ----------
+  var BEST={q:'',nd:'',tp:'',show:40,cbs:[],loading:false,failed:false};
+  function loadBest(cb){
+    if(window.BESTIARIO){cb();return}
+    BEST.cbs.push(cb);if(BEST.loading)return;
+    BEST.loading=true;BEST.failed=false;
+    var sc=document.createElement('script');sc.src='bestiario.js';
+    sc.onload=function(){BEST.loading=false;var l=BEST.cbs;BEST.cbs=[];l.forEach(function(f){f()})};
+    sc.onerror=function(){BEST.loading=false;BEST.failed=true;BEST.cbs=[];if(campVisible())renderCamp()};
+    document.head.appendChild(sc);
+  }
+  function allMonsters(){return (CAMP.dm?CAMP.dm.custom:[]).concat(window.BESTIARIO||[])}
+  function monById(id){return allMonsters().filter(function(m){return m.i===id})[0]||null}
+  var ND_FILTERS=[['','Todos os ND'],['0-0.5','ND 0 a 1/2'],['1-1','ND 1'],['2-2','ND 2'],['3-3','ND 3'],['4-4','ND 4'],['5-5','ND 5'],['6-10','ND 6 a 10'],['11-20','ND 11 a 20'],['21-30','ND 21 ou mais']];
+  function bestRows(){
+    var q=norm(BEST.q.trim()),r=BEST.nd?BEST.nd.split('-').map(Number):null;
+    return allMonsters().filter(function(m){
+      if(q&&norm(m.n).indexOf(q)<0&&norm(m.en||'').indexOf(q)<0)return false;
+      if(r&&(m.nd<r[0]||m.nd>r[1]))return false;
+      if(BEST.tp&&m.tp.split(' (')[0]!==BEST.tp)return false;
+      return true;
+    });
+  }
+  function renderBestiary(pane){
+    if(!window.BESTIARIO){
+      pane.innerHTML=BEST.failed?'<p class="msg err">Não consegui carregar o bestiário (arquivo bestiario.js). Confira se ele foi enviado junto com o site.</p>':'<p class="small">Carregando o bestiário…</p>';
+      if(!BEST.failed)loadBest(function(){if(campVisible()&&CAMP.tab==='bestiario')renderCamp()});
+      return;
+    }
+    var types={};(window.BESTIARIO).forEach(function(m){types[m.tp.split(' (')[0]]=1});
+    var h='<div class="best-f">'+
+      '<input type="text" id="bQ" placeholder="Buscar monstro (português ou inglês)" aria-label="Buscar monstro" value="'+esc(BEST.q)+'">'+
+      '<select id="bNd" aria-label="Nível de desafio">'+ND_FILTERS.map(function(x){return '<option value="'+x[0]+'"'+(BEST.nd===x[0]?' selected':'')+'>'+x[1]+'</option>'}).join('')+'</select>'+
+      '<select id="bTp" aria-label="Tipo"><option value="">Todos os tipos</option>'+Object.keys(types).sort(function(a,b){return a.localeCompare(b,'pt')}).map(function(t){return '<option'+(BEST.tp===t?' selected':'')+'>'+esc(t)+'</option>'}).join('')+'<option value="criatura própria"'+(BEST.tp==='criatura própria'?' selected':'')+'>criaturas próprias</option></select>'+
+      '</div><div class="best-o"><label class="mo-f">Quantidade<input type="number" id="bQty" min="1" max="12" value="'+CAMP.qty+'"></label>'+
+      '<label class="chk" style="margin:0"><input type="checkbox" id="bRoll"'+(CAMP.rollHp?' checked':'')+'> Rolar os PV (senão usa a média)</label></div>'+
+      '<ul class="best-l" id="bList"></ul>'+
+      '<details class="box own-mon"'+(BEST.openForm?' open':'')+'><summary>Criar criatura própria</summary>'+
+      '<form id="mForm" class="own">'+
+        '<label class="mo-f w2">Nome<input name="n" maxlength="40" required placeholder="Ex.: Capitão Goblin"></label>'+
+        '<label class="mo-f">ND<select name="nd">'+Object.keys(XP_BY_ND).map(Number).sort(function(a,b){return a-b}).map(function(n){return '<option value="'+n+'"'+(n===1?' selected':'')+'>'+fmtNd(n)+'</option>'}).join('')+'</select></label>'+
+        '<label class="mo-f">CA<input name="ca" type="number" min="0" max="40" value="13"></label>'+
+        '<label class="mo-f">PV<input name="pv" type="number" min="1" max="9999" value="20"></label>'+
+        '<label class="mo-f">Dados de vida<input name="dv" placeholder="Ex.: 4d8+4" maxlength="12"></label>'+
+        '<label class="mo-f">Destreza<input name="des" type="number" min="1" max="30" value="12"></label>'+
+        '<label class="mo-f">Deslocamento<input name="mv" placeholder="9 m" maxlength="40"></label>'+
+        '<label class="mo-f w2">Ataque<input name="an" maxlength="40" placeholder="Ex.: Machado"></label>'+
+        '<label class="mo-f">Bônus<input name="ab" type="number" min="-5" max="30" value="4"></label>'+
+        '<label class="mo-f">Dano<input name="ad" maxlength="30" placeholder="1d8+2 cortante"></label>'+
+        '<label class="mo-f w4">Habilidades e notas<textarea name="nt" rows="2" maxlength="1000" placeholder="O que ela faz de especial"></textarea></label>'+
+      '</form><div class="inv-btns"><button class="btn sm" id="mSave">Salvar criatura</button></div></details>'+
+      '<p class="small srd-note">Monstros do SRD 5.1 da Wizards of the Coast, licença CC-BY-4.0, traduzidos para este site.</p>';
+    pane.innerHTML=h;
+    function list(){
+      var rows=bestRows(),shown=rows.slice(0,BEST.show);
+      $('bList').innerHTML=(shown.length?shown.map(function(m){
+        return '<li><button class="bn" data-bview="'+esc(m.i)+'"><b>'+esc(m.n)+'</b>'+(m.en&&m.en!==m.n?' <small>'+esc(m.en)+'</small>':'')+(m.own?' <small class="own-t">própria</small>':'')+'<span>'+esc(m.sz?m.sz+' · ':'')+esc(m.tp)+'</span></button>'+
+          '<span class="bnd">ND <b>'+fmtNd(m.nd)+'</b><small>'+fmtInt(m.xp)+' XP</small></span><span class="bst">CA '+m.ca+'<small>PV '+m.pv+'</small></span>'+
+          '<button class="btn sm" data-badd="'+esc(m.i)+'">+ Combate</button></li>';
+      }).join(''):'<li class="empty">Nenhum monstro com esses filtros.</li>')+
+        (rows.length>shown.length?'<li class="more"><button class="btn ghost sm" id="bMore">Mostrar mais ('+(rows.length-shown.length)+')</button></li>':'');
+      $('bList').querySelectorAll('[data-bview]').forEach(function(b){b.onclick=function(){var m=monById(b.dataset.bview);if(m)openMonDlg(m)}});
+      $('bList').querySelectorAll('[data-badd]').forEach(function(b){b.onclick=function(){
+        var m=monById(b.dataset.badd);if(!m)return;
+        addMonsters(CAMP_CTX,m,CAMP.qty,CAMP.rollHp);
+        CAMP.msg=(CAMP.qty>1?CAMP.qty+'× ':'')+m.n+' no combate. Veja na aba Combate.';$('campMsg').textContent=CAMP.msg;
+      }});
+      var mo=$('bMore');if(mo)mo.onclick=function(){BEST.show+=60;list()};
+    }
+    list();
+    $('bQ').oninput=function(){BEST.q=$('bQ').value;BEST.show=40;list()};
+    $('bNd').onchange=function(){BEST.nd=$('bNd').value;BEST.show=40;list()};
+    $('bTp').onchange=function(){BEST.tp=$('bTp').value;BEST.show=40;list()};
+    $('bQty').onchange=function(){CAMP.qty=Math.max(1,Math.min(12,parseInt($('bQty').value,10)||1));$('bQty').value=CAMP.qty};
+    $('bRoll').onchange=function(){CAMP.rollHp=$('bRoll').checked};
+    pane.querySelector('.own-mon').ontoggle=function(e){BEST.openForm=e.target.open};
+    $('mSave').onclick=function(){
+      var f=$('mForm');if(!f.n.value.trim()){f.n.focus();return}
+      var dmg=f.ad.value.trim().replace(/\s+/g,' ').replace(/^(\d+d\d+)\s*([+-])\s*(\d+)/,'$1$2$3');
+      var a=f.an.value.trim()?[[f.an.value.trim(),'',{atk:+f.ab.value||0,dmg:dmg?[dmg]:[]}]]:[];
+      var m=cleanCustom({i:rid(),n:f.n.value.trim(),nd:+f.nd.value,ca:f.ca.value,pv:f.pv.value,dv:f.dv.value.replace(/\s/g,''),mv:f.mv.value,
+        at:[10,+f.des.value||10,10,10,10,10],a:a,s:f.nt.value.trim()?[['Notas',f.nt.value.trim()]]:[]});
+      CAMP.dm.custom.unshift(m);saveDm();BEST.tp='';BEST.q='';
+      CAMP.msg=m.n+' salva no bestiário desta campanha.';renderCamp();
+    };
+  }
+  var DLG_MON=null;
+  function statBlock(m){
+    var ab=['FOR','DES','CON','INT','SAB','CAR'];
+    function line(k,v){return v?'<p class="sb-l"><b>'+k+'</b> '+v+'</p>':''}
+    function para(t){return esc(t).replace(/\n/g,'<br>')}
+    function acts(title,list,key){
+      if(!list||!list.length)return '';
+      return '<h4 class="sb-h">'+title+'</h4>'+list.map(function(a,i){
+        var ex=a[2]||{},btn='';
+        if(ex.atk!=null)btn+='<button class="btn ghost sm" data-ratk="'+key+i+'">'+sgn(ex.atk)+' para acertar</button>';
+        if(ex.dmg&&ex.dmg.length)btn+='<button class="btn sm" data-rdmg="'+key+i+'">Dano</button>';
+        return '<div class="sb-a"><p><b>'+esc(a[0])+'.</b> '+para(a[1])+'</p>'+(btn?'<div class="sb-btn">'+btn+'</div>':'')+'</div>';
+      }).join('');
+    }
+    var h='<div class="dlg-head"><h3 id="dlgT">'+esc(m.n)+'</h3><button class="mini-b" id="dlgX" aria-label="Fechar">×</button></div>'+
+      '<p class="sb-sub">'+esc([m.sz,m.tp].filter(Boolean).join(' '))+(m.al?', '+esc(m.al):'')+(m.en&&m.en!==m.n?' · <i>'+esc(m.en)+'</i>':'')+'</p>'+
+      '<div class="sb-top"><span><b>CA</b> '+m.ca+(m.can?' <small>('+esc(m.can)+')</small>':'')+'</span><span><b>PV</b> '+m.pv+(m.dv?' <small>('+esc(m.dv)+')</small>':'')+'</span>'+(m.mv?'<span><b>Deslocamento</b> '+esc(m.mv)+'</span>':'')+'</div>'+
+      '<div class="sb-at">'+m.at.map(function(v,i){return '<button class="sb-ab" data-rab="'+i+'"><span>'+ab[i]+'</span><b>'+v+'</b><small>'+sgn(modOf(v))+'</small></button>'}).join('')+'</div>'+
+      line('Salvaguardas',(m.sv||[]).map(function(s){return ab[s[0]]+' '+sgn(s[1])}).join(', '))+
+      line('Perícias',(m.pe||[]).map(function(s){return esc(s[0])+' '+sgn(s[1])}).join(', '))+
+      line('Vulnerável a',esc(m.vul||''))+line('Resistência a',esc(m.res||''))+line('Imune a dano',esc(m.imu||''))+line('Imune a condições',esc(m.ci||''))+
+      line('Sentidos',esc(m.sen||''))+line('Idiomas',esc(m.lang&&m.lang!=='—'?m.lang:''))+
+      '<p class="sb-l"><b>Nível de desafio</b> '+fmtNd(m.nd)+' ('+fmtInt(m.xp)+' XP)'+(m.pb?' · <b>Proficiência</b> +'+m.pb:'')+'</p>'+
+      (m.s&&m.s.length?'<div class="sb-tr">'+m.s.map(function(a){return '<p><b>'+esc(a[0])+'.</b> '+para(a[1])+'</p>'}).join('')+'</div>':'')+
+      acts('Ações',m.a,'a')+acts('Reações',m.r,'r')+acts('Ações lendárias',m.l,'l');
+    if(CAMP.cur&&CAMP.dm)h+='<div class="sb-add"><button class="btn sm" id="sbAdd">Adicionar ao combate'+(CAMP.qty>1?' ('+CAMP.qty+')':'')+'</button>'+(m.own?'<button class="btn ghost sm" id="sbDel">Apagar criatura</button>':'')+'</div>';
+    if(!m.own)h+='<p class="small srd-note">SRD 5.1 · CC-BY-4.0</p>';
+    return h;
+  }
+  function openMonDlg(m){
+    if(SHOP.open){SHOP.open=false}
+    DLG_MON=m;var box=$('dlgBox');
+    if($('dlg').hidden)SHOP.ret=document.activeElement;
+    box.innerHTML=statBlock(m);$('dlg').hidden=false;box.scrollTop=0;$('dlg').scrollTop=0;
+    $('dlgX').onclick=closeDlg;$('dlgX').focus();
+    box.querySelectorAll('[data-rab]').forEach(function(b){b.onclick=function(){var i=+b.dataset.rab;rollD20(m.n+': teste de '+ATTRS[i],modOf(m.at[i]))}});
+    function act(k){var g={a:m.a,r:m.r,l:m.l}[k[0]];return g&&g[+k.slice(1)]}
+    box.querySelectorAll('[data-ratk]').forEach(function(b){b.onclick=function(){var a=act(b.dataset.ratk);rollD20(m.n+': '+a[0],a[2].atk)}});
+    box.querySelectorAll('[data-rdmg]').forEach(function(b){b.onclick=function(){
+      var a=act(b.dataset.rdmg);
+      a[2].dmg.forEach(function(d){var p=d.split(' '),ex=p.shift();rollExpr(m.n+': '+a[0]+(p.length?' ('+p.join(' ')+')':''),ex)});
+    }});
+    var ad=$('sbAdd');if(ad)ad.onclick=function(){
+      addMonsters(CAMP_CTX,m,CAMP.qty,CAMP.rollHp);
+      CAMP.msg=(CAMP.qty>1?CAMP.qty+'× ':'')+m.n+' no combate.';var cm=$('campMsg');if(cm)cm.textContent=CAMP.msg;
+      ad.textContent='Adicionado ✓';if(CAMP.tab==='combate')renderInit(CAMP_CTX);
+    };
+    var dl=$('sbDel');if(dl)dl.onclick=function(){
+      if(!dl.dataset.armed){dl.dataset.armed='1';dl.textContent='Confirmar';return}
+      CAMP.dm.custom=CAMP.dm.custom.filter(function(x){return x.i!==m.i});saveDm();closeDlg();renderCamp();
+    };
+  }
+  function closeDlg(){
+    if(SHOP.open){closeShop();return}
+    DLG_MON=null;$('dlg').hidden=true;
+    if(SHOP.ret&&SHOP.ret.isConnected)SHOP.ret.focus();
+  }
+
+  // ---------- entregas: o mestre dá, o jogador aceita ----------
+  function openGive(uid){
+    var c=CAMP.cur;if(!c)return;
+    SHOP.give={cid:c.id,uid:uid,nome:memberName(uid)};
+    openShop('Armas');
+  }
+  async function sendGift(payload){
+    var g=SHOP.give;if(!g)return;
+    try{
+      await dbq(db('campanha_entregas').insert({campanha_id:g.cid,para_user:g.uid,item:payload}));
+      SHOP.msg='Enviado para '+g.nome+': '+payload.rotulo+'. O aviso aparece para o jogador em até 30 segundos.';
+      campLoadCur();
+    }catch(e){SHOP.msg=campErr(e)}
+    if(SHOP.open)renderShop();
+  }
+  function cleanGift(item){
+    var o=item&&typeof item==='object'?item:{};
+    var inv=cleanInv({items:Array.isArray(o.itens)?o.itens.slice(0,40):[],coins:o.moedas&&typeof o.moedas==='object'?o.moedas:{}});
+    inv.items.forEach(function(x){x.eq=x.t==='arma'});
+    return {rotulo:String(o.rotulo||'').slice(0,80),itens:inv.items,moedas:inv.coins||{pc:0,pp:0,pe:0,po:0,pl:0}};
+  }
+  var GIFT={timer:null,seen:{},cur:null,busy:false};
+  function startGiftPoll(){
+    clearInterval(GIFT.timer);GIFT.seen={};
+    if(!Auth.user||!Auth.client)return;
+    setTimeout(function(){checkGifts()},800);
+    GIFT.timer=setInterval(function(){if(!document.hidden)checkGifts()},30000);
+  }
+  async function checkGifts(quiet){
+    if(!Auth.user||!Auth.client)return;
+    try{
+      var rows=await dbq(db('campanha_entregas').select('id,campanha_id,item,criada_em').eq('para_user',Auth.user.id).eq('status','pendente').order('criada_em',{ascending:true}));
+      var before=CAMP.pend.length;CAMP.pend=rows;
+      if(rows.length&&!CAMP.joined){try{await campLoadHome()}catch(e){}}
+      if(!quiet&&!GIFT.cur){var nx=rows.filter(function(r){return !GIFT.seen[r.id]})[0];if(nx)showGift(nx)}
+      if(!quiet&&before!==rows.length&&campVisible()&&!CAMP.cur&&!typing())renderCamp();
+    }catch(e){}
+  }
+  function giftFicha(cid){var c=(CAMP.joined||[]).filter(function(x){return x.id===cid})[0];return c?c.ficha:null}
+  function showGift(r){
+    GIFT.cur=r;GIFT.seen[r.id]=1;
+    var L=giftLabel(r.item),fid=giftFicha(r.campanha_id);
+    var fic=(CAMP.myFichas||[]).filter(function(f){return f.id===fid})[0];
+    var what=L.items.length===1&&!L.coins.length?'o item '+L.items[0]:
+      !L.items.length?'as moedas '+L.coins.join(', '):
+      'os itens '+L.items.concat(L.coins).join(', ');
+    $('giftBox').innerHTML='<div class="gift-ic" aria-hidden="true">✦</div><h3 id="giftT">Presente do mestre</h3>'+
+      '<p class="gift-t">O mestre de <b>'+esc(campName(r.campanha_id))+'</b> está te dando '+esc(what)+'.</p>'+
+      (fid?'<p class="small">Vai para o inventário de <b>'+esc(fic?fic.label:'sua ficha da campanha')+'</b>.</p>':'<p class="msg err">Você entrou nessa campanha sem escolher uma ficha. Escolha a ficha na aba Mesa e depois aceite por lá.</p>')+
+      '<p class="msg" id="giftMsg"></p>'+
+      '<div class="gift-b">'+(fid?'<button class="btn" id="giftOk">Aceitar</button>':'<button class="btn" id="giftGo">Ir para a Mesa</button>')+
+      '<button class="btn ghost sm" id="giftNo">Recusar</button><button class="btn ghost sm" id="giftLater">Depois</button></div>';
+    $('gift').hidden=false;
+    var ok=$('giftOk');if(ok){ok.focus();ok.onclick=function(){answerGift(r,true)}}
+    var go=$('giftGo');if(go){go.focus();go.onclick=function(){closeGift();MESA_TAB='camp';CAMP.cur=null;show('mesa')}}
+    var no=$('giftNo');no.onclick=function(){
+      if(!no.dataset.armed){no.dataset.armed='1';no.textContent='Confirmar recusa';return}
+      answerGift(r,false);
+    };
+    $('giftLater').onclick=closeGift;
+  }
+  function closeGift(){$('gift').hidden=true;GIFT.cur=null}
+  async function answerGift(r,yes){
+    if(GIFT.busy)return;GIFT.busy=true;
+    var msg=$('giftMsg');msg.className='msg';msg.textContent=yes?'Guardando no inventário…':'Recusando…';
+    try{
+      var fid=giftFicha(r.campanha_id);
+      if(yes&&!fid)throw new Error('sem ficha');
+      var up=await dbq(db('campanha_entregas').update({status:yes?'aceito':'recusado',respondida_em:new Date().toISOString()}).eq('id',r.id).eq('status','pendente').select('id'));
+      if(!up.length){msg.textContent='Essa entrega já foi respondida ou cancelada pelo mestre.';CAMP.pend=CAMP.pend.filter(function(x){return x.id!==r.id});GIFT.busy=false;setTimeout(closeGift,1600);return}
+      if(yes)await applyGift(fid,r.item);
+      CAMP.pend=CAMP.pend.filter(function(x){return x.id!==r.id});
+      if(yes){var L=giftLabel(r.item);pushRoll({label:'Presente do mestre',total:'✦',kind:'info',detail:L.items.concat(L.coins).join(', ')+' no inventário.'})}
+      closeGift();
+      if(campVisible()&&!CAMP.cur)renderCamp();
+      if(!$('fichas').hidden)renderSheets();
+    }catch(e){msg.className='msg err';msg.textContent=e&&e.message==='ficha'?'Não achei a ficha dessa campanha na sua conta. Escolha outra na aba Mesa.':campErr(e)}
+    GIFT.busy=false;
+  }
+  async function applyGift(fid,item){
+    var g=cleanGift(item);
+    function addAll(){
+      materialize();
+      g.itens.forEach(function(it){it.id=rid();addTo(S.inv.items,it)});
+      fixEquip(S.inv.items);
+      COINS.forEach(function(c){S.inv.coins[c[0]]=(S.inv.coins[c[0]]||0)+(g.moedas[c[0]]||0)});
+    }
+    if(S.sheetId===fid&&!VIEW){addAll();await saveCurrent();INV_OPEN=null;if(!$('jogo').hidden)renderPlay();else if(!$('ficha').hidden&&!$('step7').hidden)renderFinal();return}
+    var recs=await Store.list(),rec=recs.filter(function(x){return x.id===fid})[0];
+    if(!rec)throw new Error('ficha');
+    var old=S,st;S=freshState();
+    try{loadState(rec.state);addAll();st=snapshot()}finally{S=old}
+    await Store.save({id:fid,v:1,savedAt:Date.now(),state:st});
+  }
+  $('gift').addEventListener('click',function(e){if(e.target===$('gift'))closeGift()});
 
   // =====================================================================
   // BOTÕES DAS ETAPAS

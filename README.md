@@ -16,13 +16,18 @@ Criador de fichas de personagem para D&D 5e, feito com HTML, CSS e JavaScript pu
 - **Retrato do personagem** na ficha, usado como capa em Minhas fichas e impresso no quadro de aparência do PDF.
 - **Ajudantes de criação:** gerador de nome por raça e ideia de história a partir da classe e do antecedente.
 - **Sugestões de personalidade:** traços, ideais, vínculos e fraquezas próprios para cada antecedente, com clique para adicionar e um botão de sorteio.
+- **Inventário:** equipamento inicial já separado em itens (pacotes abertos, munição contada), ou ouro inicial rolado pela classe para comprar tudo na loja. Moedas de cobre a platina com troco automático, venda pela metade do preço, itens próprios para tesouros e itens mágicos, armadura e escudo em uso mudando a CA, armas em uso virando ataques, e peso com capacidade de carga (FOR × 7,5 kg) e regra opcional de carga.
 - **Ficha final** com perícias restantes, CA, pontos de vida, iniciativa, deslocamento, percepção passiva, ataques e CD de magia calculados.
 - **Exportação** para a ficha oficial em PDF, já preenchida.
 - **Ficha em jogo:** PV com dano, cura e PV temporários, salvaguardas contra a morte, espaços de magia, recursos de classe, dados de vida, condições, concentração, inspiração e descansos curto e longo, salvando sozinha.
 - **Rolador de dados:** clique em testes, salvaguardas, perícias, iniciativa, ataques, dano e magias; vantagem e desvantagem, crítico, dados livres e expressões como 2d6+3, com histórico.
 - **Minhas fichas:** salva as fichas para abrir, duplicar, exportar e importar depois. Sem login, ficam no navegador; com login, ficam na nuvem (Supabase) e aparecem em qualquer aparelho.
 - **Compartilhar ficha por link:** link só de leitura para o mestre acompanhar a ficha e o estado em jogo, que pode ser desligado a qualquer momento.
-- **Mesa do mestre:** reúne as fichas do grupo com CA, PV, percepção passiva, condições e concentração, e controla a iniciativa com criaturas, turnos, rodadas e dano.
+- **Campanhas:** o mestre cria a campanha e manda um link ou código de convite. Cada jogador entra com a própria conta e escolhe a ficha, e o mestre acompanha o grupo ao vivo (PV, CA, condições, concentração) sem precisar de links de compartilhamento.
+- **Bestiário:** os 334 monstros do SRD 5.1 traduzidos, com busca em português ou inglês, filtro por nível de desafio e tipo, ficha completa com testes, ataques e dano roláveis, criaturas próprias do mestre e botão para pôr no combate com PV pela média ou rolados.
+- **Combate e dificuldade:** iniciativa com jogadores e monstros, turnos, rodadas e dano, e o orçamento de XP do grupo (baixa, moderada, alta) calculado pelos níveis das fichas.
+- **Entregas do mestre:** o mestre dá itens da loja, itens próprios ou moedas a um jogador. O jogador recebe o aviso "O mestre está te dando o item…", aceita ou recusa, e o item entra direto no inventário da ficha.
+- **Mesa rápida:** sem campanha, reúne fichas pelos links de compartilhamento e controla a iniciativa, salva no navegador.
 - **Contas e perfil:** entrar, criar conta, trocar senha, nickname e emblema de perfil, e enviar as fichas do navegador para a conta.
 - **Subir de nível** até o 5: PV pela média ou rolando o dado, aumento de atributo, subclasse do SRD, características novas, estilo de luta, especialização, invocações, dádiva do pacto, metamagia, presa do caçador, inimigo e terreno favoritos, terreno do druida, espaços de magia e magias novas, com opção de desfazer.
 - **Livro do Jogador** com capítulos de raças, classes, antecedentes, equipamento (armas, armaduras, pacotes, itens, ferramentas e moedas com preços), atributos, combate, condições e conjuração, com lista de magias filtrável.
@@ -43,26 +48,28 @@ Criador de fichas de personagem para D&D 5e, feito com HTML, CSS e JavaScript pu
 - [x] Ficha em jogo e rolador de dados
 - [x] Login para guardar as fichas na nuvem
 - [x] Perfil, compartilhamento por link e mesa do mestre
-- [ ] Inventário com compra de equipamento e carga
+- [x] Inventário com compra de equipamento e carga
+- [x] Campanhas na Mesa: convite, grupo ao vivo, bestiário, dificuldade de encontro e entrega de itens
+- [ ] Itens mágicos do SRD e diário da campanha (NPCs, lugares, missões)
 - [ ] App instalável que funciona sem internet
 - [ ] Níveis 6 a 20
 - [ ] Multiclasse e talentos
 
 ## Como rodar
 
-Não precisa instalar nada, mas a exportação em PDF precisa que a página seja servida por um servidor (o navegador bloqueia a leitura do `ficha-dnd5e.pdf` quando o arquivo é aberto direto do disco). No GitHub Pages funciona sem configurar nada. Para testar no computador, rode `python -m http.server` na pasta do projeto e abra `http://localhost:8000`.
+Não precisa instalar nada, mas a exportação em PDF precisa que a página seja servida por um servidor (o navegador bloqueia a leitura do `ficha-dnd5e.pdf` quando o arquivo é aberto direto do disco). No GitHub Pages funciona sem configurar nada. Para testar no computador, rode `python -m http.server` na pasta do projeto e abra `http://localhost:8000`. Envie todos os arquivos para o GitHub, inclusive o `bestiario.js`, que a Mesa carrega quando o bestiário é aberto.
 
 ## Login com Supabase
 
 O site funciona sem login, salvando no navegador. Para ativar as contas:
 
 1. Crie uma conta em [supabase.com](https://supabase.com) e um projeto novo (região: South America, São Paulo).
-2. No projeto, abra **SQL Editor**, cole o conteúdo de `supabase-setup.sql` e clique em **Run**. (Quem já tinha rodado a versão antiga só precisa rodar `supabase-compartilhar.sql`.)
+2. No projeto, abra **SQL Editor**, cole o conteúdo de `supabase-setup.sql` e clique em **Run**. Quem já tinha rodado uma versão antiga roda só o que falta: `supabase-compartilhar.sql` (compartilhar fichas) e `supabase-campanhas.sql` (campanhas). Rodar de novo não apaga nada.
 3. Em **Authentication → URL Configuration**, coloque o endereço do site em **Site URL** e também em **Redirect URLs** (mais `http://localhost:8000` para testes).
 4. Em **Project Settings → API Keys**, copie o **Project URL** e a chave **publishable** (ou a **anon**, na aba de chaves legadas). Nunca use a chave *secret* / *service_role* no site.
 5. No `index.html`, procure `SUPABASE_URL` e cole os dois valores.
 
-A chave publishable pode ficar no código público: o que protege as fichas são as regras de segurança criadas pelo `supabase-setup.sql`, que deixam cada pessoa ver e alterar só as próprias fichas.
+A chave publishable pode ficar no código público: o que protege as fichas são as regras de segurança criadas pelo `supabase-setup.sql`, que deixam cada pessoa ver e alterar só as próprias fichas. Nas campanhas, o mestre só consegue ler (nunca alterar) as fichas que os jogadores escolheram levar para a campanha dele, e as anotações do mestre ficam invisíveis para os jogadores.
 
 ## Tecnologias
 
@@ -70,7 +77,7 @@ HTML, CSS e JavaScript, com [pdf-lib](https://pdf-lib.js.org/) para preencher a 
 
 ## Conteúdo e direitos autorais
 
-O conteúdo de regras usado aqui vem do SRD 5.1, disponibilizado pela Wizards of the Coast sob a licença Creative Commons Attribution 4.0 (CC-BY-4.0). Os textos de resumo são escritos pelo autor.
+Este trabalho inclui material do System Reference Document 5.1 ("SRD 5.1"), de Wizards of the Coast LLC, disponível em https://dnd.wizards.com/resources/systems-reference-document. O SRD 5.1 é licenciado sob a Creative Commons Attribution 4.0 International License, disponível em https://creativecommons.org/licenses/by/4.0/legalcode. Os textos de resumo são escritos pelo autor, e o bestiário (`bestiario.js`) é uma tradução dos monstros do SRD 5.1, a partir dos dados do projeto [5e-database](https://github.com/5e-bits/5e-database) (licença MIT). O orçamento de XP dos encontros segue as Regras Básicas de D&D (2024).
 
 Este projeto não é afiliado à Wizards of the Coast. Dungeons & Dragons é marca registrada da Wizards of the Coast LLC.
 
