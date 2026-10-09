@@ -458,9 +458,28 @@ select,input[type=text],textarea{background:linear-gradient(180deg,#09090b,#0d0d
 
 /* conta */
 .bar{position:relative}
-.acct{background:none;border:1px solid var(--line);padding:6px 12px;font:500 13px var(--head);letter-spacing:.06em;color:var(--silver);clip-path:polygon(6px 0,100% 0,100% calc(100% - 6px),calc(100% - 6px) 100%,0 100%,0 6px)}
-.acct.on{border-color:var(--red-hot);color:var(--ink)}
-.acct.on::before{content:"";display:inline-block;width:7px;height:7px;margin-right:8px;transform:rotate(45deg);background:var(--red-hot);box-shadow:0 0 8px rgba(229,56,59,.8)}
+.acct{display:inline-flex;align-items:center;gap:9px;max-width:220px;background:linear-gradient(180deg,#141418,#0b0b0d);border:1px solid var(--silver-dim);padding:7px 14px 7px 6px;font:500 13px var(--head);letter-spacing:.06em;color:var(--silver);box-shadow:inset 0 0 0 1px #000}
+.acct:not(.on){padding:7px 16px}
+.acct:hover{border-color:var(--silver);color:var(--ink)}
+.acct.on{border-color:var(--red)}
+.acct-n{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.acct-av,.prof-av,.emb-b{display:inline-flex;align-items:center;justify-content:center;flex:none;width:28px;height:28px;border:1px solid var(--red);background:radial-gradient(circle at 50% 35%,#2a0c10,#0a0a0c);transform:rotate(45deg)}
+.acct-av>*,.prof-av>*,.emb-b>*{transform:rotate(-45deg)}
+.acct .acct-av{width:20px;height:20px;margin:0 3px 0 5px}
+.acct-av .ico{width:15px;height:15px}
+.acct-av b{font-size:11px}
+.acct-av b,.prof-av b,.emb-b b{font:700 13px var(--head);color:var(--ink)}
+.prof-head{display:flex;align-items:center;gap:18px;margin-bottom:8px}
+.prof-head h3{margin:0;font-family:var(--display);color:var(--silver-hi)}
+.prof-av{width:56px;height:56px;margin:8px}
+.prof-av .ico{width:34px;height:34px}
+.prof-av b{font-size:24px}
+.emb{display:flex;flex-wrap:wrap;gap:12px;padding:6px 4px}
+.emb-b{width:38px;height:38px;border-color:var(--line);padding:0}
+.emb-b .ico{width:24px;height:24px}
+.emb-b:hover{border-color:var(--silver-dim)}
+.emb-b[aria-pressed=true]{border-color:var(--red-hot);box-shadow:0 0 14px -2px rgba(229,56,59,.8)}
+@media(max-width:700px){.acct{max-width:150px}}
 .acct-wrap{max-width:460px}
 .aform{display:flex;flex-direction:column;gap:8px}
 .aform label{font:500 11px var(--head);letter-spacing:.08em;text-transform:uppercase;color:var(--silver-dim);margin-top:6px}
@@ -473,6 +492,9 @@ select,input[type=text],textarea{background:linear-gradient(180deg,#09090b,#0d0d
 
 
 /* sugestões de personalidade */
+.fld.big label{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.linkbtn.mini{font:500 11px var(--head);letter-spacing:.06em;text-transform:uppercase;color:var(--red-hot);text-decoration:none;padding:0;align-self:auto}
+.linkbtn.mini:hover{text-decoration:underline}
 details.sug{margin:-2px 0 4px}
 details.sug summary{cursor:pointer;font:500 11.5px var(--head);letter-spacing:.06em;text-transform:uppercase;color:var(--red-hot);list-style:none;padding:2px 0}
 details.sug summary::-webkit-details-marker{display:none}
@@ -482,6 +504,74 @@ details.sug[open] summary::before{content:"− ";}
 .sugb{text-align:left;background:var(--well);border:1px solid var(--line);padding:6px 9px;font-size:14px;line-height:1.35;color:var(--text)}
 .sugb:hover{border-color:var(--silver-dim);color:var(--ink)}
 .sugb[aria-pressed=true]{border-color:var(--red-hot);background:linear-gradient(180deg,#2a0c10,#16070a);color:var(--ink)}
+
+
+/* nova ficha, compartilhar, só leitura */
+.draft{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:16px;padding:10px 14px;border:1px solid var(--line);border-left:3px solid var(--red-hot);background:var(--well);font-size:15px;color:var(--text);max-width:62ch}
+.fbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:0 0 18px;padding:9px 14px;border:1px solid var(--line);background:linear-gradient(90deg,rgba(229,56,59,.08),transparent);font-size:15px;color:var(--text)}
+.fbar b{color:var(--ink)}
+.fbar em{font-style:normal;color:var(--silver-dim);font-size:14px}
+.share{margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
+.share .small{margin:0 0 8px}
+.shrow{display:flex;gap:6px;margin-bottom:6px}
+.shrow input{flex:1;min-width:0;font-size:13px}
+#jogo.viewonly .hpctl,#jogo.viewonly #hdSpend,#jogo.viewonly #restShort,#jogo.viewonly #restLong,#jogo.viewonly #toSheet,
+#jogo.viewonly [data-cast],#jogo.viewonly #dsRoll,#jogo.viewonly #concRoll,#jogo.viewonly #concEnd,#jogo.viewonly [data-pool]{display:none}
+#jogo.viewonly .pip,#jogo.viewonly [data-cond],#jogo.viewonly #inspT{pointer-events:none}
+.viewnote{border-left-color:var(--silver)}
+
+
+/* mesa */
+.mesa-add{display:flex;gap:8px;margin:6px 0 4px;max-width:720px}
+.mesa-add input{flex:1;min-width:0}
+.mesa-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;margin:12px 0 22px}
+.pc{position:relative;border:1px solid var(--line);border-top:3px solid var(--red);background:var(--frame-silver),linear-gradient(180deg,var(--panel-2),var(--panel));padding:14px 16px;min-width:0}
+.pc.down{border-top-color:var(--silver-dim);opacity:.85}
+.pc-top{display:grid;grid-template-columns:52px minmax(0,1fr) auto;gap:10px;align-items:start;margin-bottom:8px}
+.pc-pic{width:52px;height:64px;border:1px solid var(--silver-dim);background:var(--well);padding:2px}
+.pc-pic img{width:100%;height:100%;object-fit:cover;display:block}
+.pc-pic .ico{width:100%;height:100%;padding:8px;opacity:.75}
+.pc-id h3{margin:0;font-size:16px;color:var(--ink);overflow-wrap:anywhere}
+.pc-id p{margin:2px 0 0;font-size:13px;color:var(--silver);line-height:1.35}
+.pc-id small{color:var(--silver-dim)}
+.pc-x{background:none;border:1px solid var(--line);color:var(--silver-dim);width:26px;height:26px;line-height:1;font-size:16px;padding:0}
+.pc-x:hover{border-color:var(--red-hot);color:var(--red-hot)}
+.pc-hp{display:flex;align-items:baseline;gap:6px}
+.pc-hp b{font:700 30px/1 var(--display);color:var(--ink)}
+.pc-hp span{color:var(--silver-dim);font-size:14px}
+.pc-hp em{font-style:normal;color:var(--red-hot);font:700 13px var(--head);margin-left:auto}
+.pc .hpbar{margin:6px 0 10px}
+.pc-stats{display:flex;gap:6px;flex-wrap:wrap}
+.pc-stats span{flex:1;min-width:52px;text-align:center;border:1px solid var(--line);background:var(--well);padding:4px 2px;font:500 10.5px var(--head);letter-spacing:.06em;text-transform:uppercase;color:var(--silver-dim)}
+.pc-stats b{display:block;font:700 18px var(--head);color:var(--ink);letter-spacing:0}
+.pc-tag,.pc-ds{margin:8px 0 0;font-size:13.5px;color:var(--silver)}
+.pc-ds{color:var(--red-hot)}
+.pc-cond{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+.pc-cond span{font-size:12px;border:1px solid var(--red);color:var(--ink);background:var(--red-deep);padding:1px 7px}
+.pc-foot{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:12px}
+.pc-foot .small{margin:0;font-size:12px}
+.init{margin-top:6px}
+.init-act{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.init-list{list-style:none;margin:0 0 14px;padding:0;display:flex;flex-direction:column;gap:5px}
+.init-list li{display:grid;grid-template-columns:58px minmax(0,1fr) auto auto 26px;gap:10px;align-items:center;padding:6px 8px;border:1px solid var(--line);background:var(--well)}
+.init-list li.pl{border-left:3px solid var(--silver-dim)}
+.init-list li.mo{border-left:3px solid var(--red)}
+.init-list li.cur{border-color:var(--red-hot);background:linear-gradient(90deg,rgba(229,56,59,.18),var(--well));box-shadow:0 0 16px -6px rgba(229,56,59,.8)}
+.in-v{width:58px;text-align:center;font:700 16px var(--head)!important}
+.in-n{font-size:15px;color:var(--ink);min-width:0;overflow-wrap:anywhere}
+.in-n small{display:block;font-size:12px;color:var(--silver-dim)}
+.ia{font:500 13px var(--head);color:var(--silver);white-space:nowrap}
+.ih{display:flex;align-items:center;gap:4px;font-size:14px;color:var(--silver-dim);white-space:nowrap}
+.ih b{font:700 16px var(--head);color:var(--ink)}
+.ih b.dead{color:var(--red-hot);text-decoration:line-through}
+.in-amt{width:52px;padding:4px 6px!important}
+.mini-b{width:24px;height:24px;padding:0;border:1px solid var(--line);background:#141418;color:var(--silver);font-weight:700}
+.mini-b:hover{border-color:var(--red-hot);color:var(--red-hot)}
+@media(max-width:620px){.init-list li{grid-template-columns:48px minmax(0,1fr) 26px}.init-list .ia,.init-list .ih{grid-column:2}}
+.mo-add{display:grid;grid-template-columns:minmax(0,2fr) repeat(4,minmax(60px,.6fr)) auto;gap:8px;align-items:end}
+.mo-f{display:flex;flex-direction:column;gap:3px;font:500 10.5px var(--head);letter-spacing:.06em;text-transform:uppercase;color:var(--silver-dim);min-width:0}
+.mo-f input{width:100%}
+@media(max-width:700px){.mo-add{grid-template-columns:1fr 1fr}.mo-add .mo-name{grid-column:1/-1}.mo-add button{grid-column:1/-1}}
 
 /* ficha final */
 .pending{border:1px dashed var(--red);background:var(--red-deep);padding:16px 18px;margin-bottom:20px}
@@ -553,6 +643,7 @@ table.atk td:first-child{color:var(--ink)}
       <button role="tab" data-tab="inicio" aria-selected="true">Início</button>
       <button role="tab" data-tab="ficha" aria-selected="false">Criação de ficha</button>
       <button role="tab" data-tab="fichas" aria-selected="false">Minhas fichas</button>
+      <button role="tab" data-tab="mesa" aria-selected="false">Mesa</button>
       <button role="tab" data-tab="livro" aria-selected="false">Livro do Jogador</button>
     </nav>
     <button class="acct" id="acctBtn" hidden>Entrar</button>
@@ -570,6 +661,10 @@ table.atk td:first-child{color:var(--ink)}
         <div class="cta">
           <button class="btn" id="goFicha">Criar ficha</button>
           <button class="btn ghost" id="goFichas">Minhas fichas</button>
+        </div>
+        <div class="draft" id="draftNote" hidden>
+          <span id="draftTxt"></span>
+          <button class="btn ghost sm" id="goDraft">Continuar</button>
         </div>
       </div>
       <div class="emblem">
@@ -597,6 +692,7 @@ table.atk td:first-child{color:var(--ink)}
   </section>
 
   <section id="ficha" hidden>
+    <div class="fbar" id="fbar" hidden></div>
     <div class="steps" id="steps" aria-label="Etapas">
       <span class="on">Atributos</span><span>Classe</span><span>Raça</span><span>Antecedente</span><span>Escolhas</span><span id="stepSpells">Magias</span><span>Ficha final</span>
     </div>
@@ -716,6 +812,20 @@ table.atk td:first-child{color:var(--ink)}
     </div>
     <p class="msg" id="sheetsMsg"></p>
     <div id="sheetList"></div>
+  </section>
+
+  <section id="mesa" hidden>
+    <div class="fx-head">
+      <div><h2>Mesa do mestre</h2><p class="small" style="margin:0">Junte as fichas do grupo pelos links de compartilhamento e controle a iniciativa do combate.</p></div>
+      <div class="fx-actions"><button class="btn ghost" id="mesaRefresh">Atualizar fichas</button></div>
+    </div>
+    <form class="mesa-add" id="mesaAdd">
+      <input type="text" id="mesaLink" placeholder="Cole aqui o link da ficha de um jogador" aria-label="Link da ficha">
+      <button class="btn" type="submit">Adicionar à mesa</button>
+    </form>
+    <p class="msg" id="mesaMsg"></p>
+    <div id="mesaGrid"></div>
+    <div id="initBox"></div>
   </section>
 
   <section id="conta" hidden>
@@ -1508,6 +1618,58 @@ table.atk td:first-child{color:var(--ink)}
 
   // Sugestões de personalidade por antecedente: textos próprios do site, inspirados nos quadros clássicos.
   var PERSONA={"Acólito": {"t": ["Cito as escrituras pra tudo, até pra escolher o almoço.", "Sou paciente com todo mundo, menos com quem zomba da minha fé.", "Vejo presságios em qualquer coisa: um corvo, uma nuvem, uma panela queimada.", "Falo baixo e devagar, como se ainda estivesse no templo.", "Já perdoei tanta gente que perdi a conta.", "Rezo antes de comer, antes de dormir e antes de toda luta."], "i": ["Tradição. Os ritos existem por um motivo. (Leal)", "Caridade. Ajudo quem precisa sem perguntar o porquê. (Bom)", "Fé. Meu deus tem um plano, mesmo quando eu não entendo. (Leal)", "Renovação. A fé precisa acompanhar o mundo. (Caótico)"], "v": ["Daria a vida para recuperar uma relíquia perdida do meu templo.", "O sacerdote que me criou é a pessoa mais importante da minha vida.", "Devo tudo ao templo que me acolheu quando ninguém mais quis.", "Um dia vou provar que minha fé é verdadeira."], "d": ["Julgo os outros com dureza, e a mim mesmo mais ainda.", "Confio demais em quem diz ter a mesma fé que eu.", "Sou cabeça-dura: se acho que é a vontade divina, ninguém me convence do contrário.", "Tenho pavor de decepcionar meu deus."]}, "Artesão de Guilda": {"t": ["Acho defeito em qualquer coisa que outra pessoa fez.", "Falo do meu ofício até ninguém aguentar mais.", "Pechincho até o pão de cada dia.", "Sou educado, mas cobro tudo o que me devem.", "Não sossego enquanto o trabalho não fica perfeito.", "Adoro descobrir como as coisas são feitas."], "i": ["Comunidade. Quem trabalha junto cresce junto. (Leal)", "Generosidade. Meu talento existe para ajudar os outros. (Bom)", "Liberdade. Ninguém deveria ser dono do ofício de ninguém. (Caótico)", "Ambição. Quero ser o melhor do meu ofício, custe o que custar. (Mau)"], "v": ["Minha oficina é a coisa mais importante que tenho.", "Fiz uma obra-prima para alguém que nunca me pagou, e vou cobrar.", "Devo tudo à guilda que me formou.", "Procuro o mestre que me ensinou e sumiu sem explicação."], "d": ["Faço qualquer coisa por uma peça rara ou bonita.", "Me acho mais esperto que todo mundo.", "Guardo um segredo que pode destruir a guilda.", "Nunca acho que me pagaram o suficiente."]}, "Artista": {"t": ["Tenho uma história para cada situação, e conto todas.", "Sei imitar qualquer sotaque, e uso isso sem parar.", "Preciso ser o centro das atenções.", "Nunca saio de casa sem estar impecável.", "Mudo de humor tão rápido quanto mudo de música.", "Rio alto, choro alto, brigo alto."], "i": ["Beleza. A arte deixa o mundo melhor. (Bom)", "Tradição. As velhas canções precisam continuar vivas. (Leal)", "Criatividade. Fazer sempre igual é morrer aos poucos. (Caótico)", "Fama. Quero que meu nome seja lembrado para sempre. (Mau)"], "v": ["Meu instrumento é a coisa mais preciosa que tenho.", "Um rival roubou minha melhor música, e vou provar isso.", "Faço tudo pelo público que me aplaude.", "Quero reencontrar a trupe que me criou."], "d": ["Faço qualquer coisa por um pouco de fama.", "Não resisto a um rosto bonito.", "Um escândalo do meu passado ainda me persegue.", "Já fiz piada com quem não devia, e ele lembra até hoje."]}, "Charlatão": {"t": ["Tenho um plano para tudo, e um plano B para o plano.", "Minto por hábito, até quando a verdade seria melhor.", "Sou simpático com todo mundo, porque nunca se sabe quem vai ser útil.", "Descubro a fraqueza de alguém em cinco minutos de conversa.", "Uso um nome diferente em cada cidade.", "Aposto em qualquer coisa, e quase sempre ganho."], "i": ["Independência. Ninguém manda em mim. (Caótico)", "Justiça. Só engano quem merece ser enganado. (Bom)", "Amizade. Os amigos valem mais que qualquer golpe. (Bom)", "Ganância. Faço qualquer coisa por dinheiro. (Mau)"], "v": ["Enganei a pessoa errada e preciso me esconder dela.", "Devo tudo ao mentor que me ensinou os truques.", "Uma criança que ajudei acha que sou um herói.", "Um dia vou aplicar o maior golpe de todos."], "d": ["Não resisto a um alvo fácil.", "Quando a coisa aperta, sou o primeiro a sumir.", "Já nem lembro qual é o meu nome verdadeiro.", "Preciso provar que sou o mais esperto da sala."]}, "Criminoso": {"t": ["Sempre tenho uma rota de fuga.", "Fico calmo quando todo mundo entra em pânico.", "Conto meu dinheiro antes de dormir, toda noite.", "Não confio em ninguém de primeira.", "Sei o preço de qualquer coisa só de olhar.", "Cumpro minha palavra, mesmo entre bandidos."], "i": ["Honra. Não roubo dos meus. (Leal)", "Liberdade. Correntes foram feitas para serem quebradas. (Caótico)", "Caridade. Tiro dos ricos para ajudar quem precisa. (Bom)", "Ganância. Quero ficar rico, e pronto. (Mau)"], "v": ["Estou pagando uma dívida com alguém que não perdoa.", "Meu antigo parceiro de crime é quase da família.", "Algo valioso foi tirado de mim, e vou pegar de volta.", "Tudo o que faço é para sustentar quem eu amo."], "d": ["Quando vejo algo valioso, só penso em como pegar.", "Fujo primeiro e penso depois.", "Um inocente está preso por algo que eu fiz.", "Não aceito ordens de ninguém."]}, "Eremita": {"t": ["Passei tanto tempo sozinho que esqueci como se conversa.", "Fico quieto por horas e depois falo sem parar.", "Me empolgo com coisas que ninguém mais liga.", "Fico calmo até no meio de uma batalha.", "Converso com plantas, animais e às vezes com pedras.", "Desconfio de cidades grandes e de gente apressada."], "i": ["Bem maior. Meus dons existem para os outros. (Bom)", "Lógica. A emoção atrapalha o julgamento. (Leal)", "Livre pensamento. Questionar tudo é o caminho da verdade. (Caótico)", "Poder. Minha descoberta vai me dar o que eu quero. (Mau)"], "v": ["A descoberta que fiz no isolamento precisa chegar ao mundo.", "Voltei para proteger quem cuidou de mim antes de eu partir.", "Ainda procuro a resposta que me fez ir embora.", "Meu refúgio é sagrado, e ninguém vai profaná-lo."], "d": ["Me acho mais sábio que todo mundo.", "Escondo um segredo terrível sobre o meu passado.", "Me perco tanto nos pensamentos que esqueço o que está acontecendo.", "Tenho dificuldade de confiar em grupos."]}, "Forasteiro": {"t": ["Não consigo ficar parado num lugar por muito tempo.", "Cuido dos amigos como se fossem minha matilha.", "Uma vez um urso fugiu de mim, e eu conto isso sempre.", "Me sinto mais à vontade com animais que com gente.", "Durmo melhor no chão do que numa cama.", "Como qualquer coisa, e às vezes isso dá errado."], "i": ["Mudança. A vida é como as estações, sempre muda. (Caótico)", "Bem maior. Cada um faz sua parte pela tribo. (Bom)", "Honra. Se eu perder minha palavra, perco tudo. (Leal)", "Força. Os mais fortes mandam. (Caótico)"], "v": ["Minha família, meu clã ou minha tribo é tudo para mim.", "Um lugar sagrado da natureza precisa da minha proteção.", "Quem destruiu minha terra natal vai pagar.", "Sou o último da minha tribo, e preciso honrar isso."], "d": ["Gosto demais de uma boa bebida.", "Não ligo para as regras da cidade.", "Desconfio de qualquer um que vive atrás de muros.", "Quando fico com raiva, não paro mais."]}, "Herói do Povo": {"t": ["Julgo as pessoas pelo que fazem, não pelo que falam.", "Se alguém está em apuros, eu ajudo. Sempre.", "Sou teimoso como uma mula.", "Confio mais nos meus instintos do que em qualquer plano.", "Tenho um ditado popular para cada situação.", "Fico sem jeito quando me elogiam."], "i": ["Respeito. Todo mundo merece dignidade. (Bom)", "Justiça. Ninguém está acima da lei. (Leal)", "Liberdade. Tirano nenhum vai oprimir o povo. (Caótico)", "Destino. Nasci para algo maior. (Qualquer)"], "v": ["Minha família está na vila, e preciso protegê-la.", "Um nobre me humilhou, e um dia vou dar o troco.", "Protejo quem não pode se proteger.", "Quero voltar para casa como alguém que fez a diferença."], "d": ["O tirano que enfrentei ainda está atrás de mim.", "Não confio em nobres nem em ricos.", "Depois do que fiz, me acho invencível.", "Sou cabeça-dura: nunca admito que errei."]}, "Marinheiro": {"t": ["Meus amigos sabem que podem contar comigo.", "Trabalho duro e me divirto mais duro ainda.", "Exagero todas as histórias de viagem.", "Falo palavrão como quem respira.", "Gosto de trabalhar em equipe.", "Fico inquieto quando passo muito tempo em terra firme."], "i": ["Lealdade. Fico do lado da tripulação. (Leal)", "Liberdade. O mar é livre, e eu também. (Caótico)", "Comando. Quem é capitão manda, e eu quero ser capitão. (Mau)", "Aventura. O horizonte sempre chama. (Qualquer)"], "v": ["Sou fiel ao meu capitão acima de tudo.", "O navio é minha casa; a tripulação, minha família.", "Um dia vou ter meu próprio navio.", "Perdi alguém no mar e ainda procuro respostas."], "d": ["Obedeço às ordens mesmo quando estão erradas.", "Gasto o pagamento todo na primeira taverna.", "Não resisto a uma briga de bar.", "Minto sobre o meu passado para parecer mais durão."]}, "Nobre": {"t": ["Sou educado com todos, mesmo com quem não merece.", "Ninguém nunca me viu desarrumado.", "Acho que sei mais que os outros, e às vezes sei mesmo.", "Uso palavras difíceis só para impressionar.", "Adoro festas, banquetes e boa comida.", "Não deixo ninguém perceber quando estou com medo."], "i": ["Responsabilidade. Quem tem poder deve proteger os outros. (Leal)", "Nobreza. Faço o certo porque é o que se espera de mim. (Bom)", "Família. O nome da minha casa vem antes de tudo. (Qualquer)", "Poder. Nasci para mandar, e vou mandar. (Mau)"], "v": ["Vou recuperar a honra da minha família.", "Amo alguém que minha família jamais aceitaria.", "O povo das minhas terras confia em mim.", "Meu irmão herdou tudo, e eu vou provar meu valor."], "d": ["Me acho superior a todo mundo.", "Escondo um segredo que arruinaria minha família.", "Não sei fazer quase nada sozinho.", "Ofendo os outros sem nem perceber."]}, "Órfão": {"t": ["Escondo comida nos bolsos, por via das dúvidas.", "Pergunto tudo, porque nunca tive quem me explicasse.", "Durmo de costas para a parede.", "Faço amizade com tudo quanto é bicho de rua.", "Mexo nas coisas dos outros sem pensar.", "Banho? Só quando não tem jeito."], "i": ["Respeito. Todo mundo merece ser tratado como gente. (Bom)", "Comunidade. Quem é da rua ajuda quem é da rua. (Leal)", "Mudança. Os de baixo precisam subir, e os de cima, cair. (Caótico)", "Retribuição. Os ricos vão pagar pelo que fizeram. (Mau)"], "v": ["Meu bairro me criou, e eu cuido dele.", "Devo a vida a outro órfão que me protegeu.", "Quero encontrar quem me abandonou.", "Nenhuma criança vai passar pelo que eu passei."], "d": ["Se a briga é injusta, sumo antes de começar.", "Qualquer moeda de ouro me convence.", "Nunca confio totalmente em ninguém.", "Pego coisas pequenas sem nem perceber."]}, "Sábio": {"t": ["Uso palavras difíceis e adoro explicar o que significam.", "Já li sobre tudo, mas vi muito pouco de verdade.", "Tenho paciência infinita com quem quer aprender.", "Fico irritado com quem fala bobagem com confiança.", "Prefiro um livro a uma festa.", "Me distraio fácil e esqueço onde deixei as coisas."], "i": ["Conhecimento. Saber é o caminho para tudo. (Neutro)", "Beleza. O que é belo leva ao que é verdadeiro. (Bom)", "Lógica. A emoção não pode atrapalhar o raciocínio. (Leal)", "Poder. Quem sabe mais, manda mais. (Mau)"], "v": ["Meu dever é proteger meus alunos.", "Guardo um texto antigo que não pode cair em mãos erradas.", "Trabalho para preservar uma grande biblioteca.", "Busco a resposta para uma pergunta que me assombra."], "d": ["Qualquer promessa de conhecimento me tira do caminho.", "Não consigo ficar quieto quando alguém está errado.", "Entendo muito de livros e pouco de pessoas.", "Já fiz algo terrível em nome da pesquisa."]}, "Soldado": {"t": ["Sou organizado e sempre pontual.", "Tenho uma cicatriz e uma história para cada uma.", "Encaro o perigo sem piscar.", "Sigo o plano à risca, mesmo quando ninguém mais segue.", "Faço piadas sem graça nas piores horas.", "Ainda acordo antes do sol, como no quartel."], "i": ["Bem maior. Damos a vida pelos outros. (Bom)", "Disciplina. Cumpro as ordens e confio no comando. (Leal)", "Independência. Quem obedece sem pensar vira tirano. (Caótico)", "Força. Nesta vida, quem é mais forte manda. (Mau)"], "v": ["Daria a vida pelos que lutaram ao meu lado.", "Alguém salvou minha vida em batalha, e nunca deixo ninguém para trás.", "Minha honra é minha vida.", "Nunca vou esquecer a derrota da minha unidade."], "d": ["Um inimigo terrível me deixou com medo até hoje.", "Desprezo quem não aguenta o tranco.", "Obedeço demais a quem tem patente.", "Sou cabeça-dura: errar, eu? Nunca."]}};
+  // ---------------------------------------------------------------------
+  // AJUDANTES DE CRIAÇÃO: nomes por raça e ganchos de história (textos próprios)
+  // ---------------------------------------------------------------------
+  var NAMES={
+    anao:{a:['Bor','Dur','Gar','Thor','Bal','Ran','Har','Kil','Mor','Brun','Eld','Vond'],b:['din','grim','rak','dek','nar','gun','mir','dor','bek','thal'],f:['Ilda','Bryn','Hed','Kat','Ris','Vis','Dag','Thyr','Elsa','Torv'],fb:['ra','dis','hild','wyn','ga','na'],sur:['Martelo-Forte','Barba-de-Ferro','Forja-Rubra','Pedra-Funda','Malho-Antigo','Veio-de-Prata']},
+    elfo:{a:['Ael','Thal','Ely','Fae','Ili','Sil','Ara','Cel','Lae','Vael','Ery','Nai'],b:['rion','wyn','dril','thas','las','marë','lien','nor','vel','iel'],sur:['Folha-Lunar','Orvalho-Prata','Vento-Alto','Canto-Estelar','Rio-Sereno','Sombra-Verde']},
+    halfling:{a:['Pip','Tob','Mil','Ros','Bel','Cor','Fen','Lil','Wen','Mer','Bram','Tilly'],b:['po','bin','wick','lo','ry','dle','ny','bo'],sur:['Pé-Leve','Bolso-Fundo','Chá-das-Cinco','Colina-Verde','Bom-Copo','Mão-Ágil']},
+    humano:{a:['Al','Bran','Cas','Dar','El','Gav','Hel','Is','Jor','Lu','Mar','Ren','Sev','Tam','Vic'],b:['dric','a','ian','ena','os','ina','ric','ara','en','ia','mar'],sur:['de Valmar','Ventor','Corvo','Brasa','da Ponte Velha','Alvor','Serrano','Teixo']},
+    draconato:{a:['Ar','Bal','Dra','Kri','Med','Nal','Rho','Sha','Tor','Vyr','Zor','Ka'],b:['jhan','asar','vax','thrax','ash','ira','gon','dar','kis','zinn'],sur:['do Clã Kerrhylon','do Clã Myastan','do Clã Norixius','Escama-Rubra','Sopro-de-Brasa','Garra-Antiga']},
+    gnomo:{a:['Bim','Dim','Fonk','Glim','Nim','Orl','Roon','Seeb','Wren','Zook','Tink','Pell'],b:['ble','wick','kin','dle','bo','nock','sy','po'],sur:['Engrenagem','Faísca-Azul','Parafuso-Solto','Lume-Curioso','Mola-Tensa','Pena-Ligeira']},
+    meioorc:{a:['Dench','Feng','Gell','Hen','Krusk','Ront','Shump','Thok','Baggi','Emen','Ovak','Yev'],b:['','','a','ar','ok','ga','ul'],sur:['Dente-Quebrado','Punho-de-Pedra','Trovão-Rouco','Osso-Duro','Sangue-Quente']},
+    tiefling:{a:['Ak','Bar','Dam','Ekem','Kal','Mor','Nem','Rie','Skam','Ori','Lyr','Zeth'],b:['menos','akas','aia','thos','eia','iel','ira','os','yx'],sur:['','','Desespero','Brasa','Tormento','Esperança','Canção','Glória']}
+  };
+  var RACE_NAMES={'Anão da Colina':'anao','Anão da Montanha':'anao','Alto Elfo':'elfo','Elfo da Floresta':'elfo','Elfo Negro (Drow)':'elfo','Meio-Elfo':'elfo','Halfling Pés-Leves':'halfling','Halfling Robusto':'halfling','Humano':'humano','Draconato':'draconato','Gnomo da Floresta':'gnomo','Gnomo das Rochas':'gnomo','Meio-Orc':'meioorc','Tiefling':'tiefling'};
+  function rnd(a){return a[Math.floor(Math.random()*a.length)]}
+  function genName(raceName){
+    var key=RACE_NAMES[raceName]||'humano',n=NAMES[key];
+    if(raceName==='Meio-Elfo'&&Math.random()<.5)n=NAMES.humano;
+    var first=(n.f&&Math.random()<.5)?rnd(n.f)+rnd(n.fb||['']):rnd(n.a)+rnd(n.b);
+    var sur=rnd(n.sur);
+    return (first+(sur?' '+sur:'')).trim();
+  }
+  var HOOK={
+    origem:['Cresci {lugar}','Nasci {lugar}','Passei a infância {lugar}'],
+    lugar:['numa vila de pescadores esquecida pelo mapa','numa cidade murada onde ninguém confia em estranhos','numa fortaleza na montanha','nas ruas de uma capital barulhenta','numa fazenda à beira de uma floresta antiga','numa caravana que nunca parava no mesmo lugar'],
+    virada:['até que {evento}.','e tudo mudou quando {evento}.','mas uma noite {evento}.'],
+    evento:['um incêndio destruiu tudo o que eu conhecia','encontrei um mapa que não deveria existir','alguém que eu amava desapareceu sem deixar rastro','fui acusado de um crime que não cometi','vi algo na floresta que ninguém acreditou','um estranho me salvou a vida e me fez prometer algo em troca','descobri um segredo sobre a minha própria família'],
+    objetivo:['Hoje busco {alvo}','Agora sigo pela estrada atrás de {alvo}','Viajo em busca de {alvo}'],
+    alvo:['quem foi responsável por isso','respostas que ninguém quer me dar','uma forma de reparar o que aconteceu','a pessoa que desapareceu','provas da minha inocência','o lugar marcado naquele mapa'],
+    complicacao:['e ainda não contei a ninguém que {segredo}.','mas existe alguém disposto a tudo para me impedir.','sem saber que estou sendo seguido.','enquanto tento esconder que {segredo}.'],
+    segredo:['ainda tenho medo do escuro','carrego algo que pertence a outra pessoa','já fui parte do problema','não sou quem digo ser','ouço uma voz quando durmo']
+  };
+  var BG_HOOK={
+    'Acólito':'Servi anos no templo','Artesão de Guilda':'Aprendi meu ofício numa guilda exigente','Artista':'Ganhei a vida nos palcos e nas tavernas',
+    'Charlatão':'Vivi de golpes bem armados','Criminoso':'Fiz parte de uma quadrilha','Eremita':'Vivi isolado por anos','Forasteiro':'Vivi longe da civilização',
+    'Herói do Povo':'Enfrentei um tirano local e virei lenda na minha região','Marinheiro':'Passei anos a bordo de um navio','Nobre':'Nasci numa família poderosa',
+    'Órfão':'Sobrevivi sozinho nas ruas','Sábio':'Dediquei a vida aos livros','Soldado':'Servi numa companhia militar'
+  };
+  var CLS_HOOK={
+    'Bárbaro':'Minha fúria é o que me mantém de pé','Bardo':'Toda história merece ser contada, e a minha ainda está sendo escrita','Bruxo':'Fiz um pacto que talvez me custe caro',
+    'Clérigo':'Meu deus me escolheu por um motivo que ainda não entendo','Druida':'A natureza me chama para protegê-la','Feiticeiro':'A magia desperta no meu sangue, queira eu ou não',
+    'Guerreiro':'Aprendi a lutar porque precisei','Guardião':'Conheço as trilhas que os outros temem','Ladino':'Aprendi que sombras são mais seguras que luz',
+    'Mago':'Cada magia que aprendo me aproxima da resposta','Monge':'A disciplina é o meu caminho','Paladino':'Fiz um juramento e vou cumpri-lo até o fim'
+  };
+  function fill(t){return t.replace(/\{(\w+)\}/g,function(_,k){return fill(rnd(HOOK[k]))})}
+  function genStory(k){
+    var bg=BG_HOOK[k.b.n]||'',cl=CLS_HOOK[k.cn]||'';
+    var p1=fill(rnd(HOOK.origem))+'. '+(bg?bg+', ':'')+fill(rnd(HOOK.virada));
+    var p2=cl+'. '+fill(rnd(HOOK.objetivo))+', '+fill(rnd(HOOK.complicacao));
+    return p1.replace(', até','; até').replace(/\s+/g,' ')+'\n\n'+p2;
+  }
+
   var ALIGN=['Leal e Bom','Neutro e Bom','Caótico e Bom','Leal e Neutro','Neutro','Caótico e Neutro','Leal e Mau','Neutro e Mau','Caótico e Mau'];
 
   // =====================================================================
@@ -1530,9 +1692,17 @@ table.atk td:first-child{color:var(--ink)}
     };
   }
   var S=freshState();
+  // Só aceita retratos que sejam imagens embutidas de verdade (evita código escondido em fichas importadas)
+  var IMG_RE=/^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+\/=]+$/;
+  function safeImg(u){return typeof u==='string'&&u.length<4e6&&IMG_RE.test(u)?u:''}
+  function safeY(y){y=+y;return isFinite(y)?Math.max(0,Math.min(100,y)):30}
   function loadState(st){
     var f=freshState();
     Object.keys(f).forEach(function(k){S[k]=st&&st[k]!==undefined?JSON.parse(JSON.stringify(st[k])):f[k]});
+    S.portrait=safeImg(S.portrait);S.portraitY=safeY(S.portraitY);
+    if(typeof S.info!=='object'||!S.info)S.info=freshState().info;
+    Object.keys(S.info).forEach(function(k){S.info[k]=String(S.info[k]==null?'':S.info[k]).slice(0,5000)});
+    S.level=Math.max(1,Math.min(MAX_LEVEL,parseInt(S.level,10)||1));
   }
 
   // =====================================================================
@@ -1542,16 +1712,46 @@ table.atk td:first-child{color:var(--ink)}
   function show(id){
     document.querySelectorAll('main > section').forEach(function(s){s.hidden=s.id!==id});
     tabs.forEach(function(b){b.setAttribute('aria-selected',b.dataset.tab===id)});
+    if(id!=='jogo'&&id!=='ficha')VIEW=null;
+    if(id==='inicio')renderDraft();
+    if(id==='ficha')renderFbar();
+    if(id==='mesa')renderMesa();
     if(id==='fichas')renderSheets();
     if(id==='jogo')renderPlay();
     if(id==='conta')renderAccount();
     window.scrollTo(0,0);
   }
   tabs.forEach(function(b){b.addEventListener('click',function(){show(b.dataset.tab)})});
-  $('goFicha').addEventListener('click',function(){show('ficha')});
+  $('goFicha').addEventListener('click',function(){newSheet()});
+  $('goDraft').addEventListener('click',function(){show('ficha')});
+  var VIEW=null;
+  function hasProgress(){return S.cls!==null||S.values.length>0}
+  function renderDraft(){
+    var on=hasProgress()&&!VIEW;
+    $('draftNote').hidden=!on;
+    if(on)$('draftTxt').textContent=(S.sheetId?'Ficha aberta: ':'Ficha em andamento, ainda não salva: ')+(S.info.nome||(S.cls!==null?CLASSES[S.cls][0]+' sem nome':'atributos rolados'))+'.';
+  }
+  function renderFbar(){
+    var b=$('fbar');
+    if(!hasProgress()){b.hidden=true;return}
+    b.hidden=false;
+    var nome=S.info.nome||(S.cls!==null?CLASSES[S.cls][0]+' sem nome':'Ficha nova');
+    b.innerHTML='<span>'+(VIEW?'Vendo a ficha compartilhada de ':'Editando ')+'<b>'+esc(nome)+'</b> · <em>'+(VIEW?'salvar cria uma cópia sua':S.sheetId?'salva em Minhas fichas':'ainda não salva')+'</em></span>'+
+      '<button class="btn ghost sm" id="fbNew">Nova ficha</button>';
+    var nb=$('fbNew');
+    nb.onclick=function(){
+      if(!S.sheetId&&!VIEW&&S.cls!==null&&!nb.dataset.armed){
+        nb.dataset.armed='1';nb.textContent='Descartar e começar outra';
+        setTimeout(function(){if(nb.isConnected){delete nb.dataset.armed;nb.textContent='Nova ficha'}},4000);
+        return;
+      }
+      newSheet();
+    };
+  }
   $('goFichas').addEventListener('click',function(){show('fichas')});
 
   function goStep(n){
+    renderFbar();
     for(var k=1;k<=8;k++)$('step'+k).hidden=n!==k;
     $('steps').hidden=n===8;
     $('stepSpells').hidden=S.cls!==null&&!isCaster();
@@ -2335,7 +2535,7 @@ table.atk td:first-child{color:var(--ink)}
     var h='<div class="lvlbar"><span class="lvl">Nível <b>'+k.L+'</b></span>'+
       (k.L<MAX_LEVEL?'<button class="btn sm" id="lvlUp">Subir para o nível '+(k.L+1)+'</button>':'<span class="small" style="margin:0">Nível máximo desta versão</span>')+
       (k.L>1?'<button class="btn ghost sm" id="lvlUndo">Desfazer nível '+k.L+'</button>':'')+'</div>';
-    h+='<div class="sheet-top">'+portraitBlock()+'<div class="sheet-main"><div class="sheet-head">'+inp('nome','Nome do personagem',true)+ro('Classe e nível',k.cn+' '+k.L+subTxt)+ro('Raça',r.n)+ro('Antecedente',k.b.n)+
+    h+='<div class="sheet-top">'+portraitBlock()+'<div class="sheet-main"><div class="sheet-head">'+inp('nome','Nome do personagem',true).replace('</label>','<button type="button" class="linkbtn mini" id="genName">Gerar nome</button></label>')+ro('Classe e nível',k.cn+' '+k.L+subTxt)+ro('Raça',r.n)+ro('Antecedente',k.b.n)+
       inp('jogador','Nome do jogador')+
       '<div class="fld"><label for="i_alinhamento">Alinhamento</label><select id="i_alinhamento" data-k="alinhamento" style="margin:0"><option value="">Escolha…</option>'+
       ALIGN.map(function(a){return '<option'+(I.alinhamento===a?' selected':'')+'>'+a+'</option>'}).join('')+'</select></div>'+
@@ -2355,7 +2555,7 @@ table.atk td:first-child{color:var(--ink)}
 
     // coluna 2: combate, ataques, magia, equipamento
     h+='<div class="col"><div class="box"><h4>Ataques</h4>'+(k.allAttacks.length?'<table class="atk"><thead><tr><th>Arma</th><th>Bônus</th><th>Dano</th></tr></thead><tbody>'+
-      k.allAttacks.map(function(a){return '<tr><td>'+a.n+'</td><td>'+a.bonus+'</td><td>'+a.dmg+' '+a.type+'</td></tr>'}).join('')+'</tbody></table>':
+      k.allAttacks.map(function(a){return '<tr><td>'+esc(a.n)+'</td><td>'+a.bonus+'</td><td>'+a.dmg+' '+a.type+'</td></tr>'}).join('')+'</tbody></table>':
       '<p class="small" style="margin:0">Nenhuma arma específica no equipamento. Anote a arma que escolher.</p>')+'</div>';
     if(k.cast){
       h+='<div class="box"><h4>Conjuração</h4><div class="stats">'+
@@ -2374,7 +2574,8 @@ table.atk td:first-child{color:var(--ink)}
       '<div class="box stack"><h4 style="margin:0;display:flex;justify-content:space-between;align-items:center;gap:8px">Personalidade<button class="btn ghost sm" id="sugAll">Sortear</button></h4>'+
         ta('tracos','Traços de personalidade',4)+sug('tracos','t',k.b)+ta('ideais','Ideais',2)+sug('ideais','i',k.b)+
         ta('vinculos','Vínculos',2)+sug('vinculos','v',k.b)+ta('defeitos','Fraquezas',2)+sug('defeitos','d',k.b)+'</div>'+
-      '<div class="box stack"><h4 style="margin:0">História</h4>'+ta('historia','História do personagem',6)+'</div>'+
+      '<div class="box stack"><h4 style="margin:0;display:flex;justify-content:space-between;align-items:center;gap:8px">História<button class="btn ghost sm" id="genStory">Gerar ideia</button></h4>'+ta('historia','História do personagem',8)+
+      '<p class="small" style="margin:0">A ideia é só um ponto de partida: edite à vontade.</p></div>'+
       '<div class="box"><h4>Características e talentos</h4>'+
       (k.resources.length?'<ul class="list res">'+k.resources.map(function(f){return '<li>'+esc(f)+'</li>'}).join('')+'</ul>':'')+
       '<ul class="feats">'+k.features.map(function(f){return '<li><b>'+esc(f.n)+'</b>'+(f.lvl?' <small>'+f.lvl+'º</small>':'')+(f.d&&f.d!=='Subclasse.'?'<span>'+esc(f.d)+'</span>':'<span>Subclasse de '+k.cn+'.</span>')+'</li>'}).join('')+'</ul>'+
@@ -2395,6 +2596,11 @@ table.atk td:first-child{color:var(--ink)}
         S.info[key]=cur.join('\n');renderFinal();
       };
     });
+    var gn=$('genName');if(gn)gn.onclick=function(e){e.preventDefault();S.info.nome=genName(k.r.n);$('i_nome').value=S.info.nome};
+    var gs2=$('genStory');if(gs2)gs2.onclick=function(){
+      var cur=(S.info.historia||'').trim(),idea=genStory(k);
+      S.info.historia=cur?cur+'\n\n'+idea:idea;$('i_historia').value=S.info.historia;
+    };
     var sa=$('sugAll');if(sa)sa.onclick=function(){
       var P=PERSONA[k.b.n];if(!P)return;
       function pick(a,n){a=a.slice();var out=[];while(out.length<n&&a.length)out.push(a.splice(Math.floor(Math.random()*a.length),1)[0]);return out.join('\n')}
@@ -2742,7 +2948,7 @@ table.atk td:first-child{color:var(--ink)}
   function snapshot(){var st=JSON.parse(JSON.stringify(S));delete st.sheetId;return st}
   function summary(st){
     var c=CLASSES[st.cls],r=RACES[st.race],b=BGS[st.bg];
-    return {nome:(st.info&&st.info.nome)||'Sem nome',cls:c?c[0]:'?',race:r?r.n:'?',bg:b?b.n:'?',level:st.level||1};
+    return {nome:String((st.info&&st.info.nome)||'Sem nome').slice(0,80),cls:c?c[0]:'?',race:r?r.n:'?',bg:b?b.n:'?',level:Math.max(1,Math.min(MAX_LEVEL,parseInt(st.level,10)||1))};
   }
   function validState(st){
     return st&&typeof st==='object'&&typeof st.cls==='number'&&CLASSES[st.cls]&&typeof st.race==='number'&&RACES[st.race]&&typeof st.bg==='number'&&BGS[st.bg]&&Array.isArray(st.att)&&st.att.length===6;
@@ -2788,7 +2994,7 @@ table.atk td:first-child{color:var(--ink)}
     var migHtml=mig?mig.outerHTML:'';
     box.innerHTML=migHtml+'<div class="fx-grid">'+list.map(function(rec){
       var sm=summary(rec.state);
-      var st=rec.state,cover=st.portrait?'<img src="'+st.portrait+'" alt="" style="object-position:50% '+(st.portraitY==null?30:st.portraitY)+'%">':'<div class="fx-ph">'+icon(sm.cls)+'</div>';
+      var st=rec.state,img=safeImg(st.portrait),cover=img?'<img src="'+img+'" alt="" style="object-position:50% '+safeY(st.portraitY)+'%">':'<div class="fx-ph">'+icon(sm.cls)+'</div>';
       return '<article class="fx" data-id="'+rec.id+'">'+
         '<div class="fx-cover">'+cover+'<div class="fx-title"><span class="fx-lvl">Nível '+sm.level+'</span><h3>'+esc(sm.nome)+'</h3><p>'+esc(sm.cls)+' · '+esc(sm.race)+'</p></div></div>'+
         '<div class="fx-body"><p class="small" style="margin:0 0 12px">'+esc(sm.bg)+' · salva em '+fmtDate(rec.savedAt)+'</p>'+
@@ -2797,18 +3003,20 @@ table.atk td:first-child{color:var(--ink)}
           '<button class="btn ghost sm" data-act="open">Abrir</button>'+
           (sm.level<MAX_LEVEL?'<button class="btn ghost sm" data-act="up">Subir de nível</button>':'')+
           '<button class="btn ghost sm" data-act="dup">Duplicar</button>'+
+          (Store.kind==='cloud'?'<button class="btn ghost sm" data-act="share">'+(rec.shareId?'Link ativo':'Compartilhar')+'</button>':'')+
           '<button class="btn ghost sm" data-act="exp">Exportar</button>'+
           '<button class="btn ghost sm danger" data-act="del">Excluir</button>'+
-        '</div></div></article>';
+        '</div><div class="share" hidden></div></div></article>';
     }).join('')+'</div>';
     if(migHtml)rewireMigrate();
     var byId={};list.forEach(function(r){byId[r.id]=r});
     box.querySelectorAll('[data-act]').forEach(function(btn){
       btn.onclick=async function(){
         var id=btn.closest('.fx').dataset.id,rec=byId[id],act=btn.dataset.act;
-        if(act==='play'){loadState(rec.state);S.sheetId=id;show('jogo');return}
+        if(act==='play'){VIEW=null;loadState(rec.state);S.sheetId=id;show('jogo');return}
+        if(act==='share'){renderSharePanel(btn.closest('.fx'),rec);return}
         if(act==='open'||act==='up'){
-          loadState(rec.state);S.sheetId=id;show('ficha');goStep(7);
+          VIEW=null;loadState(rec.state);S.sheetId=id;show('ficha');goStep(7);
           if(act==='up')openLevelUp();
         }else if(act==='dup'){
           var st=JSON.parse(JSON.stringify(rec.state));
@@ -2832,6 +3040,65 @@ table.atk td:first-child{color:var(--ink)}
       };
     });
   }
+  function uuid(){
+    if(window.crypto&&crypto.randomUUID)return crypto.randomUUID();
+    var b=new Uint8Array(16);crypto.getRandomValues(b);b[6]=b[6]&15|64;b[8]=b[8]&63|128;
+    var h=Array.prototype.map.call(b,function(x){return (x+256).toString(16).slice(1)}).join('');
+    return h.slice(0,8)+'-'+h.slice(8,12)+'-'+h.slice(12,16)+'-'+h.slice(16,20)+'-'+h.slice(20);
+  }
+  function shareUrl(sid){return location.origin+location.pathname+'?ver='+sid}
+  async function copyText(t,input){
+    try{await navigator.clipboard.writeText(t);return true}
+    catch(e){if(input){input.focus();input.select()}return false}
+  }
+  function renderSharePanel(card,rec){
+    var p=card.querySelector('.share');
+    if(!p.hidden&&!p.dataset.keep){p.hidden=true;return}
+    delete p.dataset.keep;p.hidden=false;
+    if(Auth.noShare){p.innerHTML='<p class="msg err">Para compartilhar, rode o arquivo supabase-compartilhar.sql no SQL Editor do Supabase.</p>';return}
+    if(!rec.shareId){
+      p.innerHTML='<p class="small">Gera um link só de leitura. Quem tiver o link vê a ficha e o estado em jogo, mas não consegue alterar nada.</p><button class="btn sm" data-sh="on">Gerar link</button><p class="msg"></p>';
+    }else{
+      p.innerHTML='<p class="small">Qualquer pessoa com este link vê a ficha (só leitura):</p>'+
+        '<div class="shrow"><input type="text" readonly value="'+esc(shareUrl(rec.shareId))+'" aria-label="Link da ficha"><button class="btn sm" data-sh="copy">Copiar</button></div>'+
+        '<button class="linkbtn" data-sh="off">Parar de compartilhar</button><p class="msg"></p>';
+    }
+    var msg=p.querySelector('.msg');
+    p.querySelectorAll('[data-sh]').forEach(function(b){
+      b.onclick=async function(){
+        var a=b.dataset.sh;
+        try{
+          if(a==='copy'){var ok=await copyText(shareUrl(rec.shareId),p.querySelector('input'));msg.textContent=ok?'Link copiado.':'Selecionei o link: use Ctrl+C.';return}
+          if(a==='on'){rec.shareId=uuid();await Store.setShare(rec.id,rec.shareId)}
+          if(a==='off'){await Store.setShare(rec.id,null);rec.shareId=null}
+          p.dataset.keep='1';renderSharePanel(card,rec);
+          card.querySelector('[data-act=share]').textContent=rec.shareId?'Link ativo':'Compartilhar';
+          if(a==='on')p.querySelector('.msg').textContent='Link criado. Copie e mande para o mestre.';
+          if(a==='off')p.querySelector('.msg').textContent='O link antigo parou de funcionar.';
+        }catch(e){msg.className='msg err';msg.textContent='Não deu certo. Verifique a conexão e tente de novo.'}
+      };
+    });
+  }
+  var UUID_RE=/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i;
+  async function fetchShared(sid){
+    var r=await Auth.client.rpc('ficha_compartilhada',{p_share:sid});
+    if(r.error)throw r.error;
+    var row=Array.isArray(r.data)?r.data[0]:r.data;
+    if(!row||!row.data)throw {message:'not found'};
+    if(!validState(row.data))throw {message:'invalid'};
+    return {state:row.data,savedAt:Date.parse(row.saved_at)};
+  }
+  async function openShared(sid){
+    try{
+      var f=await fetchShared(sid);
+      loadState(f.state);S.sheetId=null;VIEW={sid:sid,savedAt:f.savedAt,at:Date.now()};
+      show('jogo');
+    }catch(e){
+      VIEW=null;show('inicio');
+      var n=$('draftNote');n.hidden=false;$('draftTxt').textContent=e&&e.message==='not found'?'Esse link de ficha não existe mais: o dono parou de compartilhar.':'Não consegui abrir a ficha compartilhada. Verifique a internet e tente de novo.';
+      $('goDraft').hidden=true;
+    }
+  }
   function rewireMigrate(){
     var b=$('migrate');if(!b)return;
     b.onclick=async function(){
@@ -2845,7 +3112,9 @@ table.atk td:first-child{color:var(--ink)}
     };
   }
   function newSheet(){
+    VIEW=null;
     loadState(null);
+    if(Auth.user)S.info.jogador=profile().nick;
     renderMethods();renderStage();
     show('ficha');goStep(1);
   }
@@ -2868,7 +3137,7 @@ table.atk td:first-child{color:var(--ink)}
   };
   $('saveSheet').onclick=async function(){
     var msg=$('exportMsg');
-    try{await saveCurrent();msg.className='msg';msg.textContent='Ficha salva em Minhas fichas.'}
+    try{if(VIEW){VIEW=null;S.sheetId=null}await saveCurrent();renderFbar();msg.className='msg';msg.textContent='Ficha salva em Minhas fichas.'}
     catch(e){msg.className='msg err';msg.textContent=Store.kind==='cloud'?'Não foi possível salvar na sua conta. Verifique a conexão e tente de novo.':e&&e.message==='quota'?'O navegador ficou sem espaço para fichas. Exporte e exclua fichas antigas, ou use um retrato menor.':'Não foi possível salvar a ficha.'}
   };
 
@@ -2962,6 +3231,7 @@ table.atk td:first-child{color:var(--ink)}
   }
   var saveTimer=null;
   function touch(){
+    if(VIEW)return;
     renderPlay();
     if(S.sheetId){clearTimeout(saveTimer);saveTimer=setTimeout(function(){saveCurrent().catch(function(){})},400)}
   }
@@ -3003,7 +3273,11 @@ table.atk td:first-child{color:var(--ink)}
         '<button class="btn ghost sm" id="restLong">Descanso longo</button>'+
         '<button class="btn sm" id="toSheet">Ver ficha</button>'+
       '</div></div>';
-    $('playBanner').innerHTML=S.sheetId?'':'<div class="note" style="margin:0 0 16px">Esta ficha ainda não está salva, então o progresso da sessão se perde ao fechar a página. <button class="btn sm" id="playSave" style="margin-left:8px">Salvar ficha</button></div>';
+    $('jogo').classList.toggle('viewonly',!!VIEW);
+    if(VIEW){
+      $('playBanner').innerHTML='<div class="note viewnote" style="margin:0 0 16px"><b>Ficha compartilhada, só leitura.</b> Salva pelo dono em '+fmtDate(VIEW.savedAt)+'. As rolagens funcionam, mas nada é alterado. '+
+        '<button class="btn ghost sm" id="viewRefresh">Atualizar</button></div>';
+    }else $('playBanner').innerHTML=S.sheetId?'':'<div class="note" style="margin:0 0 16px">Esta ficha ainda não está salva, então o progresso da sessão se perde ao fechar a página. <button class="btn sm" id="playSave" style="margin-left:8px">Salvar ficha</button></div>';
 
     // coluna 1: vida, morte, concentração, condições
     var pct=Math.max(0,Math.min(100,Math.round(P.hp/k.hp*100)));
@@ -3043,7 +3317,7 @@ table.atk td:first-child{color:var(--ink)}
     }).join('')+'</div></div>';
     c2+='<div class="box"><h4>Ataques'+(k.extraAtk?' <small>2 por ação</small>':'')+(k.crit?' <small>crítico 19–20</small>':'')+'</h4>'+(k.allAttacks.length?'<div class="atklist">'+k.allAttacks.map(function(a,j){
       var isAtk=/^[+−-]\d+$/.test(a.bonus);
-      return '<div class="atkrow"><span class="an">'+a.n+'<small>'+a.dmg+' '+a.type+'</small></span>'+
+      return '<div class="atkrow"><span class="an">'+esc(a.n)+'<small>'+a.dmg+' '+a.type+'</small></span>'+
         (isAtk?'<button class="btn ghost sm" data-r="atk" data-i="'+j+'">'+a.bonus+'</button>':'<span class="cd">'+a.bonus+'</span>')+
         '<button class="btn sm" data-r="dmg" data-i="'+j+'">Dano</button></div>';
     }).join('')+'</div>':'<p class="small" style="margin:0">Sem ataques cadastrados.</p>')+'</div>';
@@ -3164,6 +3438,7 @@ table.atk td:first-child{color:var(--ink)}
     $('exprGo').onclick=goExpr;
     $('exprIn').onkeydown=function(e){if(e.key==='Enter')goExpr()};
     $('toSheet').onclick=function(){show('ficha');goStep(7)};
+    var vr=$('viewRefresh');if(vr)vr.onclick=function(){openShared(VIEW.sid)};
     var ps=$('playSave');if(ps)ps.onclick=async function(){try{await saveCurrent();renderPlay()}catch(e){}};
     var rs=$('restShort');rs.onclick=function(){
       if(!rs.dataset.armed){rs.dataset.armed='1';rs.textContent='Confirmar descanso curto';setTimeout(function(){if(rs.isConnected){delete rs.dataset.armed;rs.textContent='Descanso curto'}},4000);return}
@@ -3190,9 +3465,18 @@ table.atk td:first-child{color:var(--ink)}
     kind:'cloud',
     persistent:function(){return true},
     list:async function(){
-      var r=await Auth.client.from('fichas').select('id,data,saved_at').order('saved_at',{ascending:false});
+      var r=await Auth.client.from('fichas').select('id,data,saved_at,share_id').order('saved_at',{ascending:false});
+      if(r.error){
+        // banco sem a coluna de compartilhamento (script novo ainda não rodado)
+        Auth.noShare=true;
+        r=await Auth.client.from('fichas').select('id,data,saved_at').order('saved_at',{ascending:false});
+        if(r.error)throw r.error;
+      }else Auth.noShare=false;
+      return (r.data||[]).map(function(x){return {id:x.id,v:1,savedAt:Date.parse(x.saved_at),state:x.data,shareId:x.share_id||null}});
+    },
+    setShare:async function(id,val){
+      var r=await Auth.client.from('fichas').update({share_id:val}).eq('id',id);
       if(r.error)throw r.error;
-      return (r.data||[]).map(function(x){return {id:x.id,v:1,savedAt:Date.parse(x.saved_at),state:x.data}});
     },
     save:async function(rec){
       var r=await Auth.client.from('fichas').upsert({id:rec.id,user_id:Auth.user.id,data:rec.state,saved_at:new Date(rec.savedAt).toISOString()});
@@ -3204,13 +3488,26 @@ table.atk td:first-child{color:var(--ink)}
       if(r.error)throw r.error;
     }
   };
+  var EMBLEMS=CLASSES.map(function(c){return c[0]});
+  function profile(){
+    var md=(Auth.user&&Auth.user.user_metadata)||{};
+    var nick=String(md.nickname||'').trim().slice(0,24);
+    var em=EMBLEMS.indexOf(md.emblem)>-1?md.emblem:'';
+    return {nick:nick||(Auth.user&&Auth.user.email||'').split('@')[0],hasNick:!!nick,emblem:em};
+  }
+  function drawAcctBtn(){
+    var b=$('acctBtn');
+    b.hidden=false;
+    if(!Auth.user){b.className='acct';b.innerHTML='<span class="acct-n">Entrar</span>';b.setAttribute('aria-label','Entrar na conta');return}
+    var p=profile();
+    b.className='acct on';
+    b.innerHTML='<span class="acct-av">'+(p.emblem?icon(p.emblem):'<b>'+esc(p.nick.charAt(0).toUpperCase())+'</b>')+'</span><span class="acct-n">'+esc(p.nick)+'</span>';
+    b.setAttribute('aria-label','Perfil de '+p.nick);
+  }
   function setUser(u){
     Auth.user=u||null;
     Store=Auth.user?CloudStore:LocalStore;
-    var b=$('acctBtn');
-    b.hidden=false;
-    b.textContent=Auth.user?(Auth.user.email||'Conta').split('@')[0]:'Entrar';
-    b.classList.toggle('on',!!Auth.user);
+    drawAcctBtn();
     if(!$('fichas').hidden)renderSheets();
     if(!$('conta').hidden)renderAccount();
   }
@@ -3226,6 +3523,9 @@ table.atk td:first-child{color:var(--ink)}
           setUser(session?session.user:null);
         });
         Auth.client.auth.getSession().then(function(r){setUser(r.data&&r.data.session?r.data.session.user:null)});
+        if(!$('mesa').hidden)renderMesa();
+        var vq=new URLSearchParams(location.search).get('ver');
+        if(vq&&UUID_RE.test(vq))openShared(vq.match(UUID_RE)[0]);
       }catch(e){Auth.failed=true;setUser(null)}
     };
     sc.onerror=function(){Auth.failed=true;$('acctBtn').hidden=false};
@@ -3235,7 +3535,8 @@ table.atk td:first-child{color:var(--ink)}
     var m=(e&&e.message)||'';
     if(/Invalid login credentials/i.test(m))return 'E-mail ou senha incorretos.';
     if(/already registered|already been registered/i.test(m))return 'Esse e-mail já tem conta. Use Entrar.';
-    if(/at least 6|password should be/i.test(m))return 'A senha precisa ter pelo menos 6 caracteres.';
+    if(/at least 8|at least 6|password should be|weak/i.test(m))return 'Senha fraca: use pelo menos 8 caracteres, misturando letras e números.';
+    if(/same_password|should be different/i.test(m))return 'A nova senha precisa ser diferente da atual.';
     if(/Email not confirmed/i.test(m))return 'Confirme o e-mail pelo link que enviamos antes de entrar.';
     if(/rate limit|security purposes/i.test(m))return 'Muitas tentativas seguidas. Espere um minuto e tente de novo.';
     if(/fetch|network|Failed/i.test(m))return 'Não consegui falar com o servidor de login. Verifique a internet. (No link do Claude o login não funciona; use o site publicado.)';
@@ -3251,18 +3552,30 @@ table.atk td:first-child{color:var(--ink)}
     }
     if(Auth.mode==='nova'){
       h='<form class="panel aform" id="aForm"><h3>Criar uma nova senha</h3>'+
-        '<label for="aPass">Nova senha</label><input type="password" id="aPass" autocomplete="new-password" minlength="6" required>'+
+        '<label for="aPass">Nova senha</label><input type="password" id="aPass" autocomplete="new-password" minlength="8" required>'+
         '<button class="btn" type="submit">Salvar nova senha</button><p class="msg" id="aMsg"></p></form>';
     }else if(Auth.user){
-      h='<div class="panel"><p style="margin:0 0 6px">Você entrou como <b>'+esc(Auth.user.email||'')+'</b>.</p>'+
-        '<p class="small" style="margin:0 0 14px">Suas fichas ficam salvas na conta e aparecem em qualquer aparelho em que você entrar.</p>'+
-        '<div class="fx-actions"><button class="btn" id="aSheets">Minhas fichas</button><button class="btn ghost" id="aOut">Sair</button></div></div>';
+      var p=profile(),pick=Auth.pickEmblem!==undefined?Auth.pickEmblem:p.emblem;
+      h='<div class="panel prof">'+
+        '<div class="prof-head"><span class="prof-av">'+(pick?icon(pick):'<b>'+esc(p.nick.charAt(0).toUpperCase())+'</b>')+'</span>'+
+        '<div><h3>'+esc(p.nick)+'</h3><p class="sub">'+esc(Auth.user.email||'')+'</p></div></div>'+
+        '<form id="pForm" class="aform">'+
+          '<label for="pNick">Nickname</label><input type="text" id="pNick" maxlength="24" value="'+esc(p.hasNick?p.nick:'')+'" placeholder="Como você quer aparecer">'+
+          '<label>Emblema</label><div class="emb">'+['' ].concat(EMBLEMS).map(function(e){
+            return '<button type="button" class="emb-b" data-em="'+esc(e)+'" aria-pressed="'+(pick===e)+'" title="'+(e||'Inicial do nickname')+'">'+(e?icon(e):'<b>'+esc(p.nick.charAt(0).toUpperCase())+'</b>')+'</button>';
+          }).join('')+'</div>'+
+          '<button class="btn" type="submit">Salvar perfil</button><p class="msg" id="pMsg"></p>'+
+        '</form></div>'+
+        '<form class="panel aform" id="aForm" style="margin-top:22px"><h3>Trocar senha</h3>'+
+          '<label for="aPass">Nova senha</label><input type="password" id="aPass" autocomplete="new-password" minlength="8" required>'+
+          '<button class="btn ghost" type="submit">Trocar senha</button><p class="msg" id="aMsg"></p></form>'+
+        '<div class="fx-actions" style="margin-top:22px"><button class="btn" id="aSheets">Minhas fichas</button><button class="btn ghost" id="aOut">Sair</button></div>';
     }else{
       var signup=Auth.mode==='criar',forgot=Auth.mode==='esqueci';
       h='<form class="panel aform" id="aForm">'+
         '<div class="seg" role="group" aria-label="Entrar ou criar conta"><button type="button" data-am="entrar" aria-pressed="'+(Auth.mode==='entrar')+'">Entrar</button><button type="button" data-am="criar" aria-pressed="'+signup+'">Criar conta</button></div>'+
         '<label for="aEmail">E-mail</label><input type="email" id="aEmail" autocomplete="email" required>'+
-        (forgot?'':'<label for="aPass">Senha</label><input type="password" id="aPass" autocomplete="'+(signup?'new-password':'current-password')+'" minlength="6" required>')+
+        (forgot?'':'<label for="aPass">Senha</label><input type="password" id="aPass" autocomplete="'+(signup?'new-password':'current-password')+'" minlength="'+(signup?8:6)+'" required>'+(signup?'<span class="small" style="margin:0">Use pelo menos 8 caracteres, misturando letras e números.</span>':''))+
         '<button class="btn" type="submit">'+(forgot?'Enviar link para trocar a senha':signup?'Criar conta':'Entrar')+'</button>'+
         (signup?'':'<button type="button" class="linkbtn" data-am="'+(forgot?'entrar':'esqueci')+'">'+(forgot?'Voltar para entrar':'Esqueci minha senha')+'</button>')+
         '<p class="msg" id="aMsg"></p></form>';
@@ -3271,6 +3584,19 @@ table.atk td:first-child{color:var(--ink)}
     box.querySelectorAll('[data-am]').forEach(function(b){b.onclick=function(){Auth.mode=b.dataset.am;renderAccount()}});
     var so=$('aOut');if(so)so.onclick=async function(){await Auth.client.auth.signOut();Auth.mode='entrar'};
     var as=$('aSheets');if(as)as.onclick=function(){show('fichas')};
+    box.querySelectorAll('[data-em]').forEach(function(b){b.onclick=function(){Auth.pickEmblem=b.dataset.em;var v=$('pNick').value;renderAccount();$('pNick').value=v}});
+    var pf=$('pForm');
+    if(pf)pf.onsubmit=async function(e){
+      e.preventDefault();
+      var m=$('pMsg'),nick=$('pNick').value.replace(/\s+/g,' ').trim().slice(0,24);
+      var em=Auth.pickEmblem!==undefined?Auth.pickEmblem:profile().emblem;
+      m.className='msg';m.textContent='Salvando…';
+      try{
+        var r=await Auth.client.auth.updateUser({data:{nickname:nick,emblem:em}});if(r.error)throw r.error;
+        if(r.data&&r.data.user)Auth.user=r.data.user;
+        Auth.pickEmblem=undefined;drawAcctBtn();renderAccount();$('pMsg').textContent='Perfil salvo.';
+      }catch(err){m.className='msg err';m.textContent=authError(err)}
+    };
     var f=$('aForm');
     if(f)f.onsubmit=async function(e){
       e.preventDefault();
@@ -3278,15 +3604,19 @@ table.atk td:first-child{color:var(--ink)}
       msg.className='msg';msg.textContent='Aguarde…';btn.disabled=true;
       try{
         var r;
-        if(Auth.mode==='nova'){
+        if(Auth.mode==='nova'||Auth.user){
+          if(pass.length<8)throw {message:'at least 8'};
           r=await Auth.client.auth.updateUser({password:pass});if(r.error)throw r.error;
-          Auth.mode='entrar';msg.textContent='Senha trocada.';show('fichas');return;
+          var wasReset=Auth.mode==='nova';Auth.mode='entrar';
+          msg.textContent='Senha trocada.';btn.disabled=false;$('aPass').value='';
+          if(wasReset)show('fichas');return;
         }
         if(Auth.mode==='esqueci'){
           r=await Auth.client.auth.resetPasswordForEmail(email,{redirectTo:location.origin+location.pathname});if(r.error)throw r.error;
           msg.textContent='Se existir uma conta com esse e-mail, enviamos um link para trocar a senha.';btn.disabled=false;return;
         }
         if(Auth.mode==='criar'){
+          if(pass.length<8)throw {message:'at least 8'};
           r=await Auth.client.auth.signUp({email:email,password:pass,options:{emailRedirectTo:location.origin+location.pathname}});if(r.error)throw r.error;
           if(!r.data.session){msg.textContent='Conta criada. Enviamos um e-mail de confirmação para '+email+'; abra o link e depois entre aqui.';btn.disabled=false;return}
           show('fichas');return;
@@ -3298,6 +3628,165 @@ table.atk td:first-child{color:var(--ink)}
   }
   $('acctBtn').onclick=function(){show('conta')};
   initAuth();
+
+  // =====================================================================
+  // MODO MESTRE (Mesa): fichas do grupo e controle de iniciativa.
+  // A lista da mesa e o combate ficam salvos neste navegador.
+  // =====================================================================
+  var MESA_KEY='forja-de-fichas:mesa:v1';
+  var MESA=(function(){try{var m=JSON.parse(localStorage.getItem(MESA_KEY)||'null');if(m&&Array.isArray(m.players))return m}catch(e){}return {players:[],combat:{list:[],turn:0,round:1,active:false}}})();
+  var MESA_DATA={},MESA_TIMER=null,MESA_LAST=0;
+  function saveMesa(){try{localStorage.setItem(MESA_KEY,JSON.stringify(MESA))}catch(e){}}
+  function withSheet(st,fn){
+    var old=S;S=freshState();
+    try{loadState(st);return fn()}catch(e){return null}finally{S=old}
+  }
+  function sheetSummary(st){
+    return withSheet(st,function(){
+      var k=calc(),P=S.play||{};
+      return {nome:S.info.nome||'Sem nome',jogador:S.info.jogador||'',cls:k.cn,L:k.L,race:k.r.n,ac:k.ac,
+        hpMax:k.hp,hp:P.hp!=null?Math.min(P.hp,k.hp):k.hp,temp:P.temp||0,passive:k.passive,init:k.init,
+        cond:(P.cond||[]).slice(),conc:P.conc||'',ds:P.ds||{s:0,f:0},insp:!!P.insp,portrait:S.portrait,portraitY:S.portraitY,
+        dc:k.cast?k.cast.dc:null};
+    });
+  }
+  async function loadMesa(){
+    if(!Auth.client){$('mesaMsg').className='msg err';$('mesaMsg').textContent=Auth.failed?'Não consegui carregar o sistema online. Verifique a internet.':'O login não está configurado neste site, então a mesa não consegue buscar fichas.';return}
+    await Promise.all(MESA.players.map(async function(p){
+      try{var f=await fetchShared(p.sid);MESA_DATA[p.sid]={sum:sheetSummary(f.state),savedAt:f.savedAt,state:f.state}}
+      catch(e){MESA_DATA[p.sid]={err:e&&e.message==='not found'?'O jogador parou de compartilhar esta ficha.':'Não consegui carregar esta ficha.'}}
+    }));
+    MESA_LAST=Date.now();
+    if(!$('mesa').hidden)renderMesa(true);
+  }
+  function renderMesa(fromLoad){
+    var missing=MESA.players.some(function(p){return !MESA_DATA[p.sid]});
+    if(!fromLoad&&Auth.client&&MESA.players.length&&(missing||Date.now()-MESA_LAST>15000))loadMesa();
+    clearInterval(MESA_TIMER);
+    MESA_TIMER=setInterval(function(){if($('mesa').hidden){clearInterval(MESA_TIMER);return}loadMesa()},30000);
+    var g=$('mesaGrid');
+    if(!MESA.players.length){
+      g.innerHTML='<div class="empty"><h3>Nenhum jogador na mesa</h3><p>Peça para cada jogador abrir Minhas fichas, clicar em <b>Compartilhar</b> na ficha e te mandar o link. Cole os links acima.</p></div>';
+    }else{
+      g.innerHTML='<div class="mesa-grid">'+MESA.players.map(function(p){
+        var d=MESA_DATA[p.sid];
+        if(!d)return '<article class="pc"><p class="small" style="margin:0">Carregando…</p></article>';
+        if(d.err)return '<article class="pc"><p class="msg err" style="margin:0 0 8px">'+esc(d.err)+'</p><button class="btn ghost sm" data-rm="'+p.sid+'">Tirar da mesa</button></article>';
+        var m=d.sum,img=safeImg(m.portrait),pct=Math.max(0,Math.min(100,Math.round(m.hp/m.hpMax*100)));
+        var down=m.hp===0;
+        return '<article class="pc'+(down?' down':'')+'">'+
+          '<div class="pc-top"><div class="pc-pic">'+(img?'<img src="'+img+'" alt="" style="object-position:50% '+safeY(m.portraitY)+'%">':icon(m.cls))+'</div>'+
+          '<div class="pc-id"><h3>'+esc(m.nome)+'</h3><p>'+esc(m.cls)+' '+m.L+' · '+esc(m.race)+(m.jogador?'<br><small>'+esc(m.jogador)+'</small>':'')+'</p></div>'+
+          '<button class="pc-x" data-rm="'+p.sid+'" aria-label="Tirar '+esc(m.nome)+' da mesa">×</button></div>'+
+          '<div class="pc-hp"><b>'+m.hp+'</b><span>/ '+m.hpMax+' PV</span>'+(m.temp?'<em>+'+m.temp+'</em>':'')+'</div>'+
+          '<div class="hpbar"><i style="width:'+pct+'%"></i></div>'+
+          '<div class="pc-stats"><span><b>'+m.ac+'</b>CA</span><span><b>'+m.passive+'</b>Perc.</span><span><b>'+sgn(m.init)+'</b>Inic.</span>'+(m.dc?'<span><b>'+m.dc+'</b>CD</span>':'')+'</div>'+
+          (down?'<p class="pc-ds">Caído · sucessos '+m.ds.s+'/3 · falhas '+m.ds.f+'/3</p>':'')+
+          (m.conc?'<p class="pc-tag">Concentração: '+esc(m.conc)+'</p>':'')+
+          (m.cond.length?'<div class="pc-cond">'+m.cond.map(function(c){return '<span>'+esc(c)+'</span>'}).join('')+'</div>':'')+
+          (m.insp?'<p class="pc-tag">Inspirado</p>':'')+
+          '<div class="pc-foot"><span class="small">Atualizada '+fmtDate(d.savedAt)+'</span><button class="btn ghost sm" data-see="'+p.sid+'">Ver ficha</button></div>'+
+        '</article>';
+      }).join('')+'</div>';
+    }
+    g.querySelectorAll('[data-rm]').forEach(function(b){b.onclick=function(){
+      var sid=b.dataset.rm;MESA.players=MESA.players.filter(function(p){return p.sid!==sid});
+      MESA.combat.list=MESA.combat.list.filter(function(c){return c.sid!==sid});delete MESA_DATA[sid];saveMesa();renderMesa(true);
+    }});
+    g.querySelectorAll('[data-see]').forEach(function(b){b.onclick=function(){openShared(b.dataset.see)}});
+    renderInit();
+  }
+  $('mesaAdd').onsubmit=function(e){
+    e.preventDefault();
+    var v=$('mesaLink').value,m=v.match(UUID_RE),msg=$('mesaMsg');
+    msg.className='msg';
+    if(!m){msg.className='msg err';msg.textContent='Isso não parece um link de ficha. Ele termina com ?ver= e um código.';return}
+    var sid=m[0].toLowerCase();
+    if(MESA.players.some(function(p){return p.sid===sid})){msg.textContent='Essa ficha já está na mesa.';return}
+    MESA.players.push({sid:sid});saveMesa();$('mesaLink').value='';msg.textContent='Ficha adicionada.';
+    renderMesa(true);loadMesa();
+  };
+  $('mesaRefresh').onclick=function(){loadMesa()};
+
+  // ----- iniciativa -----
+  function cId(){return 'c'+Date.now().toString(36)+Math.random().toString(36).slice(2,5)}
+  function combatant(c){
+    if(c.type==='p'){
+      var d=MESA_DATA[c.sid],m=d&&d.sum;
+      return {name:m?m.nome:'Jogador',ac:m?m.ac:'?',hp:m?m.hp:'?',max:m?m.hpMax:'?',bonus:m?m.init:0,player:true,cond:m?m.cond:[]};
+    }
+    return {name:c.name,ac:c.ac,hp:c.hp,max:c.max,bonus:c.bonus,player:false,cond:[]};
+  }
+  function sortCombat(){
+    MESA.combat.list.sort(function(a,b){
+      var ia=a.init==null?-99:a.init,ib=b.init==null?-99:b.init;
+      return ib-ia||combatant(b).bonus-combatant(a).bonus;
+    });
+  }
+  function renderInit(){
+    var C=MESA.combat,box=$('initBox');
+    var h='<div class="box init"><h4>Iniciativa'+(C.active?' <small>rodada '+C.round+'</small>':'')+'</h4>';
+    h+='<div class="init-act">'+
+      '<button class="btn ghost sm" id="inAddP">Adicionar jogadores da mesa</button>'+
+      '<button class="btn sm" id="inRoll">Rolar iniciativa</button>'+
+      (C.list.length?'<button class="btn sm" id="inNext"'+(C.active?'':' disabled')+'>Próximo turno</button><button class="btn ghost sm" id="inEnd">Encerrar combate</button>':'')+
+    '</div>';
+    if(C.list.length){
+      h+='<ol class="init-list">'+C.list.map(function(c,i){
+        var v=combatant(c),cur=C.active&&i===C.turn;
+        var hp=v.player?'<span class="ih">'+v.hp+'/'+v.max+'</span>':
+          '<span class="ih"><input type="number" class="in-amt" data-i="'+i+'" placeholder="±" aria-label="Valor de dano ou cura"><button class="mini-b" data-dmg="'+i+'" title="Dano">−</button><button class="mini-b" data-heal="'+i+'" title="Cura">+</button><b'+(c.hp<=0?' class="dead"':'')+'>'+c.hp+'</b>/'+c.max+'</span>';
+        return '<li class="'+(cur?'cur ':'')+(v.player?'pl':'mo')+'">'+
+          '<input type="number" class="in-v" data-iv="'+i+'" value="'+(c.init==null?'':c.init)+'" aria-label="Iniciativa de '+esc(v.name)+'">'+
+          '<span class="in-n">'+esc(v.name)+'<small>'+(v.player?'jogador':'criatura')+' · bônus '+sgn(v.bonus)+(v.cond.length?' · '+esc(v.cond.join(', ')):'')+'</small></span>'+
+          '<span class="ia">CA '+v.ac+'</span>'+hp+
+          '<button class="pc-x" data-cx="'+i+'" aria-label="Remover '+esc(v.name)+'">×</button></li>';
+      }).join('')+'</ol>';
+    }else h+='<p class="small">Adicione os jogadores e as criaturas do encontro, depois role a iniciativa.</p>';
+    h+='<form class="mo-add" id="moAdd">'+
+      '<label class="mo-f mo-name">Criatura<input type="text" id="moName" placeholder="Ex.: Goblin" required maxlength="40"></label>'+
+      '<label class="mo-f">Bônus inic.<input type="number" id="moInit" value="0"></label>'+
+      '<label class="mo-f">CA<input type="number" id="moAc" placeholder="10" min="0"></label>'+
+      '<label class="mo-f">PV<input type="number" id="moHp" placeholder="7" min="1"></label>'+
+      '<label class="mo-f">Quantidade<input type="number" id="moQty" value="1" min="1" max="12"></label>'+
+      '<button class="btn ghost sm" type="submit">Adicionar criatura</button></form>';
+    h+='</div>';
+    box.innerHTML=h;
+
+    $('inAddP').onclick=function(){
+      MESA.players.forEach(function(p){if(!C.list.some(function(c){return c.sid===p.sid}))C.list.push({id:cId(),type:'p',sid:p.sid,init:null})});
+      saveMesa();renderInit();
+    };
+    $('inRoll').onclick=function(){
+      C.list.forEach(function(c){var v=combatant(c);c.init=die(20)+(+v.bonus||0)});
+      sortCombat();C.turn=0;C.round=1;C.active=true;saveMesa();renderInit();
+      pushRoll({label:'Iniciativa rolada',total:C.list.length,kind:'info',detail:C.list.map(function(c){return combatant(c).name+' '+c.init}).join(' · ')});
+    };
+    var nx=$('inNext');if(nx)nx.onclick=function(){C.turn++;if(C.turn>=C.list.length){C.turn=0;C.round++}saveMesa();renderInit()};
+    var en=$('inEnd');if(en)en.onclick=function(){
+      if(!en.dataset.armed){en.dataset.armed='1';en.textContent='Confirmar';setTimeout(function(){if(en.isConnected){delete en.dataset.armed;en.textContent='Encerrar combate'}},4000);return}
+      MESA.combat={list:[],turn:0,round:1,active:false};saveMesa();renderInit();
+    };
+    box.querySelectorAll('[data-iv]').forEach(function(inp){inp.onchange=function(){
+      var c=C.list[+inp.dataset.iv],cur=C.active?C.list[C.turn]:null;
+      c.init=inp.value===''?null:+inp.value;sortCombat();if(cur)C.turn=Math.max(0,C.list.indexOf(cur));saveMesa();renderInit();
+    }});
+    function amt(i){var el=box.querySelector('.in-amt[data-i="'+i+'"]');var v=parseInt(el&&el.value,10);return isNaN(v)?0:Math.abs(v)}
+    box.querySelectorAll('[data-dmg]').forEach(function(b){b.onclick=function(){var i=+b.dataset.dmg,c=C.list[i];c.hp=Math.max(0,c.hp-amt(i));saveMesa();renderInit()}});
+    box.querySelectorAll('[data-heal]').forEach(function(b){b.onclick=function(){var i=+b.dataset.heal,c=C.list[i];c.hp=Math.min(c.max,c.hp+amt(i));saveMesa();renderInit()}});
+    box.querySelectorAll('[data-cx]').forEach(function(b){b.onclick=function(){
+      var i=+b.dataset.cx,cur=C.active?C.list[C.turn]:null;C.list.splice(i,1);
+      if(cur&&C.list.indexOf(cur)>-1)C.turn=C.list.indexOf(cur);else C.turn=Math.min(C.turn,Math.max(0,C.list.length-1));
+      if(!C.list.length)C.active=false;saveMesa();renderInit();
+    }});
+    $('moAdd').onsubmit=function(e){
+      e.preventDefault();
+      var name=$('moName').value.trim().slice(0,40),qty=Math.max(1,Math.min(12,parseInt($('moQty').value,10)||1));
+      var hp=Math.max(1,parseInt($('moHp').value,10)||1),ac=Math.max(0,parseInt($('moAc').value,10)||10),b=parseInt($('moInit').value,10)||0;
+      for(var q=1;q<=qty;q++)C.list.push({id:cId(),type:'m',name:qty>1?name+' '+q:name,ac:ac,hp:hp,max:hp,bonus:b,init:null});
+      saveMesa();renderInit();$('moName').focus();
+    };
+  }
 
   // =====================================================================
   // BOTÕES DAS ETAPAS
