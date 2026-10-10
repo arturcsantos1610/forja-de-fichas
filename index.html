@@ -728,6 +728,93 @@ details.sug[open] summary::before{content:"− ";}
 .gift-b{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:14px}
 .give-c{max-width:420px}
 
+/* sessão ao vivo: mapa, tokens, rolagens da mesa */
+.sess{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:16px;align-items:start}
+@media(max-width:980px){.sess{grid-template-columns:1fr}}
+.sess-side{display:flex;flex-direction:column;gap:16px}
+.sess-side .box{margin:0}
+.sess-feed{max-height:360px;overflow-y:auto}
+.sess-feed li em{font-style:normal;font-weight:700;color:var(--ink);margin-right:4px}
+.sess-feed li.empty{display:block;color:var(--silver-dim);font-size:14px}
+.sess-feed .secret{font:600 10px var(--head);letter-spacing:.06em;text-transform:uppercase;color:var(--silver-dim);font-style:normal;border:1px solid var(--line);padding:0 4px;margin-left:4px}
+.sess-live{font:600 10px var(--head);letter-spacing:.06em;text-transform:uppercase;color:var(--silver-dim);margin-left:6px}
+.sess-live.on{color:#6fcf8a}.sess-live.on::before{content:"● "}
+.sess-live.off{color:var(--red-hot)}
+.sess-note{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 14px;margin:0 0 16px}
+.sess-note .chk{display:inline-flex;margin:0 0 0 6px;vertical-align:middle}
+.map-bar{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin-bottom:10px}
+.map-bar[hidden]{display:none}
+.mb-g{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.mb-g select{width:auto;max-width:220px;margin:0}
+.mb-g input[type=text]{width:170px;margin:0}
+.mb-grid{display:flex;align-items:center;gap:6px;font:600 11px var(--head);letter-spacing:.06em;text-transform:uppercase;color:var(--silver-dim)}
+.mb-grid input{width:110px;accent-color:var(--red-hot)}
+.mb-grid span{min-width:44px;font:500 13px var(--body);text-transform:none;letter-spacing:0;color:var(--ink)}
+.mb-col{display:flex;align-items:center;gap:6px;font:600 11px var(--head);letter-spacing:.06em;text-transform:uppercase;color:var(--silver-dim)}
+.mb-col input{width:34px;height:28px;padding:0;border:1px solid var(--line);background:none}
+.vis-on{font:600 11px var(--head);letter-spacing:.06em;text-transform:uppercase;color:#6fcf8a}
+.map-view{position:relative;height:min(68vh,640px);min-height:320px;overflow:hidden;border:1px solid var(--line);background:#08080a radial-gradient(circle at 50% 40%,#141418,#060607);touch-action:none;cursor:grab;user-select:none;-webkit-user-select:none}
+.map-view.panning{cursor:grabbing}
+@media(max-width:640px){.map-view{height:58vh}}
+.map-stage{position:absolute;left:0;top:0;transform-origin:0 0;box-shadow:0 0 0 1px rgba(201,204,209,.18),0 20px 60px rgba(0,0,0,.6)}
+.map-img{display:block;width:100%;height:100%;pointer-events:none}
+.map-load{display:flex;align-items:center;justify-content:center;width:100%;height:100%;color:var(--silver-dim);font-size:20px;background:#0d0d10}
+.map-grid{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(to right,rgba(255,255,255,.16) 1px,transparent 1px),linear-gradient(to bottom,rgba(255,255,255,.16) 1px,transparent 1px)}
+.map-grid[hidden]{display:none}
+.map-toks{position:absolute;inset:0}
+.map-empty{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;color:var(--silver-dim)}
+.map-empty[hidden]{display:none}
+.map-empty h3{color:var(--ink);margin:0 0 8px}
+.map-empty p{max-width:440px;margin:0}
+.map-zoom{position:absolute;right:10px;bottom:10px;display:flex;flex-direction:column;gap:4px;z-index:3}
+.map-zoom .mini-b{width:32px;height:32px;font-size:16px;background:rgba(20,20,24,.9)}
+.tok{position:absolute;border-radius:50%;box-shadow:0 0 0 3px var(--c),0 4px 14px rgba(0,0,0,.7);background:#141418;display:flex;align-items:center;justify-content:center;transition:left .18s ease,top .18s ease}
+.tok img{width:100%;height:100%;border-radius:50%;object-fit:cover;pointer-events:none}
+.tok-i{font:700 18px var(--head);color:var(--ink);pointer-events:none}
+.tok-n{position:absolute;left:50%;top:100%;transform:translate(-50%,6px);white-space:nowrap;font:600 12px var(--body);color:#fff;background:rgba(6,6,7,.82);padding:1px 7px;border:1px solid rgba(201,204,209,.2);pointer-events:none;max-width:180px;overflow:hidden;text-overflow:ellipsis}
+.tok.can{cursor:grab}
+.tok.mine{box-shadow:0 0 0 3px var(--c),0 0 0 6px rgba(255,255,255,.55),0 4px 14px rgba(0,0,0,.7)}
+.tok.sel{box-shadow:0 0 0 3px var(--c),0 0 0 7px var(--red-hot),0 0 24px rgba(229,56,59,.7)}
+.tok.hid{opacity:.45;outline:2px dashed var(--silver-dim);outline-offset:4px}
+.tok.dragging{transition:none;z-index:5;cursor:grabbing;filter:drop-shadow(0 10px 18px rgba(0,0,0,.8))}
+.map-ruler{position:absolute;transform:translate(-50%,-100%);font:700 14px var(--head);color:#fff;background:var(--red);padding:2px 8px;pointer-events:none;z-index:6;white-space:nowrap}
+.map-ruler[hidden]{display:none}
+.map-tok{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:10px}
+.map-tok:empty{display:none}
+.tt-n{font:700 14px var(--head);color:var(--ink);margin-right:4px}
+.tt-sz{display:flex;align-items:center;gap:6px;font-size:14px;color:var(--silver-dim)}
+.tt-sz b{min-width:18px;text-align:center;color:var(--ink)}
+.ftoasts{position:fixed;left:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:41;display:flex;flex-direction:column;gap:8px;max-width:min(340px,calc(100vw - 32px));pointer-events:none}
+.ftoast{display:flex;gap:12px;align-items:center;padding:10px 14px;background:linear-gradient(180deg,#141418,#0b0b0d);border:1px solid var(--line);box-shadow:0 10px 30px rgba(0,0,0,.6);transition:opacity .4s,transform .4s}
+.ftoast .f-v{font:700 26px var(--head);color:var(--ink);min-width:40px;text-align:center}
+.ftoast span{font-size:14px;color:var(--text);line-height:1.3}
+.ftoast em{display:block;font-style:normal;font:700 13px var(--head);letter-spacing:.04em;color:var(--silver-hi)}
+.ftoast small{display:block;font-size:12px;color:var(--silver-dim)}
+.ftoast.crit{border-color:var(--red-hot);background:linear-gradient(180deg,#2a0c10,#120608);box-shadow:0 0 30px -4px rgba(229,56,59,.8)}
+.ftoast.crit .f-v{color:#fff;text-shadow:0 0 14px rgba(229,56,59,.9)}
+.ftoast.fumble{opacity:.85}
+.ftoast.out{opacity:0;transform:translateY(8px)}
+@media(prefers-reduced-motion:no-preference){.ftoast{animation:fin .25s ease-out}@keyframes fin{from{opacity:0;transform:translateX(-12px)}}}
+.celebra{position:fixed;inset:0;z-index:60;pointer-events:none;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.celebra[hidden]{display:none}
+.cb-flash{position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(229,56,59,.45),rgba(229,56,59,0) 60%);opacity:0}
+.cb-burst{position:absolute;left:50%;top:50%}
+.cb-burst i{position:absolute;left:-5px;top:-5px;width:10px;height:10px;background:var(--red-hot);transform:rotate(45deg);opacity:0;box-shadow:0 0 10px rgba(229,56,59,.9)}
+.cb-burst i:nth-child(3n){background:var(--silver-hi);box-shadow:0 0 10px rgba(255,255,255,.7)}
+.cb-burst i:nth-child(4n){background:#d9b45a}
+.cb-t{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;padding:24px 40px;padding:40px 80px;background:radial-gradient(closest-side,rgba(10,4,6,.9),rgba(10,4,6,.6) 55%,rgba(10,4,6,0));opacity:0}
+.cb-t b{font:900 clamp(96px,22vw,180px)/.9 var(--display);color:#fff;text-shadow:0 0 30px rgba(229,56,59,1),0 0 70px rgba(229,56,59,.8)}
+.cb-t span{font:700 clamp(20px,4vw,30px) var(--head);letter-spacing:.24em;text-transform:uppercase;color:var(--red-hot);margin-top:6px}
+.cb-t em{font-style:normal;font:700 clamp(18px,3.4vw,26px) var(--head);color:var(--silver-hi);margin-top:14px}
+.cb-t small{font-size:15px;color:var(--silver);margin-top:4px}
+.celebra.go .cb-flash{animation:cbf 1.4s ease-out forwards}
+.celebra.go .cb-t{animation:cbt 3s ease-out forwards}
+.celebra.go .cb-burst i{animation:cbi var(--t) cubic-bezier(.15,.7,.3,1) forwards}
+@keyframes cbf{0%{opacity:0}15%{opacity:1}100%{opacity:0}}
+@keyframes cbt{0%{opacity:0;transform:scale(.4)}12%{opacity:1;transform:scale(1.12)}20%{transform:scale(1)}80%{opacity:1}100%{opacity:0;transform:scale(1)}}
+@keyframes cbi{0%{opacity:1;transform:rotate(var(--a)) translateX(0) rotate(45deg)}100%{opacity:0;transform:rotate(var(--a)) translateX(var(--d)) rotate(45deg) scale(.4)}}
+@media(prefers-reduced-motion:reduce){.celebra.go .cb-flash,.celebra.go .cb-burst i{animation:none;opacity:0}.celebra.go .cb-t{animation:cbr 3s linear forwards}@keyframes cbr{0%,85%{opacity:1}100%{opacity:0}}}
+
 /* ficha final */
 .pending{border:1px dashed var(--red);background:var(--red-deep);padding:16px 18px;margin-bottom:20px}
 .pending h3{color:var(--ink);margin-bottom:10px}
@@ -1004,6 +1091,8 @@ table.atk td:first-child{color:var(--ink)}
     </div>
   </section>
   <div class="toast" id="rollToast" hidden role="status" aria-live="polite"></div>
+  <div class="ftoasts" id="feedToasts" aria-live="polite"></div>
+  <div class="celebra" id="celebra" hidden aria-hidden="true"></div>
   <div class="dlg-back gift-back" id="gift" hidden><div class="dlg gift" role="alertdialog" aria-modal="true" aria-labelledby="giftT" id="giftBox"></div></div>
   <div class="dlg-back" id="dlg" hidden><div class="dlg" role="dialog" aria-modal="true" aria-labelledby="dlgT" id="dlgBox"></div></div>
 
@@ -3807,6 +3896,8 @@ table.atk td:first-child{color:var(--ink)}
     t.hidden=false;
     clearTimeout(ROLL.timer);ROLL.timer=setTimeout(function(){t.hidden=true},4500);
     var lg=$('rollLog');if(lg)lg.innerHTML=logHtml();
+    if(e.kind==='d20'&&e.nat===20&&!e.celebrated){e.celebrated=true;var rc=rollCtx();celebrate(rc?rc.autor:'',e.label)}
+    sessShare(e);
   }
   function logHtml(){
     if(!ROLL.log.length)return '<p class="small" style="margin:0">Nenhuma rolagem ainda. Clique em qualquer teste, ataque ou dado.</p>';
@@ -3891,6 +3982,17 @@ table.atk td:first-child{color:var(--ink)}
       $('playBanner').innerHTML='<div class="note viewnote" style="margin:0 0 16px"><b>'+esc(VIEW.label||'Ficha compartilhada')+', só leitura.</b> Salva pelo dono em '+fmtDate(VIEW.savedAt)+'. As rolagens funcionam, mas nada é alterado. '+
         '<button class="btn ghost sm" id="viewRefresh">Atualizar</button></div>';
     }else $('playBanner').innerHTML=S.sheetId?'':'<div class="note" style="margin:0 0 16px">Esta ficha ainda não está salva, então o progresso da sessão se perde ao fechar a página. <button class="btn sm" id="playSave" style="margin-left:8px">Salvar ficha</button></div>';
+    // ficha ligada a uma campanha: as rolagens vão para a mesa
+    var linked=!VIEW&&Auth.user?sessCampFor(S.sheetId):null;
+    if(!VIEW&&Auth.user&&Auth.client&&S.sheetId&&CAMP.joined===null&&!CAMP.joinLoad){
+      CAMP.joinLoad=true;campLoadHome().catch(function(){}).then(function(){CAMP.joinLoad=false;if(!$('jogo').hidden&&sessCampFor(S.sheetId))renderPlay()});
+    }
+    if(linked){
+      sessEnsure(linked.id,'pl');
+      $('playBanner').innerHTML+='<div class="note sess-note"><span>Na mesa de <b>'+esc(linked.nome)+'</b>. '+
+        '<label class="chk"><input type="checkbox" id="shareRolls"'+(SESS.share?' checked':'')+'> Mostrar minhas rolagens para o grupo</label></span>'+
+        '<button class="btn ghost sm" id="goMesaPv">Ver o mapa</button></div>';
+    }
 
     // coluna 1: vida, morte, concentração, condições
     var pct=Math.max(0,Math.min(100,Math.round(P.hp/k.hp*100)));
@@ -3963,6 +4065,7 @@ table.atk td:first-child{color:var(--ink)}
       }).join('')+'</div>';
     }
     c3+=invBox(k,!!VIEW);
+    if(linked)c3+='<div class="box"><h4>Rolagens da mesa <span class="sess-live"></span></h4><ul class="rlog sess-feed"></ul></div>';
     c3+='<div class="box dicebox"><h4>Dados</h4><div class="tray">'+[4,6,8,10,12,20,100].map(function(n){return '<button class="dbtn" data-die="'+n+'">d'+n+'</button>'}).join('')+'</div>'+
       '<div class="expr"><input type="text" id="exprIn" placeholder="Ex.: 2d6+3" aria-label="Expressão de dados"><button class="btn sm" id="exprGo">Rolar</button></div>'+
       '<h4 style="margin-top:14px">Histórico</h4><ul class="rlog" id="rollLog">'+logHtml()+'</ul></div>';
@@ -3970,6 +4073,11 @@ table.atk td:first-child{color:var(--ink)}
 
     wirePlay(k);
     wireInv($('pc3'));
+    if(linked){
+      drawFeed();drawLive();
+      var sr=$('shareRolls');if(sr)sr.onchange=function(){setShare(sr.checked)};
+      var gm=$('goMesaPv');if(gm)gm.onclick=function(){MESA_TAB='camp';CAMP.cur=null;CAMP.pv=linked;show('mesa')};
+    }
   }
   function wirePlay(k){
     var P=S.play,jack=k.init-k.m[1];
@@ -4444,7 +4552,7 @@ table.atk td:first-child{color:var(--ink)}
   // bestiário e entrega de itens. Tabelas em supabase-campanhas.sql.
   // =====================================================================
   var MESA_TAB=(function(){try{return localStorage.getItem('forja-de-fichas:mesaTab')==='rapida'?'rapida':'camp'}catch(e){return 'camp'}})();
-  var CAMP={uid:null,mine:null,joined:null,myFichas:null,pend:[],cur:null,members:[],sheets:{},dm:null,ent:[],tab:'grupo',
+  var CAMP={uid:null,pv:null,states:null,joinLoad:false,mine:null,joined:null,myFichas:null,pend:[],cur:null,members:[],sheets:{},dm:null,ent:[],tab:'grupo',
     msg:'',err:'',loading:false,joinCode:'',timer:null,last:0,qty:1,rollHp:false};
   var CODE_ABC='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
   // XP por personagem para cada dificuldade (Regras Básicas / SRD 5.2): nível → [baixa, moderada, alta]
@@ -4461,6 +4569,7 @@ table.atk td:first-child{color:var(--ink)}
   async function dbq(p){var r=await p;if(r.error)throw r.error;return r.data||[]}
   function campErr(e){
     var m=(e&&e.message)||String(e||'');
+    if(/campanha_(mapas|mapa_imagens|tokens|rolagens)/.test(m)&&/does not exist|schema cache|Could not find|relation/i.test(m))return 'As tabelas da sessão ao vivo (mapa e rolagens) ainda não existem no Supabase. Rode o arquivo supabase-sessao.sql no SQL Editor (passo a passo no README).';
     if(/does not exist|schema cache|Could not find the table|relation/i.test(m))return 'As tabelas de campanha ainda não existem no Supabase. Rode o arquivo supabase-campanhas.sql no SQL Editor (passo a passo no README).';
     if(/codigo invalido/i.test(m))return 'Código não encontrado. Confira com o mestre.';
     if(/ficha invalida/i.test(m))return 'Essa ficha não é sua ou não está salva na conta.';
@@ -4480,6 +4589,7 @@ table.atk td:first-child{color:var(--ink)}
   function campReset(){
     clearInterval(CAMP.timer);
     CAMP.mine=null;CAMP.joined=null;CAMP.myFichas=null;CAMP.pend=[];CAMP.cur=null;CAMP.members=[];CAMP.sheets={};CAMP.dm=null;CAMP.ent=[];CAMP.err='';CAMP.msg='';
+    CAMP.pv=null;CAMP.states=null;sessLeave();
   }
   function renderCamp(){
     var box=$('campBox');
@@ -4493,6 +4603,7 @@ table.atk td:first-child{color:var(--ink)}
       $('campLogin').onclick=function(){show('conta')};return;
     }
     if(CAMP.cur){renderCampView(box);return}
+    if(CAMP.pv){renderPlayerView(box);return}
     renderCampHome(box);
   }
   async function campLoadHome(){
@@ -4508,6 +4619,8 @@ table.atk td:first-child{color:var(--ink)}
       return c?{id:c.id,nome:c.nome,descricao:c.descricao,mestre:c.mestre,ficha:m.ficha_id}:null;
     }).filter(Boolean);
     CAMP.myFichas=recs.map(function(r){var s=summary(r.state);return {id:r.id,label:s.nome+' · '+s.cls+' '+s.level}});
+    CAMP.states={};recs.forEach(function(r){CAMP.states[r.id]=r.state});
+    if(CAMP.pv){var pv=CAMP.joined.filter(function(x){return x.id===CAMP.pv.id})[0];CAMP.pv=pv||null;if(!pv)sessLeave()}
   }
   async function campRefreshHome(){
     if(CAMP.loading)return;CAMP.loading=true;
@@ -4547,7 +4660,7 @@ table.atk td:first-child{color:var(--ink)}
     h+=CAMP.joined.length?'<ul class="clist">'+CAMP.joined.map(function(c){
       return '<li><div class="cl-n"><b>'+esc(c.nome)+'</b><small>'+(c.mestre?'Mestre: '+esc(c.mestre):'')+'</small></div>'+
         '<select data-cfic="'+esc(c.id)+'" aria-label="Ficha usada em '+esc(c.nome)+'">'+fichaOpts(c.ficha)+'</select>'+
-        '<button class="btn ghost sm" data-cleave="'+esc(c.id)+'">Sair</button></li>';
+        '<button class="btn sm" data-cpv="'+esc(c.id)+'">Abrir mesa</button><button class="btn ghost sm" data-cleave="'+esc(c.id)+'">Sair</button></li>';
     }).join('')+'</ul>':'<p class="small" style="margin:0 0 12px">Você ainda não está em nenhuma campanha.</p>';
     h+='<form class="cform" id="campJoin"><label class="mo-f">Código do mestre<input type="text" id="cjCode" maxlength="20" required placeholder="XXXX-XXXX-XXXX" value="'+esc(fmtCode(CAMP.joinCode))+'" autocomplete="off" spellcheck="false"></label>'+
       '<label class="mo-f">Ficha que vai jogar<select id="cjFicha">'+fichaOpts((CAMP.myFichas[0]||{}).id)+'</select></label>'+
@@ -4556,6 +4669,7 @@ table.atk td:first-child{color:var(--ink)}
       '</div></div><p class="msg" id="campMsg">'+esc(CAMP.msg)+'</p>';
     box.innerHTML=h;
     box.querySelectorAll('[data-copen]').forEach(function(b){b.onclick=function(){campOpen(b.dataset.copen)}});
+    box.querySelectorAll('[data-cpv]').forEach(function(b){b.onclick=function(){pvOpen(b.dataset.cpv)}});
     box.querySelectorAll('[data-gopen]').forEach(function(b){b.onclick=function(){var r=CAMP.pend.filter(function(x){return x.id===b.dataset.gopen})[0];if(r)showGift(r)}});
     $('campNew').onsubmit=async function(e){
       e.preventDefault();
@@ -4653,7 +4767,8 @@ table.atk td:first-child{color:var(--ink)}
   };
   async function campOpen(id){
     var c=(CAMP.mine||[]).filter(function(x){return x.id===id})[0];if(!c)return;
-    CAMP.cur=c;CAMP.members=[];CAMP.sheets={};CAMP.dm=null;CAMP.ent=[];CAMP.tab='grupo';CAMP.err='';CAMP.msg='';CAMP.last=0;
+    CAMP.cur=c;CAMP.pv=null;CAMP.members=[];CAMP.sheets={};CAMP.dm=null;CAMP.ent=[];CAMP.tab='grupo';CAMP.err='';CAMP.msg='';CAMP.last=0;
+    sessEnsure(c.id,'dm');
     renderCamp();
     await campLoadCur();
   }
@@ -4670,7 +4785,7 @@ table.atk td:first-child{color:var(--ink)}
       CAMP.members=mem;CAMP.sheets=sheets;CAMP.ent=ent;CAMP.last=Date.now();CAMP.err='';
     }catch(e){CAMP.err=campErr(e);if(!CAMP.dm)CAMP.dm=cleanDm(null)}
     CAMP.loading=false;
-    if(campVisible()&&CAMP.cur===c&&!typing())renderCamp();
+    if(campVisible()&&CAMP.cur===c&&!typing()&&CAMP.tab!=='mapa')renderCamp();
   }
   function memberName(uid){
     var m=CAMP.members.filter(function(x){return x.user_id===uid})[0];if(!m)return 'ex-jogador';
@@ -4701,14 +4816,14 @@ table.atk td:first-child{color:var(--ink)}
       '<button class="btn sm" id="campCopy">Copiar link</button><button class="btn ghost sm" id="campCode">Novo código</button></div></div>'+
       '<input type="text" class="invite-l" id="campLink" readonly value="'+esc(link)+'" aria-label="Link de convite">';
     h+=CAMP.err?'<p class="msg err">'+esc(CAMP.err)+'</p>':'';
-    h+='<div class="seg camp-tabs" role="group" aria-label="Seções da campanha">'+[['grupo','Grupo'],['combate','Combate'],['bestiario','Bestiário'],['entregas','Entregas']].map(function(t){
+    h+='<div class="seg camp-tabs" role="group" aria-label="Seções da campanha">'+[['grupo','Grupo'],['mapa','Mapa e rolagens'],['combate','Combate'],['bestiario','Bestiário'],['entregas','Entregas']].map(function(t){
       var n=t[0]==='entregas'?CAMP.ent.filter(function(e){return e.status==='pendente'}).length:0;
       return '<button data-ct="'+t[0]+'" aria-pressed="'+(CAMP.tab===t[0])+'">'+t[1]+(n?' <small>('+n+')</small>':'')+'</button>';
     }).join('')+'</div>';
     h+='<div id="campPane"></div><p class="msg" id="campMsg">'+esc(CAMP.msg)+'</p>'+
       '<div class="camp-danger"><button class="btn ghost sm" id="campDel">Apagar campanha</button></div>';
     box.innerHTML=h;
-    $('campBack').onclick=function(){CAMP.cur=null;CAMP.msg='';CAMP.err='';clearInterval(CAMP.timer);renderCamp();campRefreshHome()};
+    $('campBack').onclick=function(){CAMP.cur=null;CAMP.msg='';CAMP.err='';clearInterval(CAMP.timer);sessLeave();renderCamp();campRefreshHome()};
     $('campCopy').onclick=function(){
       var t='Entre na minha campanha "'+c.nome+'" na Forja de Fichas: '+link+' (código '+fmtCode(c.codigo)+')';
       function ok(){CAMP.msg='Convite copiado. Mande para o grupo.';$('campMsg').textContent=CAMP.msg}
@@ -4732,6 +4847,7 @@ table.atk td:first-child{color:var(--ink)}
     else if(CAMP.tab==='grupo')renderCampGroup(pane);
     else if(CAMP.tab==='combate')renderCampCombat(pane);
     else if(CAMP.tab==='bestiario')renderBestiary(pane);
+    else if(CAMP.tab==='mapa')renderSessPane(pane,'dm');
     else renderCampEnt(pane);
     clearInterval(CAMP.timer);
     CAMP.timer=setInterval(function(){if(!campVisible()||!CAMP.cur){clearInterval(CAMP.timer);return}if(!document.hidden)campLoadCur()},20000);
@@ -4959,7 +5075,7 @@ table.atk td:first-child{color:var(--ink)}
     var g=SHOP.give;if(!g)return;
     try{
       await dbq(db('campanha_entregas').insert({campanha_id:g.cid,para_user:g.uid,item:payload}));
-      SHOP.msg='Enviado para '+g.nome+': '+payload.rotulo+'. O aviso aparece para o jogador em até 30 segundos.';
+      SHOP.msg='Enviado para '+g.nome+': '+payload.rotulo+'. O aviso aparece para o jogador em instantes.';
       campLoadCur();
     }catch(e){SHOP.msg=campErr(e)}
     if(SHOP.open)renderShop();
@@ -4975,6 +5091,7 @@ table.atk td:first-child{color:var(--ink)}
     clearInterval(GIFT.timer);GIFT.seen={};
     if(!Auth.user||!Auth.client)return;
     setTimeout(function(){checkGifts()},800);
+    giftLive();
     GIFT.timer=setInterval(function(){if(!document.hidden)checkGifts()},30000);
   }
   async function checkGifts(quiet){
@@ -5044,6 +5161,584 @@ table.atk td:first-child{color:var(--ink)}
     await Store.save({id:fid,v:1,savedAt:Date.now(),state:st});
   }
   $('gift').addEventListener('click',function(e){if(e.target===$('gift'))closeGift()});
+
+  // =====================================================================
+  // SESSÃO AO VIVO: rolagens compartilhadas e mapa com tokens.
+  // Usa o tempo real do Supabase; se ele falhar, atualiza a cada 4 segundos.
+  // Tabelas em supabase-sessao.sql.
+  // =====================================================================
+  var SESS={cid:null,role:null,ch:null,live:false,poll:null,busy:false,first:true,rolls:[],seen:{},maps:[],tokens:[],
+    imgs:{},imgTry:{},mapId:null,view:{},drag:null,pan:null,tokSel:null,err:'',msg:'',barKey:'',gridT:null,
+    dmSecret:true,share:true,color:'#c1121f'};
+  try{
+    SESS.dmSecret=localStorage.getItem('forja-de-fichas:dmSecret')!=='0';
+    SESS.share=localStorage.getItem('forja-de-fichas:shareRolls')!=='0';
+    var sc0=localStorage.getItem('forja-de-fichas:tokColor');if(/^#[0-9a-f]{6}$/i.test(sc0||''))SESS.color=sc0;
+  }catch(e){}
+  var SIZE_TAM={'Miúdo':0.5,'Pequeno':1,'Médio':1,'Grande':2,'Enorme':3,'Imenso':4};
+  function me(){return Auth.user?Auth.user.id:null}
+  function sessCampFor(fid){if(!fid||!CAMP.joined)return null;return CAMP.joined.filter(function(c){return c.ficha===fid})[0]||null}
+  function clampN(v,a,b,d){v=+v;return isFinite(v)?Math.max(a,Math.min(b,v)):d}
+
+  function sessEnsure(cid,role){
+    if(!Auth.client||!Auth.user||!cid)return;
+    if(SESS.cid===cid&&SESS.role===role)return;
+    sessLeave();
+    SESS.cid=cid;SESS.role=role;SESS.first=true;SESS.rolls=[];SESS.seen={};SESS.maps=[];SESS.tokens=[];
+    SESS.mapId=null;SESS.tokSel=null;SESS.err='';SESS.msg='';SESS.barKey='';
+    sessSubscribe();sessLoad();
+  }
+  function sessLeave(){
+    if(SESS.ch&&Auth.client&&Auth.client.removeChannel){try{Auth.client.removeChannel(SESS.ch)}catch(e){}}
+    clearTimeout(SESS.poll);
+    SESS.ch=null;SESS.live=false;SESS.poll=null;SESS.cid=null;SESS.role=null;SESS.drag=null;SESS.pan=null;
+  }
+  function sessSubscribe(){
+    var cid=SESS.cid,f='campanha_id=eq.'+cid;
+    if(Auth.client.channel){
+      try{
+        SESS.ch=Auth.client.channel('sessao-'+cid)
+          .on('postgres_changes',{event:'INSERT',schema:'public',table:'campanha_rolagens',filter:f},function(p){if(SESS.cid===cid)addRoll(p.new,true)})
+          .on('postgres_changes',{event:'*',schema:'public',table:'campanha_tokens',filter:f},function(p){if(SESS.cid===cid)tokEvent(p)})
+          .on('postgres_changes',{event:'*',schema:'public',table:'campanha_mapas',filter:f},function(p){if(SESS.cid===cid)mapEvent(p)})
+          .on('broadcast',{event:'sync'},function(){if(SESS.cid===cid)sessLoad()})
+          .subscribe(function(st){if(SESS.cid!==cid)return;var was=SESS.live;SESS.live=st==='SUBSCRIBED';if(was!==SESS.live){sessSchedule();drawLive()}});
+      }catch(e){SESS.live=false}
+    }
+    sessSchedule();
+  }
+  // sem tempo real, confere a cada 4 s; com tempo real, só reconcilia a cada 20 s
+  function sessSchedule(){
+    clearTimeout(SESS.poll);if(!SESS.cid)return;
+    SESS.poll=setTimeout(function(){if(!SESS.cid)return;if(document.hidden)sessSchedule();else sessLoad()},SESS.live?20000:4000);
+  }
+  async function sessLoad(){
+    var cid=SESS.cid;if(!cid||SESS.busy)return;SESS.busy=true;
+    try{
+      var rolls=await dbq(db('campanha_rolagens').select('id,user_id,autor,rotulo,total,nat,detalhe,tipo,secreta,criada_em').eq('campanha_id',cid).order('id',{ascending:false}).limit(30));
+      var maps=await dbq(db('campanha_mapas').select('id,nome,largura,altura,grade,ativo,criada_em').eq('campanha_id',cid).order('criada_em',{ascending:true}));
+      var toks=await dbq(db('campanha_tokens').select('id,mapa_id,dono,nome,imagem,cor,tamanho,x,y,oculto').eq('campanha_id',cid));
+      if(SESS.cid!==cid){SESS.busy=false;return}
+      var first=SESS.first;SESS.first=false;
+      rolls.slice().reverse().forEach(function(x){addRoll(x,!first,true)});
+      SESS.maps=maps.map(cleanMap).filter(Boolean);
+      var dragId=SESS.drag&&SESS.drag.id;
+      SESS.tokens=toks.map(cleanTok).filter(Boolean).map(function(t){return t.id===dragId?(tokById(dragId)||t):t});
+      if(SESS.tokSel&&!tokById(SESS.tokSel))SESS.tokSel=null;
+      SESS.err='';
+    }catch(e){if(SESS.cid===cid)SESS.err=campErr(e)}
+    SESS.busy=false;
+    if(SESS.cid===cid){drawMap();drawFeed();drawLive();sessSchedule()}
+  }
+
+  // ---------- rolagens ----------
+  function cleanRoll(x){
+    if(!x||typeof x!=='object'||x.id==null)return null;
+    return {id:String(x.id),n:+x.id||0,uid:String(x.user_id||''),autor:String(x.autor||'?').slice(0,60),rotulo:String(x.rotulo||'').slice(0,120),
+      total:parseInt(x.total,10)||0,nat:x.nat==null?null:parseInt(x.nat,10),detalhe:String(x.detalhe||'').slice(0,300),
+      tipo:x.tipo==='dano'?'dano':'d20',secreta:!!x.secreta,at:Date.parse(x.criada_em)||Date.now()};
+  }
+  function addRoll(x,live,bulk){
+    var r=cleanRoll(x);if(!r||SESS.seen[r.id])return;SESS.seen[r.id]=1;
+    SESS.rolls.push(r);SESS.rolls.sort(function(a,b){return b.n-a.n||b.at-a.at});SESS.rolls=SESS.rolls.slice(0,40);
+    if(live&&r.uid!==me()){
+      feedToast(r);
+      if(r.tipo==='d20'&&r.nat===20)celebrate(r.autor,r.rotulo);
+    }
+    if(!bulk)drawFeed();
+  }
+  // contexto de quem está rolando agora: ficha em jogo, mestre ou jogador na mesa
+  function rollCtx(){
+    if(!Auth.user||!SESS.cid)return null;
+    if(!$('jogo').hidden){
+      if(VIEW||!SESS.share)return null;
+      var c=sessCampFor(S.sheetId);
+      return c&&c.id===SESS.cid?{cid:c.id,autor:S.info.nome||'Sem nome',secret:false}:null;
+    }
+    if(!$('mesa').hidden&&MESA_TAB==='camp'){
+      if(SESS.role==='dm'&&CAMP.cur&&CAMP.cur.id===SESS.cid)return {cid:SESS.cid,autor:'Mestre',secret:SESS.dmSecret};
+      if(SESS.role==='pl'&&CAMP.pv&&CAMP.pv.id===SESS.cid&&SESS.share)return {cid:SESS.cid,autor:pvName(),secret:false};
+    }
+    return null;
+  }
+  function sessShare(e){
+    if(!e||e.shared||(e.kind!=='d20'&&e.kind!=='dmg'))return;
+    var c=rollCtx();if(!c)return;
+    e.shared=true;
+    var row={campanha_id:c.cid,autor:String(c.autor||'?').slice(0,60),rotulo:String(e.label||'').slice(0,120),
+      total:Math.round(clampN(e.total,-100,100000,0)),nat:e.kind==='d20'?e.nat:null,detalhe:String(e.detail||'').slice(0,300),
+      tipo:e.kind==='d20'?'d20':'dano',secreta:!!c.secret};
+    db('campanha_rolagens').insert(row).select('id,user_id,autor,rotulo,total,nat,detalhe,tipo,secreta,criada_em').then(function(res){
+      if(res.error){SESS.err=campErr(res.error);drawLive();return}
+      (res.data||[]).forEach(function(x){addRoll(x,false)});
+    });
+  }
+  function feedHtml(){
+    if(!SESS.rolls.length)return '<li class="empty"><span>Nenhuma rolagem ainda. Quando alguém rolar, aparece aqui para todos.</span></li>';
+    var mine=me();
+    return SESS.rolls.map(function(r){
+      var c=r.tipo==='d20'&&r.nat===20?' crit':r.tipo==='d20'&&r.nat===1?' fumble':'';
+      return '<li class="'+c+'"><b>'+r.total+'</b><span><em>'+esc(r.autor)+(r.uid===mine?' (você)':'')+'</em> '+esc(r.rotulo)+(r.secreta?' <i class="secret">secreta</i>':'')+
+        '<small>'+esc(r.detalhe)+' · '+new Date(r.at).toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})+'</small></span></li>';
+    }).join('');
+  }
+  function drawFeed(){document.querySelectorAll('.sess-feed').forEach(function(ul){ul.innerHTML=feedHtml()})}
+  function drawLive(){
+    document.querySelectorAll('.sess-live').forEach(function(el){
+      el.textContent=SESS.err?'sem conexão':SESS.live?'ao vivo':'atualiza a cada 4 s';
+      el.className='sess-live'+(SESS.err?' off':SESS.live?' on':'');
+    });
+    var m=$('sessErr');if(m){m.textContent=SESS.err||SESS.msg||'';m.className='msg'+(SESS.err?' err':'')}
+  }
+  function feedToast(r){
+    var box=$('feedToasts');if(!box)return;
+    var el=document.createElement('div');
+    el.className='ftoast'+(r.tipo==='d20'&&r.nat===20?' crit':r.tipo==='d20'&&r.nat===1?' fumble':'');
+    el.innerHTML='<b class="f-v">'+r.total+'</b><span><em>'+esc(r.autor)+'</em>'+esc(r.rotulo)+(r.secreta?' (secreta)':'')+'<small>'+esc(r.detalhe)+'</small></span>';
+    box.appendChild(el);
+    while(box.children.length>3)box.removeChild(box.firstChild);
+    setTimeout(function(){el.classList.add('out');setTimeout(function(){if(el.parentNode)el.parentNode.removeChild(el)},450)},6500);
+  }
+  var CELEB=null;
+  function celebrate(autor,rotulo){
+    var o=$('celebra');if(!o)return;
+    var parts='';
+    for(var i=0;i<28;i++){
+      var a=Math.round(Math.random()*360),d=140+Math.round(Math.random()*260);
+      parts+='<i style="--a:'+a+'deg;--d:'+d+'px;--t:'+(0.7+Math.random()*0.8).toFixed(2)+'s"></i>';
+    }
+    o.innerHTML='<div class="cb-flash"></div><div class="cb-burst">'+parts+'</div><div class="cb-t"><b>20</b><span>natural!</span>'+
+      (autor?'<em>'+esc(autor)+'</em>':'')+(rotulo?'<small>'+esc(rotulo)+'</small>':'')+'</div>';
+    o.hidden=false;o.classList.remove('go');void o.offsetWidth;o.classList.add('go');
+    clearTimeout(CELEB);CELEB=setTimeout(function(){o.hidden=true;o.classList.remove('go')},3000);
+    try{if(navigator.vibrate)navigator.vibrate([70,40,160])}catch(e){}
+  }
+
+  // ---------- mapas e tokens ----------
+  function cleanMap(m){
+    if(!m||typeof m!=='object'||!m.id)return null;
+    return {id:String(m.id),nome:String(m.nome||'Mapa').slice(0,60)||'Mapa',w:Math.round(clampN(m.largura,50,4000,1000)),h:Math.round(clampN(m.altura,50,4000,800)),
+      grade:Math.round(clampN(m.grade,0,400,70)),ativo:!!m.ativo,at:Date.parse(m.criada_em)||0};
+  }
+  function cleanTok(t){
+    if(!t||typeof t!=='object'||!t.id)return null;
+    return {id:String(t.id),mapa:String(t.mapa_id||''),dono:t.dono?String(t.dono):null,nome:String(t.nome||'').slice(0,40),img:safeImg(t.imagem),
+      cor:/^#[0-9a-f]{6}$/i.test(t.cor||'')?t.cor:'#c1121f',tam:clampN(t.tamanho,0.5,4,1),x:clampN(t.x,-1000,5000,0),y:clampN(t.y,-1000,5000,0),oculto:!!t.oculto};
+  }
+  function tokById(id){return SESS.tokens.filter(function(t){return t.id===id})[0]||null}
+  function tokEvent(p){
+    var ev=p&&p.eventType;
+    if(ev==='DELETE'){var oid=p.old&&p.old.id;SESS.tokens=SESS.tokens.filter(function(t){return t.id!==String(oid)});if(SESS.tokSel===String(oid))SESS.tokSel=null;drawTokens();return}
+    var t=cleanTok(p&&p.new);if(!t)return;
+    if(SESS.drag&&SESS.drag.id===t.id)return;
+    var i=SESS.tokens.map(function(x){return x.id}).indexOf(t.id);
+    if(i>-1)SESS.tokens[i]=t;else SESS.tokens.push(t);
+    drawTokens();
+  }
+  function mapEvent(p){
+    var ev=p&&p.eventType;
+    if(ev==='DELETE'){var oid=String(p.old&&p.old.id);SESS.maps=SESS.maps.filter(function(m){return m.id!==oid});drawMap();return}
+    var m=cleanMap(p&&p.new);if(!m)return;
+    if(m.ativo)SESS.maps.forEach(function(x){if(x.id!==m.id)x.ativo=false});
+    var i=SESS.maps.map(function(x){return x.id}).indexOf(m.id);
+    if(i>-1)SESS.maps[i]=m;else SESS.maps.push(m);
+    if(SESS.role!=='dm')SESS.maps=SESS.maps.filter(function(x){return x.ativo});
+    drawMap();
+  }
+  function currentMap(){
+    if(SESS.role==='dm'){
+      var sel=SESS.maps.filter(function(m){return m.id===SESS.mapId})[0];
+      return sel||SESS.maps.filter(function(m){return m.ativo})[0]||SESS.maps[SESS.maps.length-1]||null;
+    }
+    return SESS.maps.filter(function(m){return m.ativo})[0]||null;
+  }
+  function gridOf(m){return m.grade||70}
+  function tokPx(t,m){return gridOf(m)*t.tam}
+  function initials(n){var w=String(n||'?').trim().split(/\s+/);return ((w[0]||'?').charAt(0)+(w[1]?w[1].charAt(0):'')).toUpperCase()}
+  function myTok(m){var u=me();return m?SESS.tokens.filter(function(t){return t.mapa===m.id&&t.dono===u})[0]||null:null}
+  function canMove(t){return SESS.role==='dm'||(t.dono&&t.dono===me())}
+  function loadMapImg(id){
+    if(SESS.imgs[id]||SESS.imgTry[id]==='busy')return;
+    var tries=SESS.imgTry[id]||0;if(tries>=4)return;
+    SESS.imgTry[id]='busy';
+    db('campanha_mapa_imagens').select('imagem').eq('mapa_id',id).then(function(r){
+      var u=r.data&&r.data[0]&&r.data[0].imagem;
+      if(u&&IMG_RE.test(u)){SESS.imgs[id]=u;SESS.imgTry[id]=0;drawMap()}
+      else{SESS.imgTry[id]=tries+1;setTimeout(function(){if(currentMap()&&currentMap().id===id){drawMap()}},2500)}
+    });
+  }
+  function viewOf(m){
+    if(!SESS.view[m.id]){
+      var v=$('mapView'),vw=v?v.clientWidth:800,vh=v?v.clientHeight:500,z=Math.min(1,vw/m.w,vh/m.h)||1;
+      SESS.view[m.id]={z:z,x:(vw-m.w*z)/2,y:(vh-m.h*z)/2};
+    }
+    return SESS.view[m.id];
+  }
+  function applyView(){
+    var m=currentMap(),st=$('mapStage');if(!m||!st)return;
+    var V=viewOf(m);st.style.transform='translate('+V.x+'px,'+V.y+'px) scale('+V.z+')';
+  }
+  function zoomAt(m,f,cx,cy){
+    var V=viewOf(m),z=Math.max(0.1,Math.min(4,V.z*f));
+    V.x=cx-(cx-V.x)*(z/V.z);V.y=cy-(cy-V.y)*(z/V.z);V.z=z;applyView();
+  }
+  function fitView(m){delete SESS.view[m.id];viewOf(m);applyView()}
+
+  function renderSessPane(pane,role){
+    var dm=role==='dm';SESS.barKey='';
+    pane.innerHTML='<div class="sess">'+
+      '<div class="sess-main">'+
+        '<div class="map-bar" id="mapBar"></div>'+
+        '<div class="map-view" id="mapView" aria-label="Mapa da sessão"><div class="map-stage" id="mapStage"></div><div class="map-empty" id="mapEmpty" hidden></div>'+
+          '<div class="map-zoom"><button class="mini-b" data-mz="in" aria-label="Aproximar">+</button><button class="mini-b" data-mz="out" aria-label="Afastar">−</button><button class="mini-b" data-mz="fit" aria-label="Ajustar à tela" title="Ajustar">⤢</button></div></div>'+
+        '<div class="map-tok" id="mapTok"></div>'+
+        '<p class="msg" id="sessErr" role="status"></p>'+
+      '</div>'+
+      '<aside class="sess-side">'+
+        '<div class="box"><h4>Rolagens da mesa <span class="sess-live"></span></h4>'+
+          (dm?'<label class="chk" style="margin:0 0 10px"><input type="checkbox" id="dmSecret"'+(SESS.dmSecret?' checked':'')+'> Minhas rolagens ficam secretas (só eu vejo)</label>':
+            '<label class="chk" style="margin:0 0 10px"><input type="checkbox" id="shareRolls2"'+(SESS.share?' checked':'')+'> Mostrar minhas rolagens para o grupo</label>')+
+          '<ul class="rlog sess-feed"></ul></div>'+
+        (dm?'':'<div class="box dicebox"><h4>Dados</h4><div class="tray">'+[4,6,8,10,12,20,100].map(function(n){return '<button class="dbtn" data-sdie="'+n+'">d'+n+'</button>'}).join('')+'</div>'+
+          '<div class="expr"><input type="text" id="sExpr" placeholder="Ex.: 1d20+5" aria-label="Expressão de dados"><button class="btn sm" id="sExprGo">Rolar</button></div>'+
+          '<p class="small" style="margin:8px 0 0">Para rolar testes e ataques com os bônus da ficha, use <b>Jogar com minha ficha</b>: as rolagens de lá também aparecem aqui.</p></div>')+
+      '</aside></div>';
+    var ds=$('dmSecret');if(ds)ds.onchange=function(){SESS.dmSecret=ds.checked;try{localStorage.setItem('forja-de-fichas:dmSecret',ds.checked?'1':'0')}catch(e){}};
+    var sr=$('shareRolls2');if(sr)sr.onchange=function(){setShare(sr.checked)};
+    pane.querySelectorAll('[data-sdie]').forEach(function(b){b.onclick=function(){var n=+b.dataset.sdie;if(n===20)rollD20('d20',0);else rollExpr('d'+n,'1d'+n)}});
+    var sx=$('sExpr');
+    function goE(){var v=sx.value.trim();if(!v)return;if(!rollExpr(v,v))pushRoll({label:'Expressão inválida',total:'?',kind:'info',detail:'Use algo como 2d6+3 ou 1d20+5.'})}
+    if(sx){$('sExprGo').onclick=goE;sx.onkeydown=function(e){if(e.key==='Enter')goE()}}
+    pane.querySelectorAll('[data-mz]').forEach(function(b){b.onclick=function(){
+      var m=currentMap();if(!m)return;var v=$('mapView');
+      if(b.dataset.mz==='fit')fitView(m);else zoomAt(m,b.dataset.mz==='in'?1.25:0.8,v.clientWidth/2,v.clientHeight/2);
+    }});
+    wireMapView();
+    drawMap();drawFeed();drawLive();
+  }
+  function setShare(on){
+    SESS.share=on;try{localStorage.setItem('forja-de-fichas:shareRolls',on?'1':'0')}catch(e){}
+    document.querySelectorAll('#shareRolls,#shareRolls2').forEach(function(x){x.checked=on});
+  }
+  // avisa as outras telas para recarregar (quando algo some da vista dos jogadores)
+  function sessPing(){try{if(SESS.ch&&SESS.ch.send)SESS.ch.send({type:'broadcast',event:'sync',payload:{}})}catch(e){}}
+  function sessMsg(t,err){SESS.msg=err?'':t;SESS.err=err?t:'';drawLive()}
+
+  function drawMap(){
+    var view=$('mapView'),stage=$('mapStage');if(!view||!stage)return;
+    var m=currentMap(),dm=SESS.role==='dm',empty=$('mapEmpty');
+    drawBar(m);
+    if(!m){
+      stage.innerHTML='';stage.dataset.map='';stage.style.display='none';
+      empty.innerHTML=dm?'<h3>Nenhum mapa ainda</h3><p>Envie a imagem de um mapa, de uma rua ou de uma casa. Os jogadores só veem o mapa que você mostrar.</p>':
+        '<h3>O mestre ainda não mostrou um mapa</h3><p>Quando ele mostrar, o mapa aparece aqui sozinho. Enquanto isso, as rolagens do grupo aparecem ao lado.</p>';
+      empty.hidden=false;$('mapTok').innerHTML='';return;
+    }
+    empty.hidden=true;stage.style.display='';
+    var img=SESS.imgs[m.id];if(!img)loadMapImg(m.id);
+    var key=m.id+'|'+(img?1:0);
+    if(stage.dataset.map!==key){
+      stage.dataset.map=key;stage.style.width=m.w+'px';stage.style.height=m.h+'px';
+      stage.innerHTML=(img?'<img class="map-img" src="'+img+'" alt="'+esc(m.nome)+'" draggable="false">':'<div class="map-load">'+(SESS.imgTry[m.id]>=4?'Não consegui baixar a imagem deste mapa.':'Carregando o mapa…')+'</div>')+
+        '<div class="map-grid" id="mapGrid"></div><div class="map-toks" id="mapToks"></div><div class="map-ruler" id="mapRuler" hidden></div>';
+    }
+    var gr=$('mapGrid');gr.hidden=!m.grade;if(m.grade)gr.style.backgroundSize=m.grade+'px '+m.grade+'px';
+    applyView();drawTokens();
+  }
+  function drawBar(m){
+    var bar=$('mapBar');if(!bar)return;
+    var dm=SESS.role==='dm',mine=myTok(m);
+    var key=JSON.stringify([dm,SESS.maps.map(function(x){return [x.id,x.nome,x.ativo,x.grade]}),m&&m.id,!!mine,pvFicha(),SESS.color]);
+    if(key===SESS.barKey)return;SESS.barKey=key;
+    var h='';
+    if(dm){
+      h+='<div class="mb-g">'+(SESS.maps.length?'<select id="mapSel" aria-label="Mapa">'+SESS.maps.map(function(x){return '<option value="'+esc(x.id)+'"'+(m&&x.id===m.id?' selected':'')+'>'+esc(x.nome)+(x.ativo?' • visível':'')+'</option>'}).join('')+'</select>':'')+
+        '<label class="btn '+(SESS.maps.length?'ghost ':'')+'sm" for="mapFile">Enviar mapa</label><input type="file" id="mapFile" accept="image/*" hidden></div>';
+      if(m){
+        h+='<div class="mb-g">'+(m.ativo?'<span class="vis-on">Visível para os jogadores</span><button class="btn ghost sm" id="mapHide">Esconder</button>':'<button class="btn sm" id="mapShow">Mostrar aos jogadores</button>')+'</div>'+
+          '<div class="mb-g"><label class="mb-grid">Grade <input type="range" id="mapGr" min="20" max="200" step="1" value="'+(m.grade||70)+'"'+(m.grade?'':' disabled')+'><span id="mapGrV">'+(m.grade?m.grade+' px':'sem')+'</span></label>'+
+          '<label class="chk" style="margin:0"><input type="checkbox" id="mapGrOn"'+(m.grade?' checked':'')+'> Grade</label></div>'+
+          '<div class="mb-g"><button class="btn ghost sm" id="mapMons">Criaturas do combate</button>'+
+          '<input type="text" id="mapNpcN" maxlength="40" placeholder="Outro token (ex.: Guarda)" aria-label="Nome do token"><button class="btn ghost sm" id="mapNpc">Pôr no mapa</button>'+
+          '<button class="btn ghost sm" id="mapDel">Apagar mapa</button></div>';
+      }
+    }else{
+      var fid=pvFicha();
+      if(m){
+        h+='<div class="mb-g">'+(fid?'<button class="btn sm" id="tokMine">'+(mine?'Atualizar meu token':'Colocar meu personagem')+'</button>'+
+          '<label class="mb-col" title="Cor do anel do token">Cor <input type="color" id="tokColor" value="'+esc(SESS.color)+'"></label>'+
+          '<label class="btn ghost sm" for="tokFile">Imagem própria</label><input type="file" id="tokFile" accept="image/*" hidden>':
+          '<span class="small" style="margin:0">Escolha a ficha que você leva nesta campanha (na lista de campanhas) para colocar seu token.</span>')+'</div>'+
+          '<div class="mb-g"><span class="small" style="margin:0">Arraste o seu token. Arraste o fundo para mover o mapa; use a roda do mouse ou os botões para zoom.</span></div>';
+      }
+    }
+    bar.innerHTML=h;bar.hidden=!h;
+    var sel=$('mapSel');if(sel)sel.onchange=function(){SESS.mapId=sel.value;SESS.tokSel=null;drawMap()};
+    var mf=$('mapFile');if(mf)mf.onchange=function(){var f=this.files&&this.files[0];this.value='';if(f)addMap(f)};
+    var ms=$('mapShow');if(ms)ms.onclick=function(){setActiveMap(m.id)};
+    var mh=$('mapHide');if(mh)mh.onclick=function(){setActiveMap(null)};
+    var gr=$('mapGr');if(gr)gr.oninput=function(){var v=+gr.value;m.grade=v;$('mapGrV').textContent=v+' px';var g=$('mapGrid');if(g)g.style.backgroundSize=v+'px '+v+'px';drawTokens();saveGrid(m)};
+    var go=$('mapGrOn');if(go)go.onchange=function(){m.grade=go.checked?70:0;SESS.barKey='';drawMap();saveGrid(m)};
+    var mm=$('mapMons');if(mm)mm.onclick=function(){addCombatTokens(m)};
+    var nn=$('mapNpc');if(nn)nn.onclick=function(){var n=$('mapNpcN').value.trim().slice(0,40);if(!n){$('mapNpcN').focus();return}addDmToken(m,n,1,'#5d6068')};
+    var md=$('mapDel');if(md)md.onclick=function(){
+      if(!md.dataset.armed){md.dataset.armed='1';md.textContent='Confirmar: apagar o mapa e os tokens';setTimeout(function(){if(md.isConnected){delete md.dataset.armed;md.textContent='Apagar mapa'}},4000);return}
+      delMap(m);
+    };
+    var tm=$('tokMine');if(tm)tm.onclick=function(){placeMine(m,null)};
+    var tc=$('tokColor');if(tc)tc.onchange=function(){SESS.color=tc.value;try{localStorage.setItem('forja-de-fichas:tokColor',tc.value)}catch(e){}SESS.barKey='';if(myTok(m))placeMine(m,null)};
+    var tf=$('tokFile');if(tf)tf.onchange=function(){
+      var f=this.files&&this.files[0];this.value='';if(!f)return;
+      if(!/^image\//.test(f.type)){sessMsg('Escolha um arquivo de imagem.',true);return}
+      shrinkImage(f,256,0.9).then(function(u){placeMine(m,u)}).catch(function(){sessMsg('Não consegui abrir essa imagem.',true)});
+    };
+  }
+  function drawTokens(){
+    var box=$('mapToks'),m=currentMap();if(!box||!m)return;
+    var dm=SESS.role==='dm',u=me();
+    var list=SESS.tokens.filter(function(t){return t.mapa===m.id&&(dm||!t.oculto||t.dono===u)});
+    box.innerHTML=list.map(function(t){
+      var s=tokPx(t,m),mine=t.dono&&t.dono===u;
+      return '<div class="tok'+(t.oculto?' hid':'')+(mine?' mine':'')+(canMove(t)?' can':'')+(SESS.tokSel===t.id?' sel':'')+'" data-tid="'+esc(t.id)+'" style="left:'+(t.x-s/2)+'px;top:'+(t.y-s/2)+'px;width:'+s+'px;height:'+s+'px;--c:'+t.cor+'">'+
+        (t.img?'<img src="'+t.img+'" alt="" draggable="false">':'<span class="tok-i" style="font-size:'+Math.max(10,Math.round(s*0.34))+'px">'+esc(initials(t.nome))+'</span>')+
+        '<span class="tok-n">'+esc(t.nome)+(t.oculto?' (oculto)':'')+'</span></div>';
+    }).join('');
+    drawTokTools(m);
+  }
+  function drawTokTools(m){
+    var box=$('mapTok');if(!box)return;
+    var t=SESS.tokSel&&tokById(SESS.tokSel);
+    if(!t||!m||t.mapa!==m.id||!canMove(t)){box.innerHTML='';return}
+    var dm=SESS.role==='dm';
+    box.innerHTML='<span class="tt-n">'+esc(t.nome)+'</span>'+
+      (dm?'<button class="btn ghost sm" data-tt="hide">'+(t.oculto?'Mostrar aos jogadores':'Ocultar dos jogadores')+'</button>'+
+        '<span class="tt-sz">Tamanho <button class="mini-b" data-tt="sm" aria-label="Menor">−</button><b>'+fmtTam(t.tam)+'</b><button class="mini-b" data-tt="lg" aria-label="Maior">+</button></span>':'')+
+      '<button class="btn ghost sm" data-tt="del">Tirar do mapa</button><button class="mini-b" data-tt="x" aria-label="Fechar">×</button>';
+    box.querySelectorAll('[data-tt]').forEach(function(b){b.onclick=function(){tokAction(t,b.dataset.tt)}});
+  }
+  function fmtTam(v){return v===0.5?'½':String(v)}
+  async function tokAction(t,a){
+    if(a==='x'){SESS.tokSel=null;drawTokens();return}
+    try{
+      if(a==='del'){await dbq(db('campanha_tokens').delete().eq('id',t.id));SESS.tokens=SESS.tokens.filter(function(x){return x.id!==t.id});SESS.tokSel=null;sessPing()}
+      else if(a==='hide'){t.oculto=!t.oculto;await dbq(db('campanha_tokens').update({oculto:t.oculto,atualizado_em:new Date().toISOString()}).eq('id',t.id));sessPing()}
+      else{var steps=[0.5,1,2,3,4],i=steps.indexOf(t.tam);i=Math.max(0,Math.min(4,(i<0?1:i)+(a==='lg'?1:-1)));t.tam=steps[i];
+        await dbq(db('campanha_tokens').update({tamanho:t.tam,atualizado_em:new Date().toISOString()}).eq('id',t.id))}
+      SESS.err='';
+    }catch(e){SESS.err=campErr(e)}
+    drawTokens();drawLive();
+  }
+  function snapPos(m,t,x,y){
+    x=Math.max(0,Math.min(m.w,x));y=Math.max(0,Math.min(m.h,y));
+    if(!m.grade)return {x:Math.round(x),y:Math.round(y)};
+    var g=m.grade,even=t.tam>=2&&Math.round(t.tam)%2===0;
+    function f(v){return even?Math.round(v/g)*g:(Math.floor(v/g)+0.5)*g}
+    return {x:Math.max(0,Math.min(m.w,f(x))),y:Math.max(0,Math.min(m.h,f(y)))};
+  }
+  function showRuler(m,x0,y0,x1,y1){
+    var r=$('mapRuler');if(!r)return;
+    var g=gridOf(m),sq=Math.round(Math.max(Math.abs(x1-x0),Math.abs(y1-y0))/g);
+    r.hidden=false;r.style.left=x1+'px';r.style.top=(y1-g*0.5)+'px';
+    r.textContent=fmtM(Math.round(sq*1.5*10)/10);
+  }
+  function wireMapView(){
+    var view=$('mapView');if(!view||view.dataset.w)return;view.dataset.w='1';
+    view.addEventListener('pointerdown',function(ev){
+      var m=currentMap();if(!m||ev.button>0)return;
+      var tk=ev.target.closest&&ev.target.closest('.tok.can');
+      var V=viewOf(m);
+      if(tk){
+        var t=tokById(tk.dataset.tid);if(!t)return;
+        ev.preventDefault();
+        SESS.drag={id:t.id,el:tk,sx:ev.clientX,sy:ev.clientY,ox:t.x,oy:t.y,nx:t.x,ny:t.y,moved:false};
+      }else SESS.pan={sx:ev.clientX,sy:ev.clientY,x:V.x,y:V.y,moved:false};
+      try{view.setPointerCapture(ev.pointerId)}catch(e){}
+    });
+    view.addEventListener('pointermove',function(ev){
+      var m=currentMap();if(!m)return;var V=viewOf(m);
+      if(SESS.drag){
+        var d=SESS.drag,t=tokById(d.id);if(!t)return;
+        var dx=(ev.clientX-d.sx)/V.z,dy=(ev.clientY-d.sy)/V.z;
+        if(Math.abs(ev.clientX-d.sx)+Math.abs(ev.clientY-d.sy)>4)d.moved=true;
+        if(!d.moved)return;
+        d.nx=Math.max(0,Math.min(m.w,d.ox+dx));d.ny=Math.max(0,Math.min(m.h,d.oy+dy));
+        var s=tokPx(t,m),el=document.querySelector('.tok[data-tid="'+d.id+'"]')||d.el;
+        el.style.left=(d.nx-s/2)+'px';el.style.top=(d.ny-s/2)+'px';el.classList.add('dragging');
+        showRuler(m,d.ox,d.oy,d.nx,d.ny);
+      }else if(SESS.pan){
+        var p=SESS.pan;if(Math.abs(ev.clientX-p.sx)+Math.abs(ev.clientY-p.sy)>3)p.moved=true;
+        V.x=p.x+(ev.clientX-p.sx);V.y=p.y+(ev.clientY-p.sy);applyView();view.classList.add('panning');
+      }
+    });
+    function end(){
+      var m=currentMap();
+      if(SESS.drag){
+        var d=SESS.drag;SESS.drag=null;var r=$('mapRuler');if(r)r.hidden=true;
+        var t=tokById(d.id);
+        if(t&&m&&d.moved){var p=snapPos(m,t,d.nx,d.ny);t.x=p.x;t.y=p.y;drawTokens();saveTokPos(t)}
+        else if(t){SESS.tokSel=SESS.tokSel===t.id?null:t.id;drawTokens()}
+      }
+      if(SESS.pan){var moved=SESS.pan.moved;SESS.pan=null;view.classList.remove('panning');if(!moved&&SESS.tokSel){SESS.tokSel=null;drawTokens()}}
+    }
+    view.addEventListener('pointerup',end);view.addEventListener('pointercancel',end);
+    view.addEventListener('wheel',function(ev){
+      var m=currentMap();if(!m)return;ev.preventDefault();
+      var r=view.getBoundingClientRect();zoomAt(m,ev.deltaY<0?1.15:1/1.15,ev.clientX-r.left,ev.clientY-r.top);
+    },{passive:false});
+  }
+  function saveTokPos(t){
+    db('campanha_tokens').update({x:t.x,y:t.y,atualizado_em:new Date().toISOString()}).eq('id',t.id).then(function(r){
+      if(r.error){SESS.err=campErr(r.error);drawLive();sessLoad()}
+    });
+  }
+  function saveGrid(m){
+    clearTimeout(SESS.gridT);
+    SESS.gridT=setTimeout(function(){
+      db('campanha_mapas').update({grade:m.grade}).eq('id',m.id).then(function(r){if(r.error){SESS.err=campErr(r.error);drawLive()}});
+    },450);
+  }
+  function viewCenter(m){
+    var v=$('mapView'),V=viewOf(m);if(!v)return {x:m.w/2,y:m.h/2};
+    return {x:Math.max(0,Math.min(m.w,(v.clientWidth/2-V.x)/V.z)),y:Math.max(0,Math.min(m.h,(v.clientHeight/2-V.y)/V.z))};
+  }
+  function imgDims(url){
+    return new Promise(function(res,rej){var im=new Image();im.onload=function(){res({w:im.naturalWidth,h:im.naturalHeight})};im.onerror=rej;im.src=url});
+  }
+  async function addMap(file){
+    if(!/^image\//.test(file.type)){sessMsg('Escolha um arquivo de imagem.',true);return}
+    sessMsg('Preparando o mapa…');
+    try{
+      var url=await shrinkImage(file,1800,0.8),dim=await imgDims(url),id=uuid(),first=!SESS.maps.length;
+      await dbq(db('campanha_mapas').insert({id:id,campanha_id:SESS.cid,nome:(file.name||'Mapa').replace(/\.[^.]+$/,'').slice(0,60)||'Mapa',largura:dim.w,altura:dim.h,grade:70,ativo:false}));
+      await dbq(db('campanha_mapa_imagens').insert({mapa_id:id,campanha_id:SESS.cid,imagem:url}));
+      SESS.imgs[id]=url;SESS.mapId=id;
+      if(first)await setActiveMap(id,true);
+      await sessLoad();
+      sessMsg(first?'Mapa enviado e já visível para os jogadores.':'Mapa enviado. Ele só aparece para os jogadores quando você clicar em Mostrar aos jogadores.');
+    }catch(e){sessMsg(campErr(e),true)}
+  }
+  async function setActiveMap(id,quiet){
+    try{
+      await dbq(db('campanha_mapas').update({ativo:false}).eq('campanha_id',SESS.cid).eq('ativo',true));
+      if(id)await dbq(db('campanha_mapas').update({ativo:true}).eq('id',id));
+      SESS.maps.forEach(function(x){x.ativo=x.id===id});sessPing();
+      if(!quiet){sessMsg(id?'Os jogadores estão vendo este mapa.':'Mapa escondido dos jogadores.');drawMap()}
+    }catch(e){sessMsg(campErr(e),true)}
+  }
+  async function delMap(m){
+    try{
+      await dbq(db('campanha_mapas').delete().eq('id',m.id));
+      SESS.maps=SESS.maps.filter(function(x){return x.id!==m.id});SESS.tokens=SESS.tokens.filter(function(t){return t.mapa!==m.id});
+      delete SESS.imgs[m.id];SESS.mapId=null;sessPing();sessMsg('Mapa apagado.');drawMap();
+    }catch(e){sessMsg(campErr(e),true)}
+  }
+  async function addDmToken(m,nome,tam,cor,quiet){
+    var c=viewCenter(m),g=gridOf(m),n=SESS.tokens.filter(function(t){return t.mapa===m.id}).length;
+    var p=snapPos(m,{tam:tam},c.x+((n%5)-2)*g,c.y+(Math.floor(n/5)%3-1)*g);
+    var row={campanha_id:SESS.cid,mapa_id:m.id,nome:nome,cor:cor,tamanho:tam,x:p.x,y:p.y,oculto:false};
+    try{
+      var r=await dbq(db('campanha_tokens').insert(row).select('id,mapa_id,dono,nome,imagem,cor,tamanho,x,y,oculto'));
+      r.forEach(function(x){var t=cleanTok(x);if(t&&!tokById(t.id))SESS.tokens.push(t)});
+      if(!quiet){var i=$('mapNpcN');if(i)i.value='';sessMsg(nome+' está no mapa.');drawTokens()}
+    }catch(e){sessMsg(campErr(e),true)}
+  }
+  async function addCombatTokens(m){
+    var C=CAMP.dm&&CAMP.dm.combat,list=C?C.list.filter(function(c){return c.type==='m'}):[];
+    if(!list.length){sessMsg('O combate não tem criaturas. Monte o encontro nas abas Bestiário e Combate.',true);return}
+    var have={};SESS.tokens.forEach(function(t){if(t.mapa===m.id)have[t.nome]=1});
+    var todo=list.filter(function(c){return !have[c.name]});
+    if(!todo.length){sessMsg('As criaturas do combate já estão no mapa.');return}
+    if(!window.BESTIARIO&&!BEST.failed&&todo.some(function(c){return c.mid&&!/^x-/.test(c.mid)})){loadBest(function(){addCombatTokens(m)});return}
+    for(var i=0;i<todo.length;i++){
+      var c=todo[i],mon=c.mid&&window.BESTIARIO?monById(c.mid):null;
+      await addDmToken(m,c.name,mon&&SIZE_TAM[mon.sz]||1,'#8f1d24',true);
+    }
+    sessMsg(todo.length+' criatura'+(todo.length>1?'s':'')+' no mapa.');drawTokens();
+  }
+
+  // ---------- token do jogador, gerado a partir do retrato ----------
+  function makeToken(st,color,custom){
+    return new Promise(function(res){
+      var N=128,c=document.createElement('canvas');c.width=c.height=N;var x=c.getContext('2d');
+      function finish(){
+        x.restore();
+        x.beginPath();x.arc(N/2,N/2,N/2-5,0,Math.PI*2);x.lineWidth=8;x.strokeStyle=color;x.stroke();
+        try{res(c.toDataURL('image/png'))}catch(e){res('')}
+      }
+      x.save();x.beginPath();x.arc(N/2,N/2,N/2-2,0,Math.PI*2);x.closePath();x.clip();
+      x.fillStyle='#141418';x.fillRect(0,0,N,N);
+      var src=custom||(st?safeImg(st.portrait):'');
+      if(src){
+        var im=new Image();
+        im.onload=function(){var w=im.naturalWidth,h=im.naturalHeight,s=Math.max(N/w,N/h),dw=w*s,dh=h*s,py=custom?50:safeY(st.portraitY);
+          x.drawImage(im,(N-dw)/2,(N-dh)*py/100,dw,dh);finish()};
+        im.onerror=finish;im.src=src;return;
+      }
+      var cn=st&&CLASSES[st.cls]?CLASSES[st.cls][0]:'';
+      if(ICON[cn]){
+        var svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="76" height="76" color="#cfd2d8" fill="none" stroke="#cfd2d8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><style>.acf{fill:#e5383b;stroke:none}</style>'+ICON[cn]+'</svg>';
+        var im2=new Image();im2.onload=function(){x.drawImage(im2,(N-76)/2,(N-76)/2,76,76);finish()};im2.onerror=finish;
+        im2.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);return;
+      }
+      finish();
+    });
+  }
+  async function placeMine(m,custom){
+    var fid=pvFicha(),st=fid&&CAMP.states&&CAMP.states[fid];
+    if(!fid){sessMsg('Escolha a ficha desta campanha antes de colocar o token.',true);return}
+    var nome=(st&&st.info&&String(st.info.nome||'').trim()||pvName()).slice(0,40);
+    sessMsg('Gerando o token…');
+    var mine=myTok(m),img=await makeToken(st,SESS.color,custom);
+    if(!img&&mine)img=mine.img;
+    try{
+      if(mine){
+        await dbq(db('campanha_tokens').update({nome:nome,imagem:img||'',cor:SESS.color,atualizado_em:new Date().toISOString()}).eq('id',mine.id));
+        mine.nome=nome;mine.img=safeImg(img);mine.cor=SESS.color;sessMsg('Token atualizado.');
+      }else{
+        var c=viewCenter(m),p=snapPos(m,{tam:1},c.x,c.y);
+        var r=await dbq(db('campanha_tokens').insert({campanha_id:SESS.cid,mapa_id:m.id,dono:me(),nome:nome,imagem:img||'',cor:SESS.color,tamanho:1,x:p.x,y:p.y}).select('id,mapa_id,dono,nome,imagem,cor,tamanho,x,y,oculto'));
+        r.forEach(function(x){var t=cleanTok(x);if(t&&!tokById(t.id))SESS.tokens.push(t)});
+        sessMsg('Seu personagem está no mapa. Arraste para mover.');
+      }
+    }catch(e){sessMsg(/duplicate|unique/i.test((e&&e.message)||'')?'Você já tem um token neste mapa.':campErr(e),true);sessLoad()}
+    SESS.barKey='';drawMap();
+  }
+
+  // ---------- visão do jogador da campanha ----------
+  function pvFicha(){return CAMP.pv?CAMP.pv.ficha:null}
+  function pvName(){
+    var fid=pvFicha(),st=fid&&CAMP.states&&CAMP.states[fid];
+    return (st&&st.info&&String(st.info.nome||'').trim())||profile().nick||'Jogador';
+  }
+  function pvOpen(id){
+    var c=(CAMP.joined||[]).filter(function(x){return x.id===id})[0];if(!c)return;
+    CAMP.pv=c;CAMP.msg='';CAMP.err='';renderCamp();
+  }
+  function renderPlayerView(box){
+    var c=CAMP.pv,fid=c.ficha,st=fid&&CAMP.states&&CAMP.states[fid];
+    box.innerHTML='<div class="camp-top"><button class="btn ghost sm" id="pvBack">← Campanhas</button>'+
+      '<div class="camp-t"><h3>'+esc(c.nome)+'</h3><p class="small" style="margin:2px 0 0">'+(c.mestre?'Mestre: '+esc(c.mestre)+' · ':'')+
+        (st?'Você joga com <b>'+esc((st.info&&st.info.nome)||'sua ficha')+'</b>':'Você ainda não escolheu uma ficha')+'</p></div>'+
+      (st?'<button class="btn sm" id="pvPlay">Jogar com minha ficha</button>':'')+'</div>'+
+      '<div id="sessPane"></div>';
+    $('pvBack').onclick=function(){CAMP.pv=null;sessLeave();renderCamp();campRefreshHome()};
+    var pp=$('pvPlay');if(pp)pp.onclick=function(){VIEW=null;loadState(st);S.sheetId=fid;show('jogo')};
+    sessEnsure(c.id,'pl');
+    renderSessPane($('sessPane'),'pl');
+  }
+
+  // presentes na hora: avisa assim que o mestre envia
+  var GIFT_CH=null;
+  function giftLive(){
+    if(GIFT_CH&&Auth.client&&Auth.client.removeChannel){try{Auth.client.removeChannel(GIFT_CH)}catch(e){}}
+    GIFT_CH=null;
+    if(!Auth.user||!Auth.client||!Auth.client.channel)return;
+    try{
+      GIFT_CH=Auth.client.channel('presentes-'+Auth.user.id)
+        .on('postgres_changes',{event:'INSERT',schema:'public',table:'campanha_entregas',filter:'para_user=eq.'+Auth.user.id},function(){checkGifts()})
+        .subscribe();
+    }catch(e){GIFT_CH=null}
+  }
 
   // =====================================================================
   // BOTÕES DAS ETAPAS

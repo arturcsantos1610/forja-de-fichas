@@ -27,6 +27,8 @@ Criador de fichas de personagem para D&D 5e, feito com HTML, CSS e JavaScript pu
 - **Bestiário:** os 334 monstros do SRD 5.1 traduzidos, com busca em português ou inglês, filtro por nível de desafio e tipo, ficha completa com testes, ataques e dano roláveis, criaturas próprias do mestre e botão para pôr no combate com PV pela média ou rolados.
 - **Combate e dificuldade:** iniciativa com jogadores e monstros, turnos, rodadas e dano, e o orçamento de XP do grupo (baixa, moderada, alta) calculado pelos níveis das fichas.
 - **Entregas do mestre:** o mestre dá itens da loja, itens próprios ou moedas a um jogador. O jogador recebe o aviso "O mestre está te dando o item…", aceita ou recusa, e o item entra direto no inventário da ficha.
+- **Mapa da sessão:** o mestre envia a imagem de um mapa, rua ou casa, ajusta a grade e escolhe o que os jogadores veem. Cada jogador gera o token do próprio personagem a partir do retrato da ficha (ou de uma imagem própria) e o arrasta pelo mapa, com régua de distância em metros. O mestre põe as criaturas do combate, oculta tokens e muda o tamanho deles. Tudo aparece ao vivo para o grupo.
+- **Rolagens da mesa:** as rolagens da ficha em jogo aparecem para o grupo inteiro com o nome do personagem e o resultado. Um 20 natural ganha comemoração na tela de todo mundo (e faz o celular vibrar). O mestre pode rolar em segredo.
 - **Mesa rápida:** sem campanha, reúne fichas pelos links de compartilhamento e controla a iniciativa, salva no navegador.
 - **Contas e perfil:** entrar, criar conta, trocar senha, nickname e emblema de perfil, e enviar as fichas do navegador para a conta.
 - **Subir de nível** até o 5: PV pela média ou rolando o dado, aumento de atributo, subclasse do SRD, características novas, estilo de luta, especialização, invocações, dádiva do pacto, metamagia, presa do caçador, inimigo e terreno favoritos, terreno do druida, espaços de magia e magias novas, com opção de desfazer.
@@ -50,6 +52,7 @@ Criador de fichas de personagem para D&D 5e, feito com HTML, CSS e JavaScript pu
 - [x] Perfil, compartilhamento por link e mesa do mestre
 - [x] Inventário com compra de equipamento e carga
 - [x] Campanhas na Mesa: convite, grupo ao vivo, bestiário, dificuldade de encontro e entrega de itens
+- [x] Sessão ao vivo: mapa com tokens e rolagens compartilhadas
 - [ ] Itens mágicos do SRD e diário da campanha (NPCs, lugares, missões)
 - [ ] App instalável que funciona sem internet
 - [ ] Níveis 6 a 20
@@ -64,7 +67,7 @@ Não precisa instalar nada, mas a exportação em PDF precisa que a página seja
 O site funciona sem login, salvando no navegador. Para ativar as contas:
 
 1. Crie uma conta em [supabase.com](https://supabase.com) e um projeto novo (região: South America, São Paulo).
-2. No projeto, abra **SQL Editor**, cole o conteúdo de `supabase-setup.sql` e clique em **Run**. Quem já tinha rodado uma versão antiga roda só o que falta: `supabase-compartilhar.sql` (compartilhar fichas) e `supabase-campanhas.sql` (campanhas). Rodar de novo não apaga nada.
+2. No projeto, abra **SQL Editor**, cole o conteúdo de `supabase-setup.sql` e clique em **Run**. Quem já tinha rodado uma versão antiga roda só o que falta: `supabase-compartilhar.sql` (compartilhar fichas) `supabase-campanhas.sql` (campanhas) e `supabase-sessao.sql` (mapa e rolagens ao vivo). Rodar de novo não apaga nada.
 3. Em **Authentication → URL Configuration**, coloque o endereço do site em **Site URL** e também em **Redirect URLs** (mais `http://localhost:8000` para testes).
 4. Em **Project Settings → API Keys**, copie o **Project URL** e a chave **publishable** (ou a **anon**, na aba de chaves legadas). Nunca use a chave *secret* / *service_role* no site.
 5. No `index.html`, procure `SUPABASE_URL` e cole os dois valores.
