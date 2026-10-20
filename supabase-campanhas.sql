@@ -1,4 +1,4 @@
--- Forja de Fichas: campanhas na Mesa
+-- Torre do Mago: campanhas na Mesa
 -- Rode depois do supabase-setup.sql (cole no SQL Editor do Supabase e clique em Run).
 -- Pode rodar de novo sem problema: nada é apagado.
 

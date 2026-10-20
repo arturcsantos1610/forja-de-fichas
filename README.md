@@ -1,6 +1,6 @@
-# Forja de Fichas
+# Torre do Mago
 
-Criador de fichas de personagem para D&D 5e, feito com HTML, CSS e JavaScript puro. Visual preto com detalhes em vermelho e prata.
+Criador de fichas de personagem para D&D 5e, feito com HTML, CSS e JavaScript puro. Visual escuro com detalhes em roxo e prata.
 
 ![Captura de tela do projeto](docs/screenshot.png)
 
@@ -12,11 +12,12 @@ Criador de fichas de personagem para D&D 5e, feito com HTML, CSS e JavaScript pu
 - **Escolha de classe** com distribuição sugerida dos valores, atributos principais destacados e ajuste manual limitado aos valores gerados.
 - **Raças e antecedentes recomendados** para a classe escolhida, com ícones para quem está começando.
 - **Escolha de armas** quando a classe oferece "qualquer arma simples" ou "duas armas marciais", com dano e propriedades na lista.
-- **Tela de magias** para conjuradores, com truques e magias até o 3º círculo (166 magias do SRD), recomendações por classe, área, concentração e efeito de cada magia.
+- **Tela de magias** para conjuradores, com truques e magias até o 9º círculo (as 327 magias do SRD), recomendações por classe, área, concentração e efeito de cada magia.
 - **Retrato do personagem** na ficha, usado como capa em Minhas fichas e impresso no quadro de aparência do PDF.
 - **Ajudantes de criação:** gerador de nome por raça e ideia de história a partir da classe e do antecedente.
 - **Sugestões de personalidade:** traços, ideais, vínculos e fraquezas próprios para cada antecedente, com clique para adicionar e um botão de sorteio.
 - **Inventário:** equipamento inicial já separado em itens (pacotes abertos, munição contada), ou ouro inicial rolado pela classe para comprar tudo na loja. Moedas de cobre a platina com troco automático, venda pela metade do preço, itens próprios para tesouros e itens mágicos, armadura e escudo em uso mudando a CA, armas em uso virando ataques, e peso com capacidade de carga (FOR × 7,5 kg) e regra opcional de carga.
+- **Itens mágicos do SRD:** os 239 itens mágicos do conteúdo aberto, resumidos em português, numa seção da loja (com busca, tipo e raridade). O jogador pega o que encontrou e o mestre pode dar direto pela campanha. Itens que pedem sintonização têm o botão Sintonizar (máximo de 3), e os bônus entram sozinhos na ficha: armas e armaduras +1 a +3, Anel e Manto de Proteção, Braçadeiras de Defesa, Manoplas de Força do Ogro, Cinturões de Força do Gigante, Pedras Iônicas, Varinha do Mago de Guerra e outros. O catálogo fica em `itens-magicos.js` e só carrega quando é aberto.
 - **Ficha final** com perícias restantes, CA, pontos de vida, iniciativa, deslocamento, percepção passiva, ataques e CD de magia calculados.
 - **Exportação** para a ficha oficial em PDF, já preenchida.
 - **Ficha em jogo:** PV com dano, cura e PV temporários, salvaguardas contra a morte, espaços de magia, recursos de classe, dados de vida, condições, concentração, inspiração e descansos curto e longo, salvando sozinha.
@@ -31,7 +32,9 @@ Criador de fichas de personagem para D&D 5e, feito com HTML, CSS e JavaScript pu
 - **Rolagens da mesa:** as rolagens da ficha em jogo aparecem para o grupo inteiro com o nome do personagem e o resultado. Um 20 natural ganha comemoração na tela de todo mundo (e faz o celular vibrar). O mestre pode rolar em segredo.
 - **Mesa rápida:** sem campanha, reúne fichas pelos links de compartilhamento e controla a iniciativa, salva no navegador.
 - **Contas e perfil:** entrar, criar conta, trocar senha, nickname e emblema de perfil, e enviar as fichas do navegador para a conta.
-- **Subir de nível** até o 5: PV pela média ou rolando o dado, aumento de atributo, subclasse do SRD, características novas, estilo de luta, especialização, invocações, dádiva do pacto, metamagia, presa do caçador, inimigo e terreno favoritos, terreno do druida, espaços de magia e magias novas, com opção de desfazer.
+- **Subir de nível** até o 20: PV pela média ou rolando o dado, aumento de atributo, subclasse do SRD, características novas, estilo de luta, especialização, invocações, dádiva do pacto, metamagia, presa do caçador, inimigo e terreno favoritos, terreno do druida, espaços de magia e magias novas, com opção de desfazer. Inclui os aumentos de atributo de cada classe, Ataque Extra até 4 ataques, Arcano Místico do Bruxo, Segredos Mágicos do Bardo e as melhorias de recursos (fúrias, ki, inspiração, forma selvagem e outras).
+- **Homebrew:** em Minhas fichas → Homebrew, cada jogador cria as próprias subclasses (por exemplo, a partir de um livro que tem), com o nome e as características de cada nível escritas por ele. Ficam na conta ou no navegador, são privadas, podem ser exportadas e importadas, e aparecem como opção no quadro Subclasse da ficha. Para cadastrar várias de uma vez, dá para importar arquivos de texto (ou uma pasta inteira) no modelo que o site oferece em "Baixar modelo de texto".
+- **Regras opcionais (multiclasse e talentos):** ligadas na ficha quando o mestre permitir. Na multiclasse, ao subir de nível você escolhe a classe, o site confere os requisitos de atributo, dá as proficiências certas, soma os dados de vida e os espaços de magia pela regra do SRD (com os espaços de pacto separados) e mostra uma caixa de magias para cada classe. No 4º nível de uma classe, o aumento de atributo pode virar um talento: o Agarrador do SRD ou um talento do seu livro, escrito por você.
 - **Livro do Jogador** com capítulos de raças, classes, antecedentes, equipamento (armas, armaduras, pacotes, itens, ferramentas e moedas com preços), atributos, combate, condições e conjuração, com lista de magias filtrável.
 
 ## Em desenvolvimento
@@ -45,29 +48,31 @@ Criador de fichas de personagem para D&D 5e, feito com HTML, CSS e JavaScript pu
 - [x] Escolha de armas e tela de magias
 - [x] Livro do Jogador por capítulos
 - [x] Minhas fichas (salvas no navegador)
-- [x] Subir de nível até o 5
-- [x] Magias de 2º e 3º círculo e escolhas específicas de classe
+- [x] Subir de nível até o 20
+- [x] Magias até o 9º círculo e escolhas específicas de classe
 - [x] Ficha em jogo e rolador de dados
 - [x] Login para guardar as fichas na nuvem
 - [x] Perfil, compartilhamento por link e mesa do mestre
 - [x] Inventário com compra de equipamento e carga
 - [x] Campanhas na Mesa: convite, grupo ao vivo, bestiário, dificuldade de encontro e entrega de itens
 - [x] Sessão ao vivo: mapa com tokens e rolagens compartilhadas
-- [ ] Itens mágicos do SRD e diário da campanha (NPCs, lugares, missões)
+- [x] Itens mágicos do SRD
+- [ ] Diário da campanha (NPCs, lugares, missões)
 - [ ] App instalável que funciona sem internet
-- [ ] Níveis 6 a 20
-- [ ] Multiclasse e talentos
+- [x] Multiclasse e talentos (regras opcionais)
+- [x] Subclasses de homebrew (criadas e guardadas por cada jogador)
+- [ ] Classe de homebrew completa e uma classe original da casa
 
 ## Como rodar
 
-Não precisa instalar nada, mas a exportação em PDF precisa que a página seja servida por um servidor (o navegador bloqueia a leitura do `ficha-dnd5e.pdf` quando o arquivo é aberto direto do disco). No GitHub Pages funciona sem configurar nada. Para testar no computador, rode `python -m http.server` na pasta do projeto e abra `http://localhost:8000`. Envie todos os arquivos para o GitHub, inclusive o `bestiario.js`, que a Mesa carrega quando o bestiário é aberto.
+Não precisa instalar nada, mas a exportação em PDF precisa que a página seja servida por um servidor (o navegador bloqueia a leitura do `ficha-dnd5e.pdf` quando o arquivo é aberto direto do disco). No GitHub Pages funciona sem configurar nada. Para testar no computador, rode `python -m http.server` na pasta do projeto e abra `http://localhost:8000`. Envie todos os arquivos para o GitHub, inclusive o `bestiario.js` (a Mesa carrega quando o bestiário é aberto) e o `itens-magicos.js` (carregado quando a seção de itens mágicos é aberta).
 
 ## Login com Supabase
 
 O site funciona sem login, salvando no navegador. Para ativar as contas:
 
 1. Crie uma conta em [supabase.com](https://supabase.com) e um projeto novo (região: South America, São Paulo).
-2. No projeto, abra **SQL Editor**, cole o conteúdo de `supabase-setup.sql` e clique em **Run**. Quem já tinha rodado uma versão antiga roda só o que falta: `supabase-compartilhar.sql` (compartilhar fichas) `supabase-campanhas.sql` (campanhas) e `supabase-sessao.sql` (mapa e rolagens ao vivo). Rodar de novo não apaga nada.
+2. No projeto, abra **SQL Editor**, cole o conteúdo de `supabase-setup.sql` e clique em **Run**. Quem já tinha rodado uma versão antiga roda só o que falta: `supabase-compartilhar.sql` (compartilhar fichas) `supabase-campanhas.sql` (campanhas) e `supabase-sessao.sql` (mapa e rolagens ao vivo) e `supabase-homebrew.sql` (homebrew na conta). Rodar de novo não apaga nada.
 3. Em **Authentication → URL Configuration**, coloque o endereço do site em **Site URL** e também em **Redirect URLs** (mais `http://localhost:8000` para testes).
 4. Em **Project Settings → API Keys**, copie o **Project URL** e a chave **publishable** (ou a **anon**, na aba de chaves legadas). Nunca use a chave *secret* / *service_role* no site.
 5. No `index.html`, procure `SUPABASE_URL` e cole os dois valores.
@@ -80,7 +85,7 @@ HTML, CSS e JavaScript, com [pdf-lib](https://pdf-lib.js.org/) para preencher a 
 
 ## Conteúdo e direitos autorais
 
-Este trabalho inclui material do System Reference Document 5.1 ("SRD 5.1"), de Wizards of the Coast LLC, disponível em https://dnd.wizards.com/resources/systems-reference-document. O SRD 5.1 é licenciado sob a Creative Commons Attribution 4.0 International License, disponível em https://creativecommons.org/licenses/by/4.0/legalcode. Os textos de resumo são escritos pelo autor, e o bestiário (`bestiario.js`) é uma tradução dos monstros do SRD 5.1, a partir dos dados do projeto [5e-database](https://github.com/5e-bits/5e-database) (licença MIT). O orçamento de XP dos encontros segue as Regras Básicas de D&D (2024).
+Este trabalho inclui material do System Reference Document 5.1 ("SRD 5.1"), de Wizards of the Coast LLC, disponível em https://dnd.wizards.com/resources/systems-reference-document. O SRD 5.1 é licenciado sob a Creative Commons Attribution 4.0 International License, disponível em https://creativecommons.org/licenses/by/4.0/legalcode. Os textos de resumo são escritos pelo autor, o bestiário (`bestiario.js`) é uma tradução dos monstros do SRD 5.1 e os itens mágicos (`itens-magicos.js`) são resumos em português dos itens do SRD 5.1, ambos a partir dos dados do projeto [5e-database](https://github.com/5e-bits/5e-database) (licença MIT). O orçamento de XP dos encontros segue as Regras Básicas de D&D (2024).
 
 Este projeto não é afiliado à Wizards of the Coast. Dungeons & Dragons é marca registrada da Wizards of the Coast LLC.
 

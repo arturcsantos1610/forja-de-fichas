@@ -1,4 +1,4 @@
--- Forja de Fichas: sessão ao vivo (mapas, tokens e rolagens compartilhadas)
+-- Torre do Mago: sessão ao vivo (mapas, tokens e rolagens compartilhadas)
 -- Rode depois do supabase-campanhas.sql (cole no SQL Editor do Supabase e clique em Run).
 -- Pode rodar de novo sem problema: nada é apagado.
 

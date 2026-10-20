@@ -1,4 +1,4 @@
--- Forja de Fichas: compartilhar ficha por link e modo mestre
+-- Torre do Mago: compartilhar ficha por link e modo mestre
 -- Rode este arquivo uma vez no SQL Editor do Supabase (depois do supabase-setup.sql).
 
 -- Código secreto do link. Fica vazio enquanto a ficha não é compartilhada.
